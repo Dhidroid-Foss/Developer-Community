@@ -1,0 +1,45 @@
+.mentors-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+.mentor-image {
+  width: 150px;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.mentor-image:hover {
+  transform: scale(1.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.mentor-image:nth-child(1),
+.mentor-image:nth-child(2),
+.mentor-image:nth-child(3) {
+  flex: 0 0 calc(33.333% - 14px);
+}
+
+.mentor-image:nth-child(4),
+.mentor-image:nth-child(5) {
+  flex: 0 0 calc(35% - 10px);
+}
+
+@media (max-width: 768px) {
+  .mentor-image:nth-child(1),
+  .mentor-image:nth-child(2),
+  .mentor-image:nth-child(3) {
+    flex: 0 0 calc(50% - 10px);
+  }
+
+  .mentor-image:nth-child(4),
+  .mentor-image:nth-child(5) {
+    flex: 0 0 calc(50% - 10px);
+  }
+}

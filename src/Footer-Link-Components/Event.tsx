@@ -1,5 +1,15 @@
 import { useState } from 'react';
 import '../Overall-Style-sheet/Event.css';
+import event11 from '../assets/event11.webp?url';
+import event12 from '../assets/event12.webp?url';
+import event13 from '../assets/event13.jpg?url';
+import event21 from '../assets/event21.jpg?url';
+import event22 from '../assets/event22.jpg?url';
+import event23 from '../assets/event23.webp?url';
+import event31 from '../assets/event31.jpg?url';
+import event32 from '../assets/event32.jpg?url';
+import event41 from '../assets/event41.png?url';
+import event42 from '../assets/event42.jpg?url';
 
 function Event(){
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
@@ -24,9 +34,9 @@ function Event(){
       <div>
         <h2>Webinars</h2>
         <div className="event-images-container">
-          <img src="/src/assets/event11.webp" alt="image" className="event-image" onClick={() => openModal("/src/assets/event11.webp")} />
-          <img src="/src/assets/event12.webp" alt="image" className="event-image" onClick={() => openModal("/src/assets/event12.webp")} />
-          <img src="/src/assets/event13.jpg" alt="image" className="event-image" onClick={() => openModal("/src/assets/event13.jpg")} />
+          <img src={event11} alt="image" className="event-image" onClick={() => openModal(event11)} />
+          <img src={event12} alt="image" className="event-image" onClick={() => openModal(event12)} />
+          <img src={event13} alt="image" className="event-image" onClick={() => openModal(event13)} />
         </div>
         <p>Interactive online sessions where experienced developers share insights about React, frontend technologies, and real-world development practices.</p>
       </div>
@@ -34,9 +44,9 @@ function Event(){
       <div>
         <h2>Workshops</h2>
         <div className="event-images-container">
-          <img src="/src/assets/event21.jpg" alt="image" className="event-image" onClick={() => openModal("/src/assets/event21.jpg")} />
-          <img src="/src/assets/event22.jpg" alt="image" className="event-image" onClick={() => openModal("/src/assets/event22.jpg")} />
-          <img src="/src/assets/event23.webp" alt="image" className="event-image" onClick={() => openModal("/src/assets/event23.webp")} />
+          <img src={event21} alt="image" className="event-image" onClick={() => openModal(event21)} />
+          <img src={event22} alt="image" className="event-image" onClick={() => openModal(event22)} />
+          <img src={event23} alt="image" className="event-image" onClick={() => openModal(event23)} />
         </div>
         <p>Hands-on sessions focused on building real applications, solving coding challenges, and improving practical development skills.</p>
       </div>
@@ -44,8 +54,8 @@ function Event(){
       <div>
         <h2>Guest Lectures</h2>
         <div className="event-images-container">
-          <img src="/src/assets/event41.png" alt="image" className="event-image" onClick={() => openModal("/src/assets/event41.png")} />
-          <img src="/src/assets/event42.jpg" alt="image" className="event-image" onClick={() => openModal("/src/assets/event42.jpg")} />
+          <img src={event41} alt="image" className="event-image" onClick={() => openModal(event41)} />
+          <img src={event42} alt="image" className="event-image" onClick={() => openModal(event42)} />
         </div>
         <p>Industry professionals and experienced engineers share their journey, knowledge, and insights into the evolving tech landscape.</p>
       </div>
@@ -53,8 +63,8 @@ function Event(){
       <div>
         <h2>Community Meetups</h2>
         <div className="event-images-container">
-          <img src="/src/assets/event31.jpg" alt="image" className="event-image" onClick={() => openModal("/src/assets/event31.jpg")} />
-          <img src="/src/assets/event32.jpg" alt="image" className="event-image" onClick={() => openModal("/src/assets/event32.jpg")} />
+          <img src={event31} alt="image" className="event-image" onClick={() => openModal(event31)} />
+          <img src={event32} alt="image" className="event-image" onClick={() => openModal(event32)} />
         </div>
         <p>In-person gatherings where developers network, discuss ideas, and strengthen the developer ecosystem.</p>
       </div>

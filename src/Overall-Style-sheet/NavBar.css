@@ -1,0 +1,50 @@
+.nav-bar-elements {
+    /* position: fixed; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 20px;
+    background: linear-gradient(90deg, #243b55, #141e30);
+    height: 70px;
+    z-index: 1000;
+}
+
+.nav-bar-name-and-logo{
+    display: flex;
+    padding: 5px 10px;
+    gap: 15px;
+    position: absolute;
+    left: 30px;
+}
+.nav-bar-name-and-logo h3 {
+    color: rgb(1, 154, 154);
+    margin: 0;
+    white-space: nowrap;
+}
+
+.Explorer-image {
+    height: 36px;
+    object-fit: contain;
+    border-radius: 5px;
+    padding: 1px;
+    flex-shrink: 0;
+}
+
+.nav-bar-elements-link ul{
+    list-style: none;
+    text-decoration: none;
+    gap: 35px;
+    display: flex;
+    text-align: center;
+}
+
+.nav-bar-elements-link a {
+    text-decoration: none;
+    color: whitesmoke;
+    /* padding: 20px; */
+}
+
+.nav-bar-elements-link a:hover {
+    color: rgb(1, 154, 154);
+}

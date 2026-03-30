@@ -1,3 +1,4 @@
+import '../Overall-Style-sheet/Team.css';
 
 function TeamPage(){
     return(
@@ -16,30 +17,32 @@ function TeamPage(){
                 <p>For us, this community is more than a platform — it is a <strong>space where curiosity is encouraged, ideas are exchanged, and developers grow together.</strong></p>
                 <p>We are driven by the excitement of solving problems, exploring new technologies, and guiding others along their learning journey.</p>
             </section>
-            <section>
-                <h2>What We Contribute</h2>
-                <p>Our team contributes in multiple ways to ensure the community continues to grow and deliver meaningful value.</p>
-                <h3>Teaching</h3>
-                <p>We organize <strong>webinars, workshops, and sessions</strong> where developers share real-world experience and practical knowledge.</p>
-                <h3>Development</h3>
-                <p>We <strong>build and maintain the tools, platforms, and systems</strong> that support the community and make collaboration easier.</p>
-                <h3>Mentoring</h3>
-                <p>We <strong>guide aspiring developers, answer questions, and help others overcome challenges</strong> in their learning journey.</p>
-                <h3>Monitoring & Coordination</h3>
-                <p>We ensure that community activities run smoothly, events are organized effectively, and <strong>every member feels welcomed and supported.</strong></p>
-            </section>
-            <section>
-                <h2>Our Team Mindset</h2>
-                <p>We believe in:</p>
-                <ul>
-                    <li><strong>Learning continuously</strong></li>
-                    <li><strong>Teaching generously</strong></li>
-                    <li><strong>Collaborating openly</strong></li>
-                    <li><strong>Supporting each other</strong></li>
-                    <li><strong>Building meaningful connections</strong></li>
-                </ul>
-                <p>Our goal is not just to build a community, but to <strong>create a place where developers feel inspired to contribute and grow.</strong></p>
-            </section>
+            <div className="two-column-container">
+                <section>
+                    <h2>What We Contribute</h2>
+                    <p>Our team contributes in multiple ways to ensure the community continues to grow and deliver meaningful value.</p>
+                    <h3>Teaching</h3>
+                    <p>Webinars, Workshops, and Sessions</p>
+                    <h3>Development</h3>
+                    <p>Build and maintain the Tools, Platforms and Systems</p>
+                    <h3>Mentoring</h3>
+                    <p>Guide aspiring developers, Answer questions, And help others overcome challenges</p>
+                    <h3>Monitoring & Coordination</h3>
+                    <p>We ensure that community activities and events run Smoothly, Effectively, and Supported</p>
+                </section>
+                <section>
+                    <h2>Our Team Mindset</h2>
+                    <p>We believe in:</p>
+                    <ul>
+                        <li><strong>Learning continuously</strong></li>
+                        <li><strong>Teaching generously</strong></li>
+                        <li><strong>Collaborating openly</strong></li>
+                        <li><strong>Supporting each other</strong></li>
+                        <li><strong>Building meaningful connections</strong></li>
+                    </ul>
+                    <p>Our goal is not just to build a community, but to <strong>create a place where developers feel inspired to contribute and grow.</strong></p>
+                </section>
+            </div>
             <section>
                 <h2>Why We Do This</h2>
                 <p><em>Technology evolves rapidly, and the best way to keep up is through <strong>collective learning.</strong></em></p>

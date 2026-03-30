@@ -1,0 +1,127 @@
+/* .signin-error {
+  color: red;
+}
+
+.signin-success {
+  color: green;
+}
+
+.signin-link {
+  cursor: pointer;
+  color: blue;
+}
+
+.signin-link:hover {
+  text-decoration: underline;
+}
+.signin-icon {
+  font-size: 38px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.signin-form-group {
+  margin-bottom: 18px;
+}
+
+.signin-form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #333;
+  font-size: 14px;
+}
+
+.signin-form-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+  box-sizing: border-box;
+  transition: border-color 0.3s;
+}
+
+.signin-form-group input:focus {
+  outline: none;
+  border-color: #00c6ff;
+  box-shadow: 0 0 5px rgba(0, 198, 255, 0.3);
+}
+
+.signin-form button {
+  width: 100%;
+  padding: 12px;
+  background-color: #243b55;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 15px;
+  transition: background-color 0.3s;
+}
+
+.signin-form button:hover {
+  background-color: #141e30;
+}
+
+.signin-form {
+  margin-top: 20px;
+}
+
+.signin-form-footer {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.signin-form-footer p {
+  margin: 12px 0;
+}
+
+.signin-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, #243b55, #141e30);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.signin-modal-container {
+  background-color: white;
+  padding: 30px;
+  border-radius: 12px;
+  position: relative;
+  max-width: 400px;
+  width: 90%;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.signin-close-button {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #666;
+}
+
+.signin-close-button:hover {
+  color: black;
+}
+
+.forgot-link{
+  text-decoration: none;
+}
+
+.forgot-link:hover{
+    text-decoration: underline;
+} */

@@ -1,0 +1,109 @@
+header {
+    padding: 40px 20px;
+    text-align: center;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+header h1 {
+    font-size: 36px;
+    margin: 0 0 15px 0;
+    font-weight: 600;
+}
+
+header p {
+    font-size: 16px;
+    margin: 0;
+    line-height: 1.6;
+}
+
+section {
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+section:last-child {
+    border-bottom: none;
+}
+
+section h2 {
+    font-size: 28px;
+    margin: 0 0 20px 0;
+    font-weight: 600;
+}
+
+section h3 {
+    font-size: 18px;
+    margin: 20px 0 10px 0;
+    font-weight: 600;
+}
+
+section p {
+    font-size: 16px;
+    line-height: 1.8;
+    margin: 0 0 15px 0;
+    color: #333;
+}
+
+section ul {
+    list-style: none;
+    padding: 0;
+    margin: 15px 0;
+}
+
+section li {
+    font-size: 16px;
+    line-height: 1.8;
+    margin: 10px 0;
+    padding-left: 25px;
+    position: relative;
+}
+
+section li:before {
+    content: "•";
+    position: absolute;
+    left: 0;
+}
+
+/* Two column layout for "What We Contribute" and "Our Team Mindset" */
+.two-column-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 60px auto;
+    padding: 40px;
+    background: white;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.two-column-container section {
+    padding: 0;
+    border: none;
+}
+
+.two-column-container section h2 {
+    margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+    .two-column-container {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    header h1 {
+        font-size: 28px;
+    }
+
+    section h2 {
+        font-size: 24px;
+    }
+
+    section h3 {
+        font-size: 16px;
+    }
+}

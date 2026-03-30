@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react';
 import { supabase } from './Config/supabase.ts';
-import './index.css';
+import './Overall-Style-sheet/Index.css';
+import community11 from './assets/community11.webp?url';
+import community12 from './assets/community12.webp?url';
+import community13 from './assets/community13.png?url';
 
 interface Member {
     [key: string]: unknown;
@@ -21,7 +24,7 @@ function Index(){
 
     return(
         <div>
-            <section>
+            <section className='index-head'>
             <h3>Build. Teach. Inspire.</h3>
             <div>
             <p>
@@ -30,6 +33,7 @@ function Index(){
                 Whether through webinars, workshops, alumni talks, or offline meetups, we bring developers together to teach, learn, and grow as a community.
             </p>
             </div>
+            <div className='index-content-second'>
             <h3>Code Together. Teach Together. Grow Together.</h3>
             <p>
                 The React Developer Community is an open and collaborative platform created for developers, students, and technology enthusiasts who are passionate about learning, building, and sharing knowledge in modern web development.
@@ -41,12 +45,13 @@ function Index(){
                 Our members work across different companies, cities, and industries, but they all share one common goal: to give back to the developer community.
                 Through collaborative learning and mentorship, we create opportunities for developers to teach, learn, and inspire others.
             </p>
+            </div>
             </section>
 
             <section className="image-section">
-                <img src="/src/assets/community11.webp" alt="image" className="community-image" />
-                <img src="/src/assets/community12.webp" alt="image" className="community-image" />
-                <img src="/src/assets/community13.png" alt="image" className="community-image" />
+                <img src={community11} alt="image" className="community-image" />
+                <img src={community12} alt="image" className="community-image" />
+                <img src={community13} alt="image" className="community-image" />
             </section>
             {members.length > 0 && (
                 <ul>
