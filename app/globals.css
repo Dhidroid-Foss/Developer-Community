@@ -1,0 +1,11 @@
+@import "tailwindcss";
+
+:root { --ink: #151515; --paper: #eeeae2; --orange: #fa6739; --line: #cfcac0; }
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--font-manrope), Arial, sans-serif; }
+h1 em, h2 em, h3 em, blockquote em { font-family: var(--font-serif), Georgia, serif; font-weight: 600; letter-spacing: -.07em; }
+.font-mono { font-family: var(--font-mono), monospace; }
+.hero-grain::before { content: ""; position: absolute; inset: 0; opacity: .08; pointer-events: none; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 240 240' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E"); }
+.hero-grain::after { content: ""; position: absolute; right: -150px; top: 20px; width: 650px; height: 650px; opacity: .55; pointer-events: none; background: radial-gradient(circle, rgba(255,255,255,.13) 0 1px, transparent 1.5px); background-size: 9px 9px; mask-image: radial-gradient(circle, black, transparent 62%); }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; } }
