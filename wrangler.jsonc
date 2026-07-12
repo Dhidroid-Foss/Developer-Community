@@ -1,0 +1,9 @@
+{
+    "name": "devcom",
+    "services": [
+        {
+            "binding": "WORKER_SELF_REFERENCE",
+            "service": "devcom"
+        }
+    ]
+}
