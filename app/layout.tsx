@@ -9,6 +9,7 @@ const mono = DM_Mono({ variable: "--font-mono", subsets: ["latin"], weight: ["40
 const playfair = Playfair_Display({ variable: "--font-serif", subsets: ["latin"], weight: ["600", "700"] });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://devcom.dhidroid.workers.dev"),
   title: "TamilDev — Realtime Developer Community",
   description: "A high-bandwidth developer community to learn, collaborate, and ship ReactJS, React Native, Next.js, Node.js, databases, and AI models in realtime.",
   keywords: [
@@ -29,7 +30,10 @@ export const metadata: Metadata = {
     "Fullstack Development",
     "AI Integration"
   ],
-  authors: [{ name: "TamilDev Team", url: "https://tamildev.community" }],
+  alternates: {
+    canonical: "/",
+  },
+  authors: [{ name: "TamilDev Team", url: "https://devcom.dhidroid.workers.dev" }],
   creator: "TamilDev Community",
   publisher: "TamilDev",
   robots: {
@@ -46,7 +50,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://tamildev.community",
+    url: "https://devcom.dhidroid.workers.dev",
     title: "TamilDev — Realtime Developer Community",
     description: "Build in realtime. Ship with the best. Collaborative hub for modern developers mastering web, mobile, database, and generative AI stacks.",
     siteName: "TamilDev",
@@ -67,9 +71,42 @@ export const metadata: Metadata = {
   },
 };
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://devcom.dhidroid.workers.dev/#website",
+      "url": "https://devcom.dhidroid.workers.dev",
+      "name": "TamilDev",
+      "description": "Realtime Developer Community for Web, Mobile, Systems & AI Engineers",
+      "publisher": {
+        "@id": "https://devcom.dhidroid.workers.dev/#organization"
+      }
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://devcom.dhidroid.workers.dev/#organization",
+      "name": "TamilDev",
+      "url": "https://devcom.dhidroid.workers.dev",
+      "logo": "https://devcom.dhidroid.workers.dev/avatars/dhidroid.jpg",
+      "sameAs": [
+        "https://github.com/dhidroid",
+        "https://linkedin.com/in/dhidroid-rndev"
+      ]
+    }
+  ]
+};
+
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body className={`${manrope.variable} ${mono.variable} ${playfair.variable}`}>
         <LoadingWrapper>
           {children}

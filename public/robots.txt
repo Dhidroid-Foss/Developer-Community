@@ -1,0 +1,7 @@
+# TamilDev Community - robots.txt
+User-agent: *
+Allow: /
+Disallow: /api/private/
+Disallow: /admin/
+
+Sitemap: https://devcom.dhidroid.workers.dev/sitemap.xml
