@@ -1,6 +1,8 @@
 import { MetadataRoute } from "next";
 import { developers } from "@/lib/data";
 
+export const dynamic = "force-static";
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://devcom.dhidroid.workers.dev";
 
