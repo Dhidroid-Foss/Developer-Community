@@ -89,7 +89,7 @@ export default function JoinModal({ isOpen, onClose }: JoinModalProps) {
             {!success ? (
               <form onSubmit={handleSubmit}>
                 <p className="font-mono text-[9px] uppercase tracking-[.1em] text-[#fa6739]">
-                  ✦ DevSync Membership
+                  <span lang="ta">தமிழ்</span>Dev Membership
                 </p>
                 <h2 className="mt-2 text-2xl font-extrabold tracking-tight text-[#151515]">
                   Join the developer stream.
@@ -212,7 +212,7 @@ export default function JoinModal({ isOpen, onClose }: JoinModalProps) {
                   <Check size={24} strokeWidth={3} />
                 </div>
                 <h3 className="text-xl font-bold tracking-tight text-[#151515]">
-                  Welcome to DevSync, {name}!
+                  Welcome to TamilDev, {name}!
                 </h3>
                 <p className="mt-3 text-xs leading-relaxed text-stone-600 px-4">
                   You are now registered. We've queued your onboarding email. You can check the upcoming co-coding streams directly.

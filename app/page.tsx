@@ -1,8 +1,8 @@
 "use client";
 
-import { FormEvent, useState, useRef } from "react";
-import { motion, useScroll, useTransform } from "motion/react";
-import { ArrowUpRight } from "lucide-react";
+import { FormEvent, useState, useRef, useEffect } from "react";
+import { motion, useScroll, useTransform, AnimatePresence } from "motion/react";
+import { ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -12,6 +12,7 @@ import JoinModal from "@/components/JoinModal";
 import PixelBlast from "@/components/PixelBlast";
 import PixelCard from "@/components/PixelCard";
 import Shuffle from "@/components/Shuffle";
+import { developers, homeTechnologies, programs, stories, liveEvents, stats, featuredResources, brands, quotes } from "@/lib/data";
 
 // Inline Brand Icons (SVG)
 const ReactLogo = ({ className }: { className?: string }) => (
@@ -95,72 +96,18 @@ const LumaLogo = ({ className }: { className?: string }) => (
   </svg>
 );
 
-const portrait = "?auto=format&fit=crop&w=900&q=85";
-const members = [
-  ["dhidroid", "DhineshKumar Thirupathi (dhidroid)", "Mobile & Android Developer", "Chennai, IN", `https://images.unsplash.com/photo-1506794778202-cad84cf45f1d${portrait}`],
-  ["vignesh", "Vignesh", "Fullstack Web Developer", "Bengaluru, IN", `https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d${portrait}`],
-  ["kishore", "Kishore", "Database & Systems Architect", "Hyderabad, IN", `https://images.unsplash.com/photo-1500648767791-00dcc994a43e${portrait}`],
-  ["saran", "Saran", "AI & LLM Integration Specialist", "Coimbatore, IN", `https://images.unsplash.com/photo-1534528741775-53994a69daeb${portrait}`],
-  ["vijay-ls", "Vijay LS", "UI/UX Designer & Frontend Dev", "Mumbai, IN", `https://images.unsplash.com/photo-1539571696357-5a69c17a67c6${portrait}`],
-];
-
-const technologies = [
-  { name: "ReactJS", type: "Frontend Library", desc: "Building responsive, component-driven web interfaces with modular layouts.", icon: ReactLogo },
-  { name: "React Native", type: "Mobile Framework", desc: "Compiling native iOS and Android experiences using unified React logic.", icon: ReactNativeLogo },
-  { name: "Figma", type: "UI/UX Design", desc: "Collaborative interface mockup creation and design-to-code asset generation.", icon: FigmaLogo },
-  { name: "Next.js", type: "React Framework", desc: "Orchestrating Server Components, server actions, and edge rendering for performance.", icon: NextjsLogo },
-  { name: "Node.js", type: "Server Runtime", desc: "Executing fast, non-blocking backend controllers and scalable API endpoints.", icon: NodejsLogo },
-  { name: "PostgreSQL", type: "Relational DB", desc: "Transactional database hosting structured schemas with optimized query performance.", icon: PostgresLogo },
-  { name: "Prisma", type: "Modern ORM", desc: "Writing safe schemas and executing queries with full TypeScript autocompletion.", icon: PrismaLogo },
-  { name: "Claude", type: "Anthropic AI", desc: "Integrating advanced reasoning APIs, smart agents, and code-generation pipelines.", icon: ClaudeLogo },
-  { name: "Ollama", type: "Local LLM Runner", desc: "Running private, offline models like Llama 3 or Mistral directly on local hardware.", icon: OllamaLogo },
-  { name: "Luma API", type: "Video & 3D Gen", desc: "Integrating cinematic video generation, 3D assets, and interactive canvases.", icon: LumaLogo }
-];
-
-const programs = {
-  clinic: {
-    label: "01 / Architecture Clinic",
-    title: <>Feedback that moves your code <em>forward.</em></>,
-    text: "Bring your repository, database schema, or design spec. Get live, high-bandwidth reviews from engineers who build for scale.",
-    sessions: [
-      ["React & Next.js · Jul 18", "Optimizing Server Components and client-side bundle size", "Hosted by Vignesh, Fullstack Developer", "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=500&q=80"],
-      ["Prisma & Postgres · Jul 23", "Database schema auditing: indices, query optimization, and pools", "Hosted by Kishore, Database Architect", "https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=500&q=80"]
-    ]
-  },
-  workshops: {
-    label: "02 / Skill Cohorts",
-    title: <>Get sharper at the things that <em>ship.</em></>,
-    text: "Interactive, hands-on sprints on modern tech stacks. Skip the basic tutorials—we build and deploy real applications.",
-    sessions: [
-      ["AI Integration · Jul 15", "Orchestrating Claude, Ollama, and cinematic video via Luma API", "Hosted by Saran, AI Integration Specialist", "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=500&q=80"],
-      ["Mobile Engineering · Jul 27", "Translating Figma layout specs to performant React Native screens", "Hosted by DhineshKumar Thirupathi, Senior Mobile Dev", "https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=500&q=80"]
-    ]
-  },
-  connect: {
-    label: "03 / Dev Partnerships",
-    title: <>The right rooms make room for <em>scale.</em></>,
-    text: "We bridge the gap between premium startups and elite developers who understand both code and product strategy.",
-    sessions: [
-      ["Client Meet · Aug 02", "Matchmaking session with startups hiring React and Node contract teams", "Hosted by The DevSync Team", "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=500&q=80"],
-      ["Figma Handover · Aug 06", "Bridging design and code: smooth developer-designer handovers", "Hosted by Vijay LS, UI/UX Lead", "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=500&q=80"]
-    ]
-  },
-  circle: {
-    label: "04 / Engineering Circle",
-    title: <>Your engineering career needs a <em>node.</em></>,
-    text: "A peer group for conversations that go deep: architecture decisions, deployment headaches, and local AI workflows.",
-    sessions: [
-      ["Architecture Sync · Jul 20", "The real cost of cloud vs bare-metal with Postgres & Node", "Hosted by DevSync DevOps", "https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=500&q=80"],
-      ["Open Code Critique · Jul 31", "Show your worst legacy code and let's refactor it live", "Hosted by DevSync Members", "https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=500&q=80"]
-    ]
-  }
+const homeIconMap: Record<string, React.FC<{ className?: string }>> = {
+  ReactJS: ReactLogo,
+  "React Native": ReactNativeLogo,
+  Figma: FigmaLogo,
+  "Next.js": NextjsLogo,
+  "Node.js": NodejsLogo,
+  PostgreSQL: PostgresLogo,
+  Prisma: PrismaLogo,
+  Claude: ClaudeLogo,
+  Ollama: OllamaLogo,
+  "Luma API": LumaLogo,
 };
-
-const stories = [
-  ["Architecture Clinic · Next.js & Claude AI", "Building a real-time collaborative code workspace from scratch.", "https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1200&q=85"],
-  ["Client Connect · React Native & Figma", "Launching a high-performance cross-platform mobile app in 6 weeks.", "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=900&q=85"],
-  ["Membership Circle · Node & Postgres", "Optimizing database queries and Prisma schemas to handle 10M+ daily events.", "https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=900&q=85"],
-];
 
 function Eyebrow({ children, light = false }: { children: React.ReactNode; light?: boolean }) { 
   return <p className={`font-mono text-[10px] uppercase tracking-[.085em] ${light ? "text-stone-400" : "text-stone-500"}`}>{children}</p>; 
@@ -169,6 +116,17 @@ function Eyebrow({ children, light = false }: { children: React.ReactNode; light
 export default function Home() {
   const [modalOpen, setModalOpen] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [quoteIdx, setQuoteIdx] = useState(0);
+  const [isQuotePaused, setIsQuotePaused] = useState(false);
+
+  // Auto-switch contributor profile quotes every 5 seconds (pauses on hover)
+  useEffect(() => {
+    if (isQuotePaused) return;
+    const timer = setInterval(() => {
+      setQuoteIdx((prev) => (prev + 1) % quotes.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [isQuotePaused]);
 
   // Scroll target ref for Tech Stack Carousel
   const stackRef = useRef<HTMLDivElement>(null);
@@ -181,7 +139,7 @@ export default function Home() {
   const carouselX = useTransform(scrollYProgress, [0, 1], ["-20%", "5%"]);
 
   // Duplicate tech stack to make horizontal belt long enough
-  const doubleTechnologies = [...technologies, ...technologies, ...technologies];
+  const doubleTechnologies = [...homeTechnologies, ...homeTechnologies, ...homeTechnologies];
 
   async function subscribe(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -268,12 +226,12 @@ export default function Home() {
             </span>
           </h1>
           <p className="mt-7 max-w-[470px] text-sm leading-relaxed text-stone-300">
-            DevSync is where frontend, backend, mobile, and AI developers build side-by-side, collaborate in realtime, and ship production-grade products.
+            TamilDev is where frontend, backend, mobile, and AI developers build side-by-side, collaborate in realtime, and ship production-grade products.
           </p>
           
           {/* Interactive buttons */}
           <div className="mt-7 flex flex-wrap gap-2 pointer-events-auto">
-            <Button onClick={() => setModalOpen(true)}>Join DevSync <ArrowUpRight size={16} /></Button>
+            <Button onClick={() => setModalOpen(true)}>Join TamilDev <ArrowUpRight size={16} /></Button>
             <a href="#showcase"><Button variant="outline">Meet the developers</Button></a>
           </div>
           
@@ -297,11 +255,7 @@ export default function Home() {
           <div className="mb-3 flex justify-between font-mono text-[10px] uppercase tracking-[.07em] text-stone-300">
             Realtime Community Streams <span className="text-[var(--orange)] animate-pulse">●</span>
           </div>
-          {[
-            ["01", "Live Hack Session", "Orchestrating Claude, Ollama, and Luma API video streams", "Tue", "09:00"],
-            ["02", "Database Arch Crit", "Postgres query optimization & Prisma scale-out", "Thu", "14:00"],
-            ["03", "Design-to-Code Sync", "Translating Figma layout specs into React Native", "Fri", "11:00"]
-          ].map((event) => (
+          {liveEvents.map((event) => (
             <article className="mb-1 grid min-h-[88px] grid-cols-[27px_1fr_40px_30px] items-center gap-3 bg-stone-100 p-3 text-zinc-950" key={event[0]}>
               <span className="font-mono text-[10px] text-stone-500">{event[0]}</span>
               <div>
@@ -330,16 +284,16 @@ export default function Home() {
           </div>
         </div>
         <div className="grid grid-cols-2 gap-x-3 gap-y-5 md:grid-cols-3 lg:grid-cols-5">
-          {members.map(([id, name, role, location, image]) => (
-            <a href={`/developers/${id}`} key={id} className="group block">
+          {developers.map((member) => (
+            <a href={`/developers/${member.id}`} key={member.id} className="group block">
               <PixelCard variant="orange" className="bg-zinc-950 border-zinc-800 rounded-none h-full w-full p-0">
                 <article className="pointer-events-auto p-4">
                   <div className="relative aspect-[.78] overflow-hidden bg-zinc-800 border border-transparent group-hover:border-stone-100/30 transition-all duration-300">
-                    <img className="h-full w-full object-cover grayscale transition duration-500 group-hover:scale-[1.04] group-hover:grayscale-0" src={image} alt={`Portrait of ${name}`} />
-                    <span className="absolute left-3 top-3 rounded-full bg-zinc-950/70 px-2 py-1 font-mono text-[8px] text-white opacity-0 transition group-hover:opacity-100 md:block">{location}</span>
+                    <img className="h-full w-full object-cover grayscale transition duration-500 group-hover:scale-[1.04] group-hover:grayscale-0" src={member.avatar} alt={`Portrait of ${member.name}`} />
+                    <span className="absolute left-3 top-3 rounded-full bg-zinc-950/70 px-2 py-1 font-mono text-[8px] text-white opacity-0 transition group-hover:opacity-100 md:block">{member.location}</span>
                   </div>
-                  <h3 className="mt-3 text-[13px] font-bold tracking-[-.045em] text-white group-hover:text-[var(--orange)] transition-colors">{name}</h3>
-                  <p className="mt-0.5 text-[10px] text-stone-400">{role}</p>
+                  <h3 className="mt-3 text-[13px] font-bold tracking-[-.045em] text-white group-hover:text-[var(--orange)] transition-colors">{member.name}</h3>
+                  <p className="mt-0.5 text-[10px] text-stone-400">{member.role}</p>
                   <span className="inline-block mt-2 font-mono text-[8px] uppercase tracking-wider text-stone-500 group-hover:text-stone-300 transition-colors">
                     View Profile ↗
                   </span>
@@ -354,7 +308,7 @@ export default function Home() {
     <section id="community" className="py-20 md:py-32">
       <div className="mx-auto grid w-[min(1170px,calc(100%-38px))] gap-12 md:grid-cols-[1.08fr_.92fr] md:gap-[12%]">
         <div>
-          <Eyebrow>Why DevSync</Eyebrow>
+          <Eyebrow>Why TamilDev</Eyebrow>
           <h2 className="mt-3 max-w-[630px] text-[clamp(38px,4.25vw,64px)] font-bold leading-[1.05] tracking-[-.07em]">Engineering gets better when we build <em>together.</em></h2>
         </div>
         <div>
@@ -362,12 +316,7 @@ export default function Home() {
             We built a high-bandwidth community where code reviews, design syncs, and database optimizations happen in real time. Learn fast, ship faster.
           </p>
           <div className="mt-10 grid grid-cols-2 border-t border-[var(--line)]">
-            {[
-              ["15k+", "Active developers"],
-              ["800+", "Repos sparked here"],
-              ["5 Contributors", "Core maintainers"],
-              ["99.9%", "Platform uptime"]
-            ].map(([number, label], index) => (
+            {stats.map(([number, label], index) => (
               <div className={`min-h-28 border-b border-[var(--line)] py-5 ${index % 2 === 0 ? "border-r pr-4" : "pl-5"}`} key={label}>
                 <strong className="block text-[32px] leading-none tracking-[-.07em]">{number}</strong>
                 <small className="mt-2 block max-w-24 text-[9px] leading-snug text-stone-500">{label}</small>
@@ -398,7 +347,7 @@ export default function Home() {
         {/* Animated Horizontal Belt */}
         <motion.div style={{ x: carouselX }} className="flex gap-6 whitespace-nowrap min-w-max px-4">
           {doubleTechnologies.map((tech, idx) => {
-            const IconComponent = tech.icon;
+            const IconComponent = homeIconMap[tech.name];
             return (
               <PixelCard
                 key={`${tech.name}-${idx}`}
@@ -436,14 +385,9 @@ export default function Home() {
       <div className="mx-auto w-[min(1170px,calc(100%-38px))]">
         <Eyebrow>Engaging with the modern dev ecosystem</Eyebrow>
         <div className="mt-6 flex flex-wrap items-center justify-center gap-x-8 gap-y-4 text-xl font-extrabold tracking-[-.06em] text-stone-500 md:justify-between">
-          <span>Vercel</span>
-          <span>Supabase</span>
-          <span className="font-mono text-base">prisma</span>
-          <span>PostgreSQL</span>
-          <span className="text-base">GitHub</span>
-          <span>Figma</span>
-          <span>Ollama</span>
-          <span>Luma AI</span>
+          {brands.map((brand) => (
+            <span key={brand} className={brand === "prisma" ? "font-mono text-base" : brand === "GitHub" ? "text-base" : ""}>{brand}</span>
+          ))}
         </div>
       </div>
     </section>
@@ -460,7 +404,7 @@ export default function Home() {
           </p>
         </div>
         <Tabs defaultValue="clinic">
-          <TabsList aria-label="DevSync cohorts">
+          <TabsList aria-label="TamilDev cohorts">
             <TabsTrigger value="clinic">Architecture Clinic</TabsTrigger>
             <TabsTrigger value="workshops">Skill Cohorts</TabsTrigger>
             <TabsTrigger value="connect">Dev Partnerships</TabsTrigger>
@@ -471,19 +415,21 @@ export default function Home() {
               <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="grid gap-9 pt-10 md:grid-cols-[.85fr_1.15fr] md:gap-[11%]">
                 <div>
                   <Eyebrow>{program.label}</Eyebrow>
-                  <h3 className="mt-3 text-[31px] font-bold leading-[1.07] tracking-[-.065em]">{program.title}</h3>
+                  <h3 className="mt-3 text-[31px] font-bold leading-[1.07] tracking-[-.065em]">
+                    {(() => { const w = program.title.split(' '); return <>{w.slice(0, -1).join(' ')} <em>{w[w.length - 1]}</em></>; })()}
+                  </h3>
                   <p className="mt-4 max-w-85 text-xs leading-relaxed text-stone-600">{program.text}</p>
                 </div>
                 <div>
-                  {program.sessions.map(([meta, title, host, image]) => (
-                    <article className="grid grid-cols-[85px_1fr_32px] items-center gap-3 border-b border-[var(--line)] pb-4 pt-0 last:pt-4 md:grid-cols-[112px_1fr_35px] md:gap-4" key={title}>
-                      <img className="h-[70px] w-[85px] object-cover grayscale md:h-[82px] md:w-[112px]" src={image} alt="" />
+                  {program.sessions.map((session) => (
+                    <article className="grid grid-cols-[85px_1fr_32px] items-center gap-3 border-b border-[var(--line)] pb-4 pt-0 last:pt-4 md:grid-cols-[112px_1fr_35px] md:gap-4" key={session.title}>
+                      <img className="h-[70px] w-[85px] object-cover grayscale md:h-[82px] md:w-[112px]" src={session.image} alt="" />
                       <div>
-                        <Eyebrow>{meta}</Eyebrow>
-                        <h4 className="mt-1 text-sm font-bold leading-tight tracking-[-.05em]">{title}</h4>
-                        <p className="mt-1 text-[10px] text-stone-500">{host}</p>
+                        <Eyebrow>{session.meta}</Eyebrow>
+                        <h4 className="mt-1 text-sm font-bold leading-tight tracking-[-.05em]">{session.title}</h4>
+                        <p className="mt-1 text-[10px] text-stone-500">{session.host}</p>
                       </div>
-                      <button onClick={() => setModalOpen(true)} className="grid h-8 w-8 place-items-center rounded-full border border-stone-400 text-base hover:bg-zinc-950 hover:text-white transition-colors" aria-label={`View ${title}`}>↗</button>
+                      <button onClick={() => setModalOpen(true)} className="grid h-8 w-8 place-items-center rounded-full border border-stone-400 text-base hover:bg-zinc-950 hover:text-white transition-colors" aria-label={`View ${session.title}`}>↗</button>
                     </article>
                   ))}
                 </div>
@@ -494,21 +440,121 @@ export default function Home() {
       </div>
     </section>
 
-    <section className="bg-[var(--orange)] py-18 md:py-24">
-      <div className="mx-auto grid w-[min(1170px,calc(100%-38px))] items-center gap-12 md:grid-cols-[1.05fr_.7fr] md:gap-[13%]">
-        <div>
-          <Eyebrow>Straight from the editor</Eyebrow>
-          <blockquote className="mt-5 max-w-162 text-[clamp(32px,3.8vw,56px)] font-bold leading-[1.04] tracking-[-.07em]">
-            “Instead of debugging in isolation, DevSync gave me a live room of senior developers to pair program and solve scaling issues with.”
-          </blockquote>
-          <div className="mt-6 flex flex-col text-[11px] font-bold">
-            <span>— DhineshKumar Thirupathi (dhidroid)</span>
-            <small className="mt-1 font-normal text-[#71301f]">Mobile & Android Specialist</small>
+    <section 
+      onMouseEnter={() => setIsQuotePaused(true)}
+      onMouseLeave={() => setIsQuotePaused(false)}
+      className="bg-[var(--orange)] py-18 md:py-24 relative overflow-hidden"
+    >
+      <div className="mx-auto w-[min(1170px,calc(100%-38px))]">
+        {/* Fixed min-height grid with inner vertical alignment */}
+        <div className="grid min-h-[450px] md:min-h-[480px] items-center gap-12 md:grid-cols-[1.05fr_.7fr] md:gap-[13%]">
+          {/* Left Column: Quote text & links with smooth motion */}
+          <div className="flex flex-col justify-center h-full min-h-[380px]">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={quoteIdx}
+                initial={{ opacity: 0, x: -16 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 16 }}
+                transition={{ duration: 0.35, ease: "easeOut" }}
+                className="flex flex-col justify-between h-full py-2"
+              >
+                <div>
+                  <Eyebrow>Straight from the editor · {String(quoteIdx + 1).padStart(2, "0")} / {String(quotes.length).padStart(2, "0")}</Eyebrow>
+                  <blockquote className="mt-5 min-h-[140px] md:min-h-[160px] max-w-162 text-[clamp(26px,3.2vw,48px)] font-bold leading-[1.06] tracking-[-.07em] flex items-center">
+                    "{quotes[quoteIdx].text}"
+                  </blockquote>
+                </div>
+
+                <div className="mt-6">
+                  <div className="flex flex-col text-[11px] font-bold">
+                    <span>— {quotes[quoteIdx].author}</span>
+                    <small className="mt-1 font-normal text-[#71301f]">{quotes[quoteIdx].role}</small>
+                  </div>
+                  {/* Quick links */}
+                  <div className="mt-4 flex gap-3 flex-wrap">
+                    {quotes[quoteIdx].github && (
+                      <a href={quotes[quoteIdx].github} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 border-b border-zinc-950/30 text-[10px] font-mono font-bold hover:border-zinc-950 transition-colors">
+                        GitHub ↗
+                      </a>
+                    )}
+                    {quotes[quoteIdx].linkedin && (
+                      <a href={quotes[quoteIdx].linkedin} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 border-b border-zinc-950/30 text-[10px] font-mono font-bold hover:border-zinc-950 transition-colors">
+                        LinkedIn ↗
+                      </a>
+                    )}
+                    {quotes[quoteIdx].website && (
+                      <a href={quotes[quoteIdx].website} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 border-b border-zinc-950/30 text-[10px] font-mono font-bold hover:border-zinc-950 transition-colors">
+                        Portfolio ↗
+                      </a>
+                    )}
+                  </div>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
+          {/* Right Column: Developer Photo Card with Motion */}
+          <div className="flex items-center justify-center h-full">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={quoteIdx}
+                initial={{ opacity: 0, scale: 0.96 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.96 }}
+                transition={{ duration: 0.35, ease: "easeOut" }}
+                className="mx-auto w-full max-w-[300px] rotate-2 hover:rotate-0 transition-transform duration-500 bg-stone-50 p-3 shadow-xl"
+              >
+                <div className="relative overflow-hidden">
+                  <img
+                    className="h-80 w-full object-cover object-top md:h-[365px] transition duration-500 hover:scale-[1.04]"
+                    src={quotes[quoteIdx].image}
+                    alt={quotes[quoteIdx].author}
+                  />
+                  {/* Developer ID badge overlay */}
+                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-zinc-950/85 to-transparent p-4">
+                    <p className="font-mono text-[8px] uppercase tracking-[.1em] text-[#fa6739]">TamilDev · Core Contributor</p>
+                    <p className="mt-1 text-[11px] font-bold text-white leading-tight">{quotes[quoteIdx].author}</p>
+                    <p className="mt-0.5 font-mono text-[8px] text-stone-400">{quotes[quoteIdx].location}</p>
+                  </div>
+                </div>
+                <p className="mt-3 font-serif text-base italic text-zinc-950">"Commit early. Deploy together."</p>
+              </motion.div>
+            </AnimatePresence>
           </div>
         </div>
-        <div className="mx-auto w-full max-w-[340px] rotate-2 bg-stone-50 p-3">
-          <img className="h-80 w-full object-cover grayscale md:h-[365px]" src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=900&q=85" alt="DhineshKumar Thirupathi, Android & Mobile developer" />
-          <p className="mt-3 font-serif text-lg italic">“Commit early. Deploy together.”</p>
+
+        {/* Carousel Control Bar & Indicators */}
+        <div className="mt-12 flex items-center justify-between border-t border-zinc-950/20 pt-6">
+          <div className="flex items-center gap-2">
+            {quotes.map((q, i) => (
+              <button
+                key={i}
+                onClick={() => setQuoteIdx(i)}
+                className={`h-2 rounded-full transition-all duration-300 ${i === quoteIdx ? "w-8 bg-zinc-950" : "w-2 bg-zinc-950/30 hover:bg-zinc-950/60"}`}
+                aria-label={`Go to contributor quote ${i + 1} by ${q.author}`}
+              />
+            ))}
+          </div>
+          <div className="flex items-center gap-3">
+            <span className={`font-mono text-[10px] uppercase tracking-wider font-semibold transition-all duration-200 ${isQuotePaused ? "text-zinc-950 font-bold bg-zinc-950/15 px-2 py-0.5 rounded" : "text-zinc-900/70"}`}>
+              {isQuotePaused ? "Paused (Hovered)" : "Auto Switch"}
+            </span>
+            <button
+              onClick={() => setQuoteIdx((prev) => (prev === 0 ? quotes.length - 1 : prev - 1))}
+              className="grid h-8 w-8 place-items-center rounded-full border border-zinc-950/30 text-zinc-950 hover:bg-zinc-950 hover:text-white transition-colors"
+              aria-label="Previous contributor quote"
+            >
+              <ChevronLeft size={15} />
+            </button>
+            <button
+              onClick={() => setQuoteIdx((prev) => (prev + 1) % quotes.length)}
+              className="grid h-8 w-8 place-items-center rounded-full border border-zinc-950/30 text-zinc-950 hover:bg-zinc-950 hover:text-white transition-colors"
+              aria-label="Next contributor quote"
+            >
+              <ChevronRight size={15} />
+            </button>
+          </div>
         </div>
       </div>
     </section>
@@ -527,13 +573,13 @@ export default function Home() {
           </div>
         </div>
         <div className="grid gap-3 md:grid-cols-[1.1fr_.9fr]">
-          {stories.map(([tag, title, image], index) => (
-            <article className={`group relative min-h-[350px] overflow-hidden bg-zinc-800 ${index === 0 ? "md:row-span-2 md:min-h-[690px]" : ""}`} key={title}>
-              <img className="absolute inset-0 h-full w-full object-cover grayscale transition duration-700 group-hover:scale-[1.04]" src={image} alt="" />
+          {stories.map((story, index) => (
+            <article className={`group relative min-h-[350px] overflow-hidden bg-zinc-800 ${index === 0 ? "md:row-span-2 md:min-h-[690px]" : ""}`} key={story.title}>
+              <img className="absolute inset-0 h-full w-full object-cover grayscale transition duration-700 group-hover:scale-[1.04]" src={story.image} alt="" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
               <div className="absolute bottom-0 p-6">
-                <Eyebrow light>{tag}</Eyebrow>
-                <h3 className="mt-3 max-w-125 text-[clamp(20px,2vw,31px)] font-bold leading-[1.08] tracking-[-.06em]">{title}</h3>
+                <Eyebrow light>{story.tag}</Eyebrow>
+                <h3 className="mt-3 max-w-125 text-[clamp(20px,2vw,31px)] font-bold leading-[1.08] tracking-[-.06em]">{story.title}</h3>
                 {index === 0 ? (
                   <div className="mt-5 flex items-baseline gap-2">
                     <strong className="text-[35px] tracking-[-.07em] text-[var(--orange)]">10M+</strong>
@@ -563,11 +609,7 @@ export default function Home() {
           </div>
         </div>
         <div className="grid border-t border-[var(--line)] md:grid-cols-3">
-          {[
-            ["Codebase · Jul 02, 2026", "Next.js + Prisma + Postgres schema boilerplate for SaaS", "Clone repository"],
-            ["Tuning Guide · Jun 18, 2026", "Optimizing local Ollama performance for code inference", "Read tuning guide"],
-            ["Template · Jul 21, 2026", "Figma design system auto-synced with React Native style props", "Get template"]
-          ].map(([meta, title, action], i) => (
+          {featuredResources.map(([meta, title, action], i) => (
             <article className={`flex min-h-52 flex-col border-b border-[var(--line)] py-6 ${i > 0 ? "md:border-l md:pl-7" : "md:pr-7"}`} key={title}>
               <Eyebrow>{meta}</Eyebrow>
               <h3 className="mt-2 max-w-70 text-xl font-bold leading-[1.18] tracking-[-.06em]">{title}</h3>
@@ -593,7 +635,7 @@ export default function Home() {
             <Button variant="dark" type="submit">Subscribe <ArrowUpRight size={16} /></Button>
           </form>
           <p className="mt-2 min-h-4 text-[10px] text-[#71301f]" aria-live="polite">
-            {submitted && "You’re on the list. Welcome to DevSync."}
+            {submitted && "You're on the list. Welcome to TamilDev."}
           </p>
         </div>
       </div>
@@ -604,7 +646,7 @@ export default function Home() {
         <Eyebrow light>Independent, together</Eyebrow>
         <h2 className="mt-4 text-[clamp(46px,5vw,72px)] font-bold leading-[.98] tracking-[-.08em]">Great products grow<br />in good company.</h2>
         <Button onClick={() => setModalOpen(true)} className="mt-8 inline-flex">
-          Join DevSync — it’s free <ArrowUpRight size={16} />
+          Join TamilDev — it's free <ArrowUpRight size={16} />
         </Button>
         <p className="mt-10 flex flex-wrap justify-center gap-x-3 gap-y-1 font-mono text-[9px] uppercase tracking-[.06em] text-stone-500">
           15k+ developers <i className="h-1 w-1 rounded-full bg-[var(--orange)]" /> 800+ repos <i className="h-1 w-1 rounded-full bg-[var(--orange)]" /> Since 2021 <i className="h-1 w-1 rounded-full bg-[var(--orange)]" /> Built for modern minds

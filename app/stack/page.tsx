@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import JoinModal from "@/components/JoinModal";
 import VariableProximity from "@/components/VariableProximity";
+import { technologies as technologiesData } from "@/lib/data";
 
 // Inline SVG Logos
 const ReactLogo = () => (
@@ -88,88 +89,28 @@ const LumaLogo = () => (
   </svg>
 );
 
-const technologiesData = [
-  { 
-    name: "ReactJS", 
-    type: "Frontend Library", 
-    desc: "ReactJS forms the core of our web interfaces, offering component encapsulation, declarative rendering, and interactive UI states.", 
-    icon: ReactLogo, 
-    code: `import React, { useState } from 'react';\n\nexport function Counter() {\n  const [count, setCount] = useState(0);\n  return <button onClick={() => setCount(count + 1)}>Count: {count}</button>;\n}`
-  },
-  { 
-    name: "React Native", 
-    type: "Mobile Framework", 
-    desc: "React Native allows us to ship native iOS and Android apps with 85%+ code sharing, utilizing the same core architectural logic.", 
-    icon: ReactNativeLogo, 
-    code: `import { Text, View, StyleSheet } from 'react-native';\n\nexport default function App() {\n  return (\n    <View style={styles.container}>\n      <Text>DevSync Mobile</Text>\n    </View>\n  );\n}`
-  },
-  { 
-    name: "Figma", 
-    type: "UI/UX Design", 
-    desc: "Figma serves as our collaborative workspace where visual grids, wireframes, and design tokens are defined and exported directly to code.", 
-    icon: FigmaLogo, 
-    code: `// Figma Design Tokens Schema\n{\n  "colors": {\n    "ink": "#151515",\n    "paper": "#eeeae2",\n    "orange": "#fa6739"\n  },\n  "fonts": {\n    "body": "Manrope"\n  }\n}`
-  },
-  { 
-    name: "Next.js", 
-    type: "React Framework", 
-    desc: "Next.js coordinates server components, dynamic server actions, API routing, and SSR rendering, optimization metrics.", 
-    icon: NextjsLogo, 
-    code: `// app/page.tsx (Next.js Server Component)\nimport Header from '@/components/Header';\n\nexport default async function Page() {\n  return (\n    <main>\n      <Header />\n      <h1>DevSync Next.js App</h1>\n    </main>\n  );\n}`
-  },
-  { 
-    name: "Node.js", 
-    type: "Server Runtime", 
-    desc: "Node.js runtime powers our fast, scalable backend APIs, processing sockets, database events, and microservices in real time.", 
-    icon: NodejsLogo, 
-    code: `const express = require('express');\nconst app = express();\n\napp.get('/api/health', (req, res) => {\n  res.json({ status: 'healthy', timestamp: Date.now() });\n});\n\napp.listen(3000);`
-  },
-  { 
-    name: "PostgreSQL", 
-    type: "Relational DB", 
-    desc: "PostgreSQL handles transactional datasets with high reliability, relational integrity, and custom query execution strategies.", 
-    icon: PostgresLogo, 
-    code: `-- SQL Query Optimization\nSELECT users.id, profiles.role \nFROM users \nINNER JOIN profiles ON users.id = profiles.userId\nWHERE profiles.status = 'active'\nLIMIT 5;`
-  },
-  { 
-    name: "Prisma", 
-    type: "Modern ORM", 
-    desc: "Prisma maps schemas into TypeScript interfaces dynamically, enabling autocomplete query execution and robust database migrations.", 
-    icon: PrismaLogo, 
-    code: `// schema.prisma\nmodel User {\n  id    Int     @id @default(autoincrement())\n  email String  @unique\n  name  String?\n  posts Post[]\n}`
-  },
-  { 
-    name: "Claude", 
-    type: "Anthropic AI", 
-    desc: "Claude handles smart AI context processing, text-to-code pipelines, and agentic workflows throughout our collaborative tools.", 
-    icon: ClaudeLogo, 
-    code: `import Anthropic from '@anthropic-ai/sdk';\nconst anthropic = new Anthropic();\n\nconst msg = await anthropic.messages.create({\n  model: "claude-3-5-sonnet-20241022",\n  max_tokens: 1024,\n  messages: [{ role: "user", content: "Refactor this code..." }]\n});`
-  },
-  { 
-    name: "Ollama", 
-    type: "Local LLM Runner", 
-    desc: "Ollama runs powerful LLMs offline on local hardware, giving developers privacy and low latency for custom code completions.", 
-    icon: OllamaLogo, 
-    code: `// Local Ollama API execution\nconst response = await fetch('http://localhost:11434/api/generate', {\n  method: 'POST',\n  body: JSON.stringify({\n    model: 'llama3',\n    prompt: 'Explain Prisma migrations...'\n  })\n});`
-  },
-  { 
-    name: "Luma API", 
-    type: "Video & 3D Gen", 
-    desc: "Luma API drives generative 3D modeling and cinematic video rendering in our creative application pipelines.", 
-    icon: LumaLogo, 
-    code: `// Luma Dream Machine Generation Prompt\nconst response = await fetch('https://api.lumalabs.ai/v1/generations', {\n  method: 'POST',\n  headers: { 'Authorization': 'Bearer LUMA_TOKEN' },\n  body: JSON.stringify({\n    prompt: 'Cinematic tracking shot of a programmer coding...',\n    aspect_ratio: '16:9'\n  })\n});`
-  }
-];
+const iconMap: Record<string, React.FC> = {
+  ReactJS: ReactLogo,
+  "React Native": ReactNativeLogo,
+  Figma: FigmaLogo,
+  "Next.js": NextjsLogo,
+  "Node.js": NodejsLogo,
+  PostgreSQL: PostgresLogo,
+  Prisma: PrismaLogo,
+  Claude: ClaudeLogo,
+  Ollama: OllamaLogo,
+  "Luma API": LumaLogo,
+};
 
 export default function StackPage() {
   const [modalOpen, setModalOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
   return (
-    <main className="min-h-screen bg-[#eeeae2] text-[#151515] pt-28 pb-20">
+    <main className="min-h-screen bg-[#eeeae2] text-[#151515] pt-28">
       <Header onJoinClick={() => setModalOpen(true)} />
       
-      <div className="mx-auto w-[min(1170px,calc(100%-38px))]">
+      <div className="mx-auto w-[min(1170px,calc(100%-38px))] pb-20">
         <div ref={containerRef} style={{ position: "relative" }} className="border-b border-[#cfcac0] pb-10 mb-12">
           <p className="font-mono text-[10px] uppercase tracking-[.085em] text-stone-500">
             Tech Stacks We Handle
@@ -199,7 +140,7 @@ export default function StackPage() {
         {/* Technologies List with Code Examples */}
         <div className="flex flex-col gap-16">
           {technologiesData.map((tech) => {
-            const IconComponent = tech.icon;
+            const IconComponent = iconMap[tech.name];
             return (
               <section key={tech.name} className="grid md:grid-cols-[1fr_1.3fr] gap-8 border-b border-[#cfcac0]/60 pb-16 last:border-b-0">
                 <div>

@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, Github, Linkedin, Mail, MapPin, CheckCircle, ExternalLink } from "lucide-react";
+import { ArrowLeft, Github, Linkedin, Mail, MapPin, CheckCircle, ExternalLink, Globe } from "lucide-react";
 import { notFound } from "next/navigation";
 import dynamic from "next/dynamic";
 import Header from "@/components/Header";
@@ -22,10 +22,10 @@ export default function DeveloperDetailsClient({ id }: { id: string }) {
   }
 
   return (
-    <main className="min-h-screen bg-[#eeeae2] text-[#151515] pt-28 pb-20 font-sans">
+    <main className="min-h-screen bg-[#eeeae2] text-[#151515] pt-28 font-sans">
       <Header onJoinClick={() => setModalOpen(true)} />
       
-      <div className="mx-auto w-[min(1170px,calc(100%-38px))] font-sans">
+      <div className="mx-auto w-[min(1170px,calc(100%-38px))] font-sans pb-20">
         {/* Back Link */}
         <Link 
           href="/developers" 
@@ -58,7 +58,7 @@ export default function DeveloperDetailsClient({ id }: { id: string }) {
                 </p>
                 
                 {/* Social Links */}
-                <div className="flex gap-4 mt-6">
+                <div className="flex gap-4 mt-6 flex-wrap">
                   <a 
                     href={developer.github} 
                     target="_blank" 
@@ -75,6 +75,16 @@ export default function DeveloperDetailsClient({ id }: { id: string }) {
                   >
                     <Linkedin size={14} /> LinkedIn <ExternalLink size={10} />
                   </a>
+                  {developer.website && (
+                    <a 
+                      href={developer.website} 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="flex items-center gap-1.5 text-xs font-mono text-stone-600 hover:text-[#151515] transition-colors"
+                    >
+                      <Globe size={14} /> Website <ExternalLink size={10} />
+                    </a>
+                  )}
                   <a 
                     href={`mailto:${developer.email}`} 
                     className="flex items-center gap-1.5 text-xs font-mono text-stone-600 hover:text-[#151515] transition-colors"
@@ -136,7 +146,7 @@ export default function DeveloperDetailsClient({ id }: { id: string }) {
           <div className="flex flex-col gap-8 lg:sticky lg:top-28">
             <section className="border border-[#cfcac0] bg-stone-100/40 p-6 flex flex-col items-center">
               <span className="font-mono text-[9px] uppercase tracking-wider text-stone-500 mb-2">
-                Interactive DevSync Card (Drag to spin)
+                Interactive TamilDev Card (Drag to spin)
               </span>
               
               <div className="w-full bg-[#111111]/5 border border-[#cfcac0]/40 overflow-hidden flex items-center justify-center">

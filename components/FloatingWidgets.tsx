@@ -12,11 +12,11 @@ interface Message {
 }
 
 const FAQ_ANSWERS = {
-  developers: "DevSync is powered by 5 core contributors:\n1. DhineshKumar (Mobile Specialist)\n2. Vignesh (Fullstack Developer)\n3. Kishore (Database Architect)\n4. Saran (AI Integrations)\n5. Vijay LS (UI/UX Design)",
+  developers: "TamilDev is powered by 5 core contributors:\n1. DhineshKumar (Mobile Specialist)\n2. Vignesh (Fullstack Developer)\n3. Kishore (MERN Stack Developer)\n4. Saran (AI Integrations)\n5. Vijay LS (UI/UX Design)",
   cohorts: "Active Cohorts:\n- Architecture Clinic: Relational database & Next.js schema critiques.\n- Skill Sprints: Hands-on AI engineering & mobile design syncing.\n- Dev Partnerships: Connecting startups with elite contract devs.",
-  join: "Click any orange 'Join DevSync' button on the page. Enter your email, check off your tech stack, and you'll get instant access!",
+  join: "Click any orange 'Join TamilDev' button on the page. Enter your email, check off your tech stack, and you'll get instant access!",
   stack: "Our core stack includes: ReactJS, React Native, Figma, Next.js, Node.js, PostgreSQL, Prisma ORM, Claude API, Ollama, and Luma API.",
-  default: "I'm SyncBot! You can ask me about our core developers, active cohorts, tech stack, or how to join the community."
+  default: "I'm SyncBot! You can ask me about our core developers, active cohorts, tech stack, or how to join the TamilDev community."
 };
 
 export default function FloatingWidgets() {
@@ -27,7 +27,7 @@ export default function FloatingWidgets() {
   const [messages, setMessages] = useState<Message[]>([
     {
       sender: "bot",
-      text: "Hey developer! I'm SyncBot. Ask me anything about the DevSync community, our cohorts, or core stack.",
+      text: "Hey developer! I'm SyncBot. Ask me anything about the TamilDev community, our cohorts, or core stack.",
       timestamp: "Just now"
     }
   ]);
@@ -240,7 +240,7 @@ export default function FloatingWidgets() {
                 Cohorts
               </button>
               <button
-                onClick={() => handleSendMessage("How do I join DevSync?")}
+                onClick={() => handleSendMessage("How do I join TamilDev?")}
                 className="text-[9px] font-mono border border-[#cfcac0] bg-white px-2 py-1 text-stone-600 hover:border-zinc-800 hover:text-zinc-950"
               >
                 How to join
@@ -302,13 +302,13 @@ export default function FloatingWidgets() {
                   <div className="my-6 border border-[#cfcac0] bg-white p-5 w-full text-left font-mono text-xs text-stone-700 relative">
                     <div className="absolute top-0 left-0 right-0 h-1 bg-[#fa6739]" />
                     <div className="flex justify-between font-bold border-b pb-2 mb-3 text-zinc-950">
-                      <span>DEVSYNC TICKET</span>
+                      <span>TAMILDEV TICKET</span>
                       <span className="text-[#fa6739]">{bookingId}</span>
                     </div>
                     <p className="mb-1"><span className="text-stone-400">TYPE:</span> {sessionType}</p>
                     <p className="mb-1"><span className="text-stone-400">DATE:</span> {selectedDate}</p>
                     <p className="mb-1"><span className="text-stone-400">TIME:</span> {selectedTime}</p>
-                    <p className="mb-3"><span className="text-stone-400">HOST:</span> DevSync DevOps team</p>
+                    <p className="mb-3"><span className="text-stone-400">HOST:</span> TamilDev DevOps team</p>
                     <p className="text-[10px] text-stone-400 italic">Confirmation link has been dispatched to {meetEmail}.</p>
                   </div>
                   

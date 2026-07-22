@@ -7,63 +7,20 @@ import Footer from "@/components/Footer";
 import JoinModal from "@/components/JoinModal";
 import PixelCard from "@/components/PixelCard";
 import VariableProximity from "@/components/VariableProximity";
-
-// Contributors Data
-const members = [
-  {
-    id: "dhidroid",
-    name: "DhineshKumar Thirupathi (dhidroid)",
-    role: "Mobile & Android Developer",
-    location: "Chennai, IN",
-    avatar: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=500&q=80",
-    stack: ["React Native", "Android SDK", "TypeScript"]
-  },
-  {
-    id: "vignesh",
-    name: "Vignesh",
-    role: "Fullstack Web Developer",
-    location: "Bengaluru, IN",
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=500&q=80",
-    stack: ["ReactJS", "Next.js", "Node.js"]
-  },
-  {
-    id: "kishore",
-    name: "Kishore",
-    role: "Database & Systems Architect",
-    location: "Hyderabad, IN",
-    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=500&q=80",
-    stack: ["PostgreSQL", "Prisma", "SQL tuning"]
-  },
-  {
-    id: "saran",
-    name: "Saran",
-    role: "AI & LLM Integration Specialist",
-    location: "Coimbatore, IN",
-    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=500&q=80",
-    stack: ["Claude AI", "Ollama", "Luma API"]
-  },
-  {
-    id: "vijay-ls",
-    name: "Vijay LS",
-    role: "UI/UX Designer & Frontend Dev",
-    location: "Mumbai, IN",
-    avatar: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=500&q=80",
-    stack: ["Figma", "Tailwind", "ReactJS"]
-  }
-];
+import { developers as members } from "@/lib/data";
 
 export default function DevelopersListPage() {
   const [modalOpen, setModalOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
   return (
-    <main className="min-h-screen bg-[#eeeae2] text-[#151515] pt-28 pb-20">
+    <main className="min-h-screen bg-[#eeeae2] text-[#151515] pt-28">
       <Header onJoinClick={() => setModalOpen(true)} />
       
-      <div className="mx-auto w-[min(1170px,calc(100%-38px))]">
+      <div className="mx-auto w-[min(1170px,calc(100%-38px))] pb-20">
         <div ref={containerRef} style={{ position: "relative" }} className="border-b border-[#cfcac0] pb-10 mb-12">
           <p className="font-mono text-[10px] uppercase tracking-[.085em] text-stone-500">
-            DevSync Contributors
+            TamilDev Contributors
           </p>
           <h1 className="mt-3 text-4xl md:text-6xl font-extrabold tracking-tight text-[#151515]">
             <VariableProximity

@@ -15,7 +15,7 @@ const quotes = [
 ];
 
 const snippets = [
-  `const dev = { status: "shipping", community: "DevSync" };`,
+  `const dev = { status: "shipping", community: "TamilDev" };`,
   `const user = await prisma.user.findUnique({ where: { id } });`,
   `const msg = await claude.messages.create({ prompt: "Refactor database queries" });`,
   `app.get('/api/health', (req, res) => res.send({ status: 'live' }));`,
@@ -50,7 +50,7 @@ export default function Loading() {
         <div className="flex items-center gap-2 mb-8">
           <span className="text-xl text-[#fa6739] animate-pulse">✦</span>
           <span className="text-[15px] font-mono uppercase tracking-widest text-[#151515] font-bold">
-            DevSync Stream
+            <span className="text-[#fa6739]" lang="ta">தமிழ்</span>Dev Stream
           </span>
         </div>
 

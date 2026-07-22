@@ -6,51 +6,7 @@ import Footer from "@/components/Footer";
 import JoinModal from "@/components/JoinModal";
 import PixelCard from "@/components/PixelCard";
 import VariableProximity from "@/components/VariableProximity";
-
-const resourcesData = [
-  {
-    title: "Next.js + Prisma + Postgres Boilerplate",
-    category: "codebase",
-    date: "Jul 02, 2026",
-    desc: "A fully production-ready Next.js SaaS boilerplate featuring safe Prisma schemas, PostgreSQL relational migrations, and Vercel edge configs.",
-    action: "Clone Repository"
-  },
-  {
-    title: "Ollama Local-First Inference Optimization Guide",
-    category: "guide",
-    date: "Jun 18, 2026",
-    desc: "Detailed benchmark configurations to optimize private LLM completion inferences locally using Ollama and Llama 3 models.",
-    action: "Read Guide"
-  },
-  {
-    title: "Figma to React Native Style Synchronizer",
-    category: "template",
-    date: "Jul 21, 2026",
-    desc: "Design tokens script compiling color assets and layout metrics from Figma files directly into React Native style props.",
-    action: "Get Template"
-  },
-  {
-    title: "Claude API Agent Orchestrator",
-    category: "codebase",
-    date: "Jun 30, 2026",
-    desc: "A Node.js microservice template orchestrating tool-calling schemas and chat contexts dynamically with Anthropic Claude API.",
-    action: "Clone Repository"
-  },
-  {
-    title: "Prisma Schema Scaling Indexing Strategies",
-    category: "guide",
-    date: "May 12, 2026",
-    desc: "Learn how to write multi-column compound indexes in Prisma to optimize large relational datasets in PostgreSQL.",
-    action: "Read Guide"
-  },
-  {
-    title: "Luma API Cinematic Video prompt boilerplate",
-    category: "template",
-    date: "May 29, 2026",
-    desc: "Ready-to-use prompting configurations and JSON schemas to trigger cinematic video outputs via Luma Dream Machine API.",
-    action: "Get Template"
-  }
-];
+import { resources as resourcesData } from "@/lib/data";
 
 export default function ResourcesPage() {
   const [modalOpen, setModalOpen] = useState(false);
@@ -62,14 +18,14 @@ export default function ResourcesPage() {
     : resourcesData.filter(res => res.category === filter);
 
   return (
-    <main className="min-h-screen bg-[#eeeae2] text-[#151515] pt-28 pb-20">
+    <main className="min-h-screen bg-[#eeeae2] text-[#151515] pt-28">
       <Header onJoinClick={() => setModalOpen(true)} />
       
-      <div className="mx-auto w-[min(1170px,calc(100%-38px))]">
+      <div className="mx-auto w-[min(1170px,calc(100%-38px))] pb-20">
         <div ref={containerRef} style={{ position: "relative" }} className="border-b border-[#cfcac0] pb-10 mb-12 flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
           <div>
             <p className="font-mono text-[10px] uppercase tracking-[.085em] text-stone-500">
-              DevSync Resources
+              TamilDev Resources
             </p>
             <h1 className="mt-3 text-4xl md:text-6xl font-extrabold tracking-tight text-[#151515]">
               <VariableProximity

@@ -15,8 +15,8 @@ export default function Header({ onJoinClick }: HeaderProps) {
   return (
     <header className="fixed inset-x-0 top-0 z-50 bg-zinc-950/85 text-white backdrop-blur-md">
       <nav className="mx-auto flex h-[72px] w-[min(1170px,calc(100%-38px))] items-center justify-between" aria-label="Main navigation">
-        <Link href="/" className="text-[17px] font-extrabold tracking-[-.05em] hover:opacity-90 transition-opacity">
-          <span className="mr-1 text-[var(--orange)]">✦</span>DevSync
+        <Link href="/" className="text-[17px] font-extrabold tracking-[-.05em] hover:opacity-90 transition-opacity flex items-center gap-0.5">
+          <span className="text-[var(--orange)]" lang="ta">தமிழ்</span><span>Dev</span>
         </Link>
         <div className="hidden items-center gap-7 text-xs font-semibold md:flex">
           <Link href="/stack" className="hover:text-[var(--orange)] transition-colors">Stack</Link>

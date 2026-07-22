@@ -5,66 +5,20 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import JoinModal from "@/components/JoinModal";
 import VariableProximity from "@/components/VariableProximity";
-
-const cohortsData = [
-  {
-    id: "architecture",
-    label: "01 / Architecture Clinic",
-    title: "Get live review of your code & queries.",
-    desc: "Bring a repository, database schema, or architectural diagram. Get live, high-bandwidth reviews from engineers who build for scale.",
-    sessions: [
-      { name: "React & Next.js Reviews", desc: "Optimizing layout hydration and RSC structures.", host: "Vignesh, Fullstack Developer", date: "Jul 18, 09:00" },
-      { name: "Prisma & Postgres Audits", desc: "Indices, connection pooling, and migration logs.", host: "Kishore, Database Architect", date: "Jul 23, 14:00" }
-    ],
-    bg: "bg-stone-100/50"
-  },
-  {
-    id: "skill-cohorts",
-    label: "02 / Skill Cohorts",
-    title: "Interactive hands-on code sprints.",
-    desc: "Skip the basic tutorials. We build, optimize, and deploy real production applications with modern API sets.",
-    sessions: [
-      { name: "AI Integration Labs", desc: "Orchestrating Claude, Ollama, and generative video via Luma API.", host: "Saran, AI Integration Specialist", date: "Jul 15, 10:00" },
-      { name: "Mobile Design-to-Code", desc: "Translating Figma layouts into native React Native component files.", host: "DhineshKumar Thirupathi, Mobile Specialist", date: "Jul 27, 11:00" }
-    ],
-    bg: "bg-white/40"
-  },
-  {
-    id: "partnerships",
-    label: "03 / Dev Partnerships",
-    title: "Startups meet elite engineers.",
-    desc: "We bridge the gap between premium startups and elite developers who understand both code and product strategy.",
-    sessions: [
-      { name: "Contract Matchmaking", desc: "Introductions to startups hiring fullstack and mobile teams.", host: "DevSync Partnerships Team", date: "Aug 02, 16:00" },
-      { name: "Figma Handovers Workshop", desc: "Optimizing the workflow between product designers and devs.", host: "Vijay LS, UI/UX Lead", date: "Aug 06, 15:00" }
-    ],
-    bg: "bg-stone-100/50"
-  },
-  {
-    id: "circle",
-    label: "04 / Engineering Circle",
-    title: "Peer groups for senior engineers.",
-    desc: "A private forum for senior devs. Share scaling issues, launch stress-tests, talk through infrastructure costs, and build next-gen tools.",
-    sessions: [
-      { name: "Node & Postgres Scaling", desc: "Load balancing write-heavy databases.", host: "DevSync Devops Team", date: "Jul 20, 18:00" },
-      { name: "The Future of Frameworks", desc: "Discussion on Bun runtime, Next.js updates, and agent workflows.", host: "DevSync Maintainers", date: "Jul 31, 19:00" }
-    ],
-    bg: "bg-white/40"
-  }
-];
+import { cohorts as cohortsData } from "@/lib/data";
 
 export default function CohortsPage() {
   const [modalOpen, setModalOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
   return (
-    <main className="min-h-screen bg-[#eeeae2] text-[#151515] pt-28 pb-20">
+    <main className="min-h-screen bg-[#eeeae2] text-[#151515] pt-28">
       <Header onJoinClick={() => setModalOpen(true)} />
       
-      <div className="mx-auto w-[min(1170px,calc(100%-38px))]">
+      <div className="mx-auto w-[min(1170px,calc(100%-38px))] pb-20">
         <div ref={containerRef} style={{ position: "relative" }} className="border-b border-[#cfcac0] pb-10 mb-12">
           <p className="font-mono text-[10px] uppercase tracking-[.085em] text-stone-500">
-            DevSync Cohorts
+            TamilDev Cohorts
           </p>
           <h1 className="mt-3 text-4xl md:text-6xl font-extrabold tracking-tight text-[#151515]">
             <VariableProximity
