@@ -9,6 +9,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import JoinModal from "@/components/JoinModal";
 import { developersData } from "./developersData";
+import { getAvatarUrl } from "@/lib/utils";
 
 // Dynamically import the 3D Lanyard component to disable SSR compilation for Rapier/WebGL
 const Lanyard = dynamic(() => import("@/components/Lanyard"), { ssr: false });
@@ -43,7 +44,7 @@ export default function DeveloperDetailsClient({ id }: { id: string }) {
             <section className="border border-[#cfcac0] bg-stone-100/40 p-8 md:p-12 flex flex-col md:flex-row gap-8 items-start md:items-center">
               <img 
                 className="h-32 w-32 rounded-none border border-[#cfcac0] object-cover grayscale" 
-                src={developer.avatar} 
+                src={getAvatarUrl(developer.avatar)} 
                 alt={developer.name} 
               />
               <div className="flex-1">
@@ -153,7 +154,7 @@ export default function DeveloperDetailsClient({ id }: { id: string }) {
                 <Lanyard
                   name={developer.name}
                   role={developer.role}
-                  avatar={developer.avatar}
+                  avatar={getAvatarUrl(developer.avatar)}
                 />
               </div>
             </section>

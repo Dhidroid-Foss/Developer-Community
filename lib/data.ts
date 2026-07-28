@@ -1,9 +1,11 @@
+import { DevCats1, DevCats2 } from "@/app/assets/dev-cats";
+
 export interface Developer {
   id: string;
   name: string;
   role: string;
   location: string;
-  avatar: string;
+  avatar: string | undefined | any;
   bio: string;
   skills: string[];
   projects: { title: string; desc: string }[];
@@ -82,7 +84,7 @@ export const developers: Developer[] = [
     ],
     github: "https://github.com/dhidroid",
     linkedin: "https://linkedin.com/in/dhidroid-rndev",
-    email: "dhidroid@devsync.community",
+    email: "-",
     website: "https://dhidroid.vercel.app",
     stack: ["React Native", "Expo", "TypeScript", "Node.js", "React.js"]
   },
@@ -92,7 +94,7 @@ export const developers: Developer[] = [
     name: "Vignesh",
     role: "Fullstack Web Developer",
     location: "Bengaluru, IN",
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80",
+    avatar: DevCats1,
     bio: "Vignesh is a full-stack engineer passionate about modular frontend architectures and efficient backend endpoints. He specializes in React, Next.js server actions, and Node.js microservices.",
     skills: ["ReactJS", "Next.js", "Node.js", "Express", "TypeScript"],
     projects: [
@@ -101,7 +103,7 @@ export const developers: Developer[] = [
     ],
     github: "https://github.com/vignesh",
     linkedin: "https://linkedin.com/in/vignesh",
-    email: "vignesh@devsync.community",
+    email: "-",
     stack: ["ReactJS", "Next.js", "Node.js"]
   },
   {
@@ -118,7 +120,7 @@ export const developers: Developer[] = [
     ],
     github: "https://github.com/Kishore00426",
     linkedin: "https://www.linkedin.com/in/kishore-kumar-p-",
-    email: "kishore@devsync.community",
+    email: "-",
     stack: ["MongoDB", "React", "Node.js"]
   },
   {
@@ -126,7 +128,7 @@ export const developers: Developer[] = [
     name: "Saran",
     role: "AI & LLM Integration Specialist",
     location: "Coimbatore, IN",
-    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80",
+    avatar: DevCats2,
     bio: "Saran builds state-of-the-art intelligent features using OpenAI, Anthropic's Claude, and local open-source models via Ollama. He also integrates immersive media via Luma API.",
     skills: ["Claude AI", "Ollama LLM", "Luma API", "Python", "Vector Databases"],
     projects: [
@@ -135,26 +137,9 @@ export const developers: Developer[] = [
     ],
     github: "https://github.com/saran",
     linkedin: "https://linkedin.com/in/saran",
-    email: "saran@devsync.community",
+    email: "-",
     stack: ["Claude AI", "Ollama", "Luma API"]
   },
-  {
-    id: "vijay-ls",
-    name: "Vijay LS",
-    role: "UI/UX Designer & Frontend Developer",
-    location: "Mumbai, IN",
-    avatar: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=600&q=80",
-    bio: "Vijay designs interface layouts in Figma and translates them pixel-perfectly to React and CSS. He focuses on responsive layouts, motion curves, and user-centric interfaces.",
-    skills: ["Figma Design", "CSS/Tailwind", "ReactJS", "UI Prototyping", "A11y"],
-    projects: [
-      { title: "Design System Tokens", desc: "A multi-platform Figma-to-React UI design tokens compiler." },
-      { title: "Glassmorphic Theme Engine", desc: "A light-weight CSS library for custom responsive themes." }
-    ],
-    github: "https://github.com/vijay-ls",
-    linkedin: "https://linkedin.com/in/vijay-ls",
-    email: "vijay-ls@devsync.community",
-    stack: ["Figma", "Tailwind", "ReactJS"]
-  }
 ];
 
 export const technologies: Technology[] = [
@@ -385,7 +370,7 @@ export const quotes: Quote[] = [
     text: "Building modular server actions and microservices with Next.js and Node.js has never been faster. Collaborative reviews speed up production deployment immensely.",
     author: "Vignesh",
     role: "Fullstack Web Developer",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80",
+    image: DevCats1,
     location: "Bengaluru, IN",
     github: "https://github.com/vignesh",
     linkedin: "https://linkedin.com/in/vignesh"
@@ -403,19 +388,10 @@ export const quotes: Quote[] = [
     text: "Integrating Claude and local Ollama LLMs into production workflows allows us to build private, intelligent AI tools right from our IDEs.",
     author: "Saran",
     role: "AI & LLM Integration Specialist",
-    image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80",
+    image: DevCats2,
     location: "Coimbatore, IN",
     github: "https://github.com/saran",
     linkedin: "https://linkedin.com/in/saran"
-  },
-  {
-    text: "Translating complex Figma design tokens into clean React components creates a seamless workflow where design and frontend logic align perfectly.",
-    author: "Vijay LS",
-    role: "UI/UX Designer & Frontend Developer",
-    image: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=600&q=80",
-    location: "Mumbai, IN",
-    github: "https://github.com/vijay-ls",
-    linkedin: "https://linkedin.com/in/vijay-ls"
   }
 ];
 

@@ -262,12 +262,13 @@ function Band({
 
     // Load avatar image with CORS support
     if (avatar) {
+      const avatarSrc = typeof avatar === "string" ? avatar : (avatar as { src?: string })?.src || String(avatar);
       const img = new Image();
       img.crossOrigin = "anonymous";
       img.onload = () => {
         renderCard(img);
       };
-      img.src = avatar;
+      img.src = avatarSrc;
     }
   }, [name, role, avatar]);
 

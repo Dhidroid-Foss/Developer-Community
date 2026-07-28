@@ -3,6 +3,9 @@
 import { FormEvent, useState, useRef, useEffect } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "motion/react";
 import { ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faReact, faFigma, faNodeJs } from "@fortawesome/free-brands-svg-icons";
+import { faDatabase, faLaptopCode, faMobileScreenButton, faRobot, faServer, faVideo } from "@fortawesome/free-solid-svg-icons";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -13,36 +16,37 @@ import PixelBlast from "@/components/PixelBlast";
 import PixelCard from "@/components/PixelCard";
 import Shuffle from "@/components/Shuffle";
 import { developers, homeTechnologies, programs, stories, liveEvents, stats, featuredResources, brands, quotes } from "@/lib/data";
+import { getAvatarUrl } from "@/lib/utils";
 
 // Inline Brand Icons (SVG)
 const ReactLogo = ({ className }: { className?: string }) => (
   <svg viewBox="-11.5 -10.23174 23 20.46348" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="0" cy="0" r="2.05" fill="#61DAFB"/>
+    <circle cx="0" cy="0" r="2.05" fill="#61DAFB" />
     <g stroke="#61DAFB" strokeWidth="1" fill="none">
-      <ellipse rx="11" ry="4.2"/>
-      <ellipse rx="11" ry="4.2" transform="rotate(60)"/>
-      <ellipse rx="11" ry="4.2" transform="rotate(120)"/>
+      <ellipse rx="11" ry="4.2" />
+      <ellipse rx="11" ry="4.2" transform="rotate(60)" />
+      <ellipse rx="11" ry="4.2" transform="rotate(120)" />
     </g>
   </svg>
 );
 
 const ReactNativeLogo = ({ className }: { className?: string }) => (
   <svg viewBox="0 0 24 24" className={className} fill="none" stroke="#00D8FF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" xmlns="http://www.w3.org/2000/svg">
-    <rect x="5" y="2" width="14" height="20" rx="2" ry="2" stroke="#888" strokeWidth="1"/>
-    <circle cx="12" cy="12" r="1.5" fill="#00D8FF"/>
-    <ellipse rx="6" ry="2.2" transform="translate(12, 12) rotate(30)"/>
-    <ellipse rx="6" ry="2.2" transform="translate(12, 12) rotate(90)"/>
-    <ellipse rx="6" ry="2.2" transform="translate(12, 12) rotate(150)"/>
+    <rect x="5" y="2" width="14" height="20" rx="2" ry="2" stroke="#888" strokeWidth="1" />
+    <circle cx="12" cy="12" r="1.5" fill="#00D8FF" />
+    <ellipse rx="6" ry="2.2" transform="translate(12, 12) rotate(30)" />
+    <ellipse rx="6" ry="2.2" transform="translate(12, 12) rotate(90)" />
+    <ellipse rx="6" ry="2.2" transform="translate(12, 12) rotate(150)" />
   </svg>
 );
 
 const FigmaLogo = ({ className }: { className?: string }) => (
   <svg viewBox="0 0 38 57" className={className} xmlns="http://www.w3.org/2000/svg">
-    <path d="M10.5 17C10.5 12.3 14.3 8.5 19 8.5C23.7 8.5 27.5 12.3 27.5 17V25.5H19C14.3 25.5 10.5 21.7 10.5 17Z" fill="#F24E1E"/>
-    <path d="M10.5 40.8C10.5 36.1 14.3 32.3 19 32.3H27.5V40.8C27.5 45.5 23.7 49.3 19 49.3C14.3 49.3 10.5 45.5 10.5 40.8Z" fill="#0ACF83"/>
-    <path d="M19 32.3C23.7 32.3 27.5 28.5 27.5 23.8V17H19V32.3Z" fill="#A259FF"/>
-    <path d="M10.5 23.8C10.5 19.1 14.3 15.3 19 15.3V32.3C14.3 32.3 10.5 28.5 10.5 23.8Z" fill="#1ABCFE"/>
-    <path d="M19 49.3C23.7 49.3 27.5 45.5 27.5 40.8V32.3H19V49.3Z" fill="#FF7262"/>
+    <path d="M10.5 17C10.5 12.3 14.3 8.5 19 8.5C23.7 8.5 27.5 12.3 27.5 17V25.5H19C14.3 25.5 10.5 21.7 10.5 17Z" fill="#F24E1E" />
+    <path d="M10.5 40.8C10.5 36.1 14.3 32.3 19 32.3H27.5V40.8C27.5 45.5 23.7 49.3 19 49.3C14.3 49.3 10.5 45.5 10.5 40.8Z" fill="#0ACF83" />
+    <path d="M19 32.3C23.7 32.3 27.5 28.5 27.5 23.8V17H19V32.3Z" fill="#A259FF" />
+    <path d="M10.5 23.8C10.5 19.1 14.3 15.3 19 15.3V32.3C14.3 32.3 10.5 28.5 10.5 23.8Z" fill="#1ABCFE" />
+    <path d="M19 49.3C23.7 49.3 27.5 45.5 27.5 40.8V32.3H19V49.3Z" fill="#FF7262" />
   </svg>
 );
 
@@ -60,20 +64,20 @@ const NodejsLogo = ({ className }: { className?: string }) => (
 
 const PostgresLogo = ({ className }: { className?: string }) => (
   <svg viewBox="0 0 64 64" className={className} fill="#336791" xmlns="http://www.w3.org/2000/svg">
-    <path d="M51.9 29.1c.1-.8.2-1.7.2-2.5 0-11.4-8.8-19.1-18.7-19.1-11.2 0-20.3 9.4-20.3 20.9 0 2 .3 4 .9 5.8-2.6.8-4.5 3.3-4.5 6.2 0 3.7 3 6.6 6.7 6.6h.4v2.7c0 4.1 3.3 7.5 7.5 7.5h16.2c4.1 0 7.5-3.3 7.5-7.5v-2.7h.5c3.7 0 6.7-3 6.7-6.6.1-4-2.8-7.3-6.5-7.9zM33.4 12c7.9 0 14.2 6 14.2 14.6 0 .8-.1 1.7-.2 2.5H19.5c-.1-.8-.2-1.7-.2-2.5 0-8.6 6.2-14.6 14.1-14.6z"/>
+    <path d="M51.9 29.1c.1-.8.2-1.7.2-2.5 0-11.4-8.8-19.1-18.7-19.1-11.2 0-20.3 9.4-20.3 20.9 0 2 .3 4 .9 5.8-2.6.8-4.5 3.3-4.5 6.2 0 3.7 3 6.6 6.7 6.6h.4v2.7c0 4.1 3.3 7.5 7.5 7.5h16.2c4.1 0 7.5-3.3 7.5-7.5v-2.7h.5c3.7 0 6.7-3 6.7-6.6.1-4-2.8-7.3-6.5-7.9zM33.4 12c7.9 0 14.2 6 14.2 14.6 0 .8-.1 1.7-.2 2.5H19.5c-.1-.8-.2-1.7-.2-2.5 0-8.6 6.2-14.6 14.1-14.6z" />
   </svg>
 );
 
 const PrismaLogo = ({ className }: { className?: string }) => (
   <svg viewBox="0 0 45 52" className={className} fill="#2D3748" xmlns="http://www.w3.org/2000/svg">
-    <path d="M22.023.238L.484 38.643a1.144 1.144 0 0 0 .991 1.701h12.56L22.023 26.65l7.989 13.693h12.56a1.144 1.144 0 0 0 .991-1.701L22.023.238z" fill="#0C344B"/>
-    <path d="M22.023.238v26.412l7.989 13.693h12.56a1.144 1.144 0 0 0 .991-1.701L22.023.238z" fill="#16A394"/>
+    <path d="M22.023.238L.484 38.643a1.144 1.144 0 0 0 .991 1.701h12.56L22.023 26.65l7.989 13.693h12.56a1.144 1.144 0 0 0 .991-1.701L22.023.238z" fill="#0C344B" />
+    <path d="M22.023.238v26.412l7.989 13.693h12.56a1.144 1.144 0 0 0 .991-1.701L22.023.238z" fill="#16A394" />
   </svg>
 );
 
 const ClaudeLogo = ({ className }: { className?: string }) => (
   <svg viewBox="0 0 24 24" className={className} fill="#D97706" xmlns="http://www.w3.org/2000/svg">
-    <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM15.6 14.4L14.4 15.6L12 13.2L9.6 15.6L8.4 14.4L10.8 12L8.4 9.6L9.6 8.4L12 10.8L14.4 8.4L15.6 9.6L13.2 12L15.6 14.4Z"/>
+    <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM15.6 14.4L14.4 15.6L12 13.2L9.6 15.6L8.4 14.4L10.8 12L8.4 9.6L9.6 8.4L12 10.8L14.4 8.4L15.6 9.6L13.2 12L15.6 14.4Z" />
   </svg>
 );
 
@@ -97,20 +101,20 @@ const LumaLogo = ({ className }: { className?: string }) => (
 );
 
 const homeIconMap: Record<string, React.FC<{ className?: string }>> = {
-  ReactJS: ReactLogo,
-  "React Native": ReactNativeLogo,
-  Figma: FigmaLogo,
-  "Next.js": NextjsLogo,
-  "Node.js": NodejsLogo,
-  PostgreSQL: PostgresLogo,
-  Prisma: PrismaLogo,
-  Claude: ClaudeLogo,
-  Ollama: OllamaLogo,
-  "Luma API": LumaLogo,
+  ReactJS: ({ className }) => <FontAwesomeIcon icon={faReact} className={className} />,
+  "React Native": ({ className }) => <FontAwesomeIcon icon={faMobileScreenButton} className={className} />,
+  Figma: ({ className }) => <FontAwesomeIcon icon={faFigma} className={className} />,
+  "Next.js": ({ className }) => <FontAwesomeIcon icon={faLaptopCode} className={className} />,
+  "Node.js": ({ className }) => <FontAwesomeIcon icon={faNodeJs} className={className} />,
+  PostgreSQL: ({ className }) => <FontAwesomeIcon icon={faDatabase} className={className} />,
+  Prisma: ({ className }) => <FontAwesomeIcon icon={faServer} className={className} />,
+  Claude: ({ className }) => <FontAwesomeIcon icon={faRobot} className={className} />,
+  Ollama: ({ className }) => <FontAwesomeIcon icon={faRobot} className={className} />,
+  "Luma API": ({ className }) => <FontAwesomeIcon icon={faVideo} className={className} />,
 };
 
-function Eyebrow({ children, light = false }: { children: React.ReactNode; light?: boolean }) { 
-  return <p className={`font-mono text-[10px] uppercase tracking-[.085em] ${light ? "text-stone-400" : "text-stone-500"}`}>{children}</p>; 
+function Eyebrow({ children, light = false }: { children: React.ReactNode; light?: boolean }) {
+  return <p className={`font-mono text-[10px] uppercase tracking-[.085em] ${light ? "text-stone-400" : "text-stone-500"}`}>{children}</p>;
 }
 
 export default function Home() {
@@ -156,7 +160,7 @@ export default function Home() {
 
     {/* Hero Section with PixelBlast interactive WebGL Background */}
     <section id="top" className="relative bg-zinc-950 pb-20 pt-32 text-white md:pb-24 md:pt-40 overflow-hidden">
-      
+
       {/* Background Interactive Canvas */}
       <div className="absolute inset-0 z-0 opacity-40 pointer-events-auto">
         <PixelBlast
@@ -179,11 +183,11 @@ export default function Home() {
 
       {/* Grid Content Overlay - pointer-events-none lets mouse slide through to the Canvas */}
       <div className="relative z-10 mx-auto grid w-[min(1170px,calc(100%-38px))] items-center gap-12 md:grid-cols-[1.05fr_.95fr] md:gap-20 pointer-events-none">
-        
+
         {/* Left Column */}
-        <motion.div 
-          initial={{ opacity: 0, y: 16 }} 
-          animate={{ opacity: 1, y: 0 }} 
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: .65 }}
           className="pointer-events-none"
         >
@@ -228,13 +232,13 @@ export default function Home() {
           <p className="mt-7 max-w-[470px] text-sm leading-relaxed text-stone-300">
             TamilDev is where frontend, backend, mobile, and AI developers build side-by-side, collaborate in realtime, and ship production-grade products.
           </p>
-          
+
           {/* Interactive buttons */}
           <div className="mt-7 flex flex-wrap gap-2 pointer-events-auto">
             <Button onClick={() => setModalOpen(true)}>Join TamilDev <ArrowUpRight size={16} /></Button>
             <a href="#showcase"><Button variant="outline">Meet the developers</Button></a>
           </div>
-          
+
           <div className="mt-9 flex items-center gap-3 text-[11px] text-stone-400 pointer-events-auto">
             <div className="flex">
               <img className="h-7 w-7 rounded-full border-2 border-zinc-950 object-cover" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" alt="" />
@@ -244,11 +248,11 @@ export default function Home() {
             Join 15,000+ modern developers shipping code daily.
           </div>
         </motion.div>
-        
+
         {/* Right Column (Streams List) */}
-        <motion.div 
-          initial={{ opacity: 0, y: 16 }} 
-          animate={{ opacity: 1, y: 0 }} 
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: .65, delay: .12 }}
           className="pointer-events-auto"
         >
@@ -289,7 +293,7 @@ export default function Home() {
               <PixelCard variant="orange" className="bg-zinc-950 border-zinc-800 rounded-none h-full w-full p-0">
                 <article className="pointer-events-auto p-4">
                   <div className="relative aspect-[.78] overflow-hidden bg-zinc-800 border border-transparent group-hover:border-stone-100/30 transition-all duration-300">
-                    <img className="h-full w-full object-cover grayscale transition duration-500 group-hover:scale-[1.04] group-hover:grayscale-0" src={member.avatar} alt={`Portrait of ${member.name}`} />
+                    <img className="h-full w-full object-cover grayscale transition duration-500 group-hover:scale-[1.04] group-hover:grayscale-0" src={getAvatarUrl(member.avatar)} alt={`Portrait of ${member.name}`} />
                     <span className="absolute left-3 top-3 rounded-full bg-zinc-950/70 px-2 py-1 font-mono text-[8px] text-white opacity-0 transition group-hover:opacity-100 md:block">{member.location}</span>
                   </div>
                   <h3 className="mt-3 text-[13px] font-bold tracking-[-.045em] text-white group-hover:text-[var(--orange)] transition-colors">{member.name}</h3>
@@ -440,7 +444,7 @@ export default function Home() {
       </div>
     </section>
 
-    <section 
+    <section
       onMouseEnter={() => setIsQuotePaused(true)}
       onMouseLeave={() => setIsQuotePaused(false)}
       className="bg-[var(--orange)] py-18 md:py-24 relative overflow-hidden"
@@ -508,7 +512,7 @@ export default function Home() {
                 <div className="relative overflow-hidden">
                   <img
                     className="h-80 w-full object-cover object-top md:h-[365px] transition duration-500 hover:scale-[1.04]"
-                    src={quotes[quoteIdx].image}
+                    src={getAvatarUrl(quotes[quoteIdx].image)}
                     alt={quotes[quoteIdx].author}
                   />
                   {/* Developer ID badge overlay */}

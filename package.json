@@ -8,6 +8,10 @@
     "start": "next start"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^7.3.1",
+    "@fortawesome/free-brands-svg-icons": "^7.3.1",
+    "@fortawesome/free-solid-svg-icons": "^7.3.1",
+    "@fortawesome/react-fontawesome": "^0.2.0",
     "@gsap/react": "^2.1.2",
     "@radix-ui/react-tabs": "^1.1.12",
     "@react-three/drei": "^10.7.7",

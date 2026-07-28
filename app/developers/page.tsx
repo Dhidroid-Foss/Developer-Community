@@ -8,6 +8,7 @@ import JoinModal from "@/components/JoinModal";
 import PixelCard from "@/components/PixelCard";
 import VariableProximity from "@/components/VariableProximity";
 import { developers as members } from "@/lib/data";
+import { getAvatarUrl } from "@/lib/utils";
 
 export default function DevelopersListPage() {
   const [modalOpen, setModalOpen] = useState(false);
@@ -60,7 +61,7 @@ export default function DevelopersListPage() {
                   <div className="relative aspect-[1.1] overflow-hidden bg-zinc-800 border border-[#cfcac0]/60 mb-6">
                     <img 
                       className="h-full w-full object-cover grayscale transition duration-500 group-hover:scale-[1.03] group-hover:grayscale-0" 
-                      src={member.avatar} 
+                      src={getAvatarUrl(member.avatar)} 
                       alt={member.name} 
                     />
                     <span className="absolute left-3 top-3 rounded-full bg-zinc-950/70 px-2 py-1 font-mono text-[8px] text-white">
