@@ -1,4 +1,4 @@
-import { DevCats1, DevCats2 } from "@/app/assets/dev-cats";
+import { DevCats1 } from "@/app/assets/dev-cats";
 
 export interface Developer {
   id: string;
@@ -128,7 +128,7 @@ export const developers: Developer[] = [
     name: "Saran",
     role: "AI & LLM Integration Specialist",
     location: "Coimbatore, IN",
-    avatar: DevCats2,
+    avatar: "/avatars/sarandevaraj.png",
     bio: "Saran builds state-of-the-art intelligent features using OpenAI, Anthropic's Claude, and local open-source models via Ollama. He also integrates immersive media via Luma API.",
     skills: ["Claude AI", "Ollama LLM", "Luma API", "Python", "Vector Databases"],
     projects: [
@@ -388,7 +388,7 @@ export const quotes: Quote[] = [
     text: "Integrating Claude and local Ollama LLMs into production workflows allows us to build private, intelligent AI tools right from our IDEs.",
     author: "Saran",
     role: "AI & LLM Integration Specialist",
-    image: DevCats2,
+    image: "/avatars/sarandevaraj.png",
     location: "Coimbatore, IN",
     github: "https://github.com/saran",
     linkedin: "https://linkedin.com/in/saran"
