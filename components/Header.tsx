@@ -23,6 +23,7 @@ export default function Header({ onJoinClick }: HeaderProps) {
           <Link href="/developers" className="hover:text-[var(--orange)] transition-colors">Developers</Link>
           <Link href="/cohorts" className="hover:text-[var(--orange)] transition-colors">Cohorts</Link>
           <Link href="/resources" className="hover:text-[var(--orange)] transition-colors">Resources</Link>
+          <Link href="/tech-briefs" className="hover:text-[var(--orange)] transition-colors">Tech Briefs</Link>
           <button 
             onClick={onJoinClick}
             className="rounded-full bg-[var(--orange)] px-4 py-2.5 text-[11px] text-zinc-950 font-bold hover:bg-[#e05629] transition-colors cursor-pointer"
@@ -42,6 +43,7 @@ export default function Header({ onJoinClick }: HeaderProps) {
               <Link className="py-3 w-full" onClick={() => setMenuOpen(false)} href="/developers">Developers</Link>
               <Link className="py-3 w-full" onClick={() => setMenuOpen(false)} href="/cohorts">Cohorts</Link>
               <Link className="py-3 w-full" onClick={() => setMenuOpen(false)} href="/resources">Resources</Link>
+              <Link className="py-3 w-full" onClick={() => setMenuOpen(false)} href="/tech-briefs">Tech Briefs</Link>
               <button 
                 className="mt-2 w-full text-center rounded-full bg-[var(--orange)] px-4 py-2.5 text-xs font-bold text-zinc-950" 
                 onClick={() => { setMenuOpen(false); onJoinClick?.(); }}

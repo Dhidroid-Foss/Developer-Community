@@ -20,7 +20,7 @@ export default function Footer() {
           <a href="mailto:hello@devsync.community" className="mt-4 block text-[11px] text-stone-300 hover:text-[var(--orange)] transition-colors">hello@devsync.community</a>
         </div>
         {[
-          ["Explore", [["Stack", "/stack"], ["Developers", "/developers"], ["Cohorts", "/cohorts"], ["Resources", "/resources"]]],
+          ["Explore", [["Stack", "/stack"], ["Developers", "/developers"], ["Cohorts", "/cohorts"], ["Resources", "/resources"], ["Tech Briefs", "/tech-briefs"]]],
           ["Elsewhere", [["GitHub", "https://github.com"], ["Discord", "https://discord.gg"], ["LinkedIn", "https://linkedin.com"], ["YouTube", "https://youtube.com"]]]
         ].map(([heading, links]) => (
           <div key={heading as string}>
