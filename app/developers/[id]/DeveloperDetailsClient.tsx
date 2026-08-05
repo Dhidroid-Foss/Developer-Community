@@ -4,15 +4,11 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { ArrowLeft, Github, Linkedin, Mail, MapPin, CheckCircle, ExternalLink, Globe } from "lucide-react";
 import { notFound } from "next/navigation";
-import dynamic from "next/dynamic";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import JoinModal from "@/components/JoinModal";
 import { developersData } from "./developersData";
 import { getAvatarUrl } from "@/lib/utils";
-
-// Dynamically import the 3D Lanyard component to disable SSR compilation for Rapier/WebGL
-const Lanyard = dynamic(() => import("@/components/Lanyard"), { ssr: false });
 
 export default function DeveloperDetailsClient({ id }: { id: string }) {
   const [modalOpen, setModalOpen] = useState(false);
@@ -143,19 +139,57 @@ export default function DeveloperDetailsClient({ id }: { id: string }) {
             </section>
           </div>
 
-          {/* Right Column: Interactive 3D Lanyard & Contact Card */}
+          {/* Right Column: Live Website Preview & Contact Card */}
           <div className="flex flex-col gap-8 lg:sticky lg:top-28">
-            <section className="border border-[#cfcac0] bg-stone-100/40 p-6 flex flex-col items-center">
-              <span className="font-mono text-[9px] uppercase tracking-wider text-stone-500 mb-2">
-                Interactive TamilDev Card (Drag to spin)
-              </span>
-              
-              <div className="w-full bg-[#111111]/5 border border-[#cfcac0]/40 overflow-hidden flex items-center justify-center">
-                <Lanyard
-                  name={developer.name}
-                  role={developer.role}
-                  avatar={getAvatarUrl(developer.avatar)}
+            <section className="border border-[#cfcac0] bg-stone-100/40 overflow-hidden">
+              {/* Browser Chrome Bar */}
+              <div className="flex items-center gap-2 border-b border-[#cfcac0] bg-stone-200/60 px-3 py-2">
+                <div className="flex gap-1.5">
+                  <span className="h-2.5 w-2.5 rounded-full bg-red-400" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-yellow-400" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-green-400" />
+                </div>
+                <div className="flex flex-1 items-center gap-2 rounded bg-white/70 border border-[#cfcac0]/60 px-2 py-1 mx-1">
+                  <Globe size={9} className="text-stone-400 shrink-0" />
+                  <span className="font-mono text-[9px] text-stone-500 truncate">
+                    {developer.website ?? developer.github}
+                  </span>
+                </div>
+                <a
+                  href={developer.website ?? developer.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="shrink-0 text-stone-400 hover:text-[#fa6739] transition-colors"
+                  aria-label="Open in new tab"
+                >
+                  <ExternalLink size={11} />
+                </a>
+              </div>
+
+              {/* Iframe Preview */}
+              <div className="relative w-full" style={{ height: "420px" }}>
+                <iframe
+                  src={developer.website ?? developer.github}
+                  title={`${developer.name}'s live website`}
+                  className="w-full h-full border-0"
+                  style={{ transform: "scale(0.75)", transformOrigin: "top left", width: "133.33%", height: "133.33%" }}
+                  sandbox="allow-scripts allow-same-origin"
+                  loading="lazy"
                 />
+              </div>
+
+              <div className="border-t border-[#cfcac0] px-4 py-2 flex items-center justify-between">
+                <span className="font-mono text-[9px] uppercase tracking-wider text-stone-400">
+                  Live Preview
+                </span>
+                <a
+                  href={developer.website ?? developer.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-mono text-[9px] uppercase tracking-wider text-[#fa6739] font-bold hover:underline flex items-center gap-1"
+                >
+                  Open Site <ExternalLink size={9} />
+                </a>
               </div>
             </section>
 

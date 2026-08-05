@@ -287,7 +287,7 @@ export default function Home() {
             </button>
           </div>
         </div>
-        <div className="grid grid-cols-2 gap-x-3 gap-y-5 md:grid-cols-3 lg:grid-cols-5">
+        <div className="grid grid-cols-2 gap-x-3 gap-y-5 md:grid-cols-2 lg:grid-cols-4">
           {developers.map((member) => (
             <a href={`/developers/${member.id}`} key={member.id} className="group block">
               <PixelCard variant="orange" className="bg-zinc-950 border-zinc-800 rounded-none h-full w-full p-0">
