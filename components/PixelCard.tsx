@@ -162,6 +162,7 @@ interface PixelCardProps {
   speed?: number;
   colors?: string;
   noFocus?: boolean;
+  active?: boolean;
   className?: string;
   children: React.ReactNode;
 }
@@ -180,6 +181,7 @@ export default function PixelCard({
   speed,
   colors,
   noFocus,
+  active = false,
   className = "",
   children
 }: PixelCardProps): JSX.Element {
@@ -198,6 +200,14 @@ export default function PixelCard({
   const finalSpeed = speed ?? variantCfg.speed;
   const finalColors = colors ?? variantCfg.colors;
   const finalNoFocus = noFocus ?? variantCfg.noFocus;
+
+  useEffect(() => {
+    if (active) {
+      handleAnimation("appear");
+    } else {
+      handleAnimation("disappear");
+    }
+  }, [active]);
 
   const initPixels = () => {
     if (!containerRef.current || !canvasRef.current) return;

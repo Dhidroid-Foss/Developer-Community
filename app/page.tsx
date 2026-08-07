@@ -100,6 +100,172 @@ const LumaLogo = ({ className }: { className?: string }) => (
   </svg>
 );
 
+const VercelLogo = ({ className }: { className?: string }) => (
+  <svg viewBox="0 0 76 65" className={className} fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+    <path d="M37.5274 0L75.0548 65H0L37.5274 0Z" />
+  </svg>
+);
+
+const SupabaseLogo = ({ className }: { className?: string }) => (
+  <svg viewBox="0 0 106 106" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M64.66 103.738C61.424 107.514 55.234 105.228 55.234 100.279V58.334H96.388C104.092 58.334 108.312 67.288 103.446 73.256L64.66 103.738Z" fill="#3ECF8E" />
+    <path d="M41.34 2.262C44.576 -1.514 50.766 0.772 50.766 5.721V47.666H9.612C1.908 47.666 -2.312 38.712 2.554 32.744L41.34 2.262Z" fill="#3ECF8E" fillOpacity="0.8" />
+  </svg>
+);
+
+const GithubLogo = ({ className }: { className?: string }) => (
+  <svg viewBox="0 0 98 96" className={className} fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+    <path fillRule="evenodd" clipRule="evenodd" d="M48.854 0C21.839 0 0 22 0 49.217c0 21.756 13.993 40.172 33.405 46.69 2.427.49 3.316-1.059 3.316-2.362 0-1.141-.08-5.052-.08-9.127-13.59 2.934-16.42-5.867-16.42-5.867-2.237-5.704-5.431-7.255-5.431-7.255-4.428-3.016.33-2.934.33-2.934 4.907.33 7.5 5.052 7.5 5.052 4.347 7.5 11.416 5.378 14.244 4.156.409-3.18 1.699-5.378 3.07-6.6-10.844-1.141-22.298-5.459-22.298-24.36 0-5.378 1.94-9.778 5.176-13.2-.501-1.221-2.262-6.275.474-13.038 0 0 4.125-1.304 13.426 5.052a46.97 46.97 0 0112.217-1.63c4.136 0 8.33.57 12.228 1.63 9.302-6.356 13.427-5.052 13.427-5.052 2.747 6.763.976 11.817.485 13.038 3.236 3.422 5.176 7.822 5.176 13.2 0 18.98-11.481 23.18-22.428 24.36 1.776 1.549 3.316 4.482 3.316 9.127 0 6.6-.08 11.897-.08 13.526 0 1.304.89 2.853 3.316 2.364C83.924 89.389 98 70.973 98 49.217 98 22 76.161 0 48.854 0z" />
+  </svg>
+);
+
+const DockerLogo = ({ className }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" className={className} fill="#2496ED" xmlns="http://www.w3.org/2000/svg">
+    <path d="M13.983 11.078h2.119a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.119a.185.185 0 00-.185.186v1.887c0 .102.083.185.185.185m-2.954-5.43h2.118a.185.185 0 00.186-.186V3.575a.185.185 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.887c0 .102.083.185.185.185m0 2.716h2.118a.185.185 0 00.186-.186V6.29a.185.185 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.887c0 .102.083.185.185.185m-2.954 0h2.119a.186.186 0 00.185-.186V6.29a.186.186 0 00-.185-.185H8.075a.185.185 0 00-.185.185v1.887c0 .102.083.185.185.185m0 2.714h2.119a.186.186 0 00.185-.185V9.006a.186.186 0 00-.185-.186H8.075a.185.185 0 00-.185.186v1.887c0 .102.083.185.185.185m-2.955 0h2.119a.186.186 0 00.185-.185V9.006a.186.186 0 00-.185-.186H5.12a.185.185 0 00-.185.186v1.887c0 .102.084.185.185.185m-2.954 0h2.119a.185.185 0 00.185-.185V9.006a.185.185 0 00-.185-.186H2.166a.185.185 0 00-.185.186v1.887c0 .102.083.185.185.185m5.909 2.715h2.119a.186.186 0 00.185-.185v-1.887a.186.186 0 00-.185-.186H8.075a.185.185 0 00-.185.186v1.887c0 .102.083.185.185.185m-2.955 0h2.119a.186.186 0 00.185-.185v-1.887a.186.186 0 00-.185-.186H5.12a.185.185 0 00-.185.186v1.887c0 .102.084.185.185.185m-2.954 0h2.119a.185.185 0 00.185-.185v-1.887a.185.185 0 00-.185-.186H2.166a.185.185 0 00-.185.186v1.887c0 .102.083.185.185.185M.056 12.3c-.04.428.024 1.343.468 2.27 1.332 2.784 4.544 3.738 8.04 3.738 6.47 0 11.233-3.084 13.06-8.736.216-.67.432-.937 1.054-.937h.375c.67 0 .942-.514.54-1.026-.395-.503-1.424-1.258-2.656-1.258-1.503 0-2.457.778-2.88 1.488-.958-.168-2.58-.228-4.22.288-.936.288-1.92.79-2.64 1.44-1.056-.552-2.592-.816-4.08-.816-1.536 0-3.048.288-4.128.84-1.08.552-1.992 1.392-2.328 2.25-.264.12-.456.288-.66.456z" />
+  </svg>
+);
+
+const AWSLogo = ({ className }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" className={className} fill="#FF9900" xmlns="http://www.w3.org/2000/svg">
+    <path d="M18.75 14.88c-1.87 1.37-4.57 2.1-7.25 2.1-3.66 0-6.95-1.37-9.5-3.67-.2-.18-.04-.42.2-.28 2.77 1.6 6.13 2.55 9.55 2.55 2.37 0 4.96-.52 7.2-1.54.36-.16.66.24.2.84zm1.2-1.98c-.46-.58-3.05-.28-4.22-.14-.35.04-.41-.26-.08-.49 2.12-1.52 4.45-.63 4.88-.09.43.54-.04 2.92-2.04 4.67-.32.28-.54.12-.34-.24.64-1.18 1.26-3.13.8-3.71zM11.75 4c-1.35 0-2.22.82-2.22 2.14 0 1.25.75 2.05 2.22 2.05 1.35 0 2.22-.8 2.22-2.05C13.97 4.82 13.1 4 11.75 4z" />
+  </svg>
+);
+
+const TypeScriptLogo = ({ className }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" className={className} xmlns="http://www.w3.org/2000/svg">
+    <rect width="24" height="24" rx="4" fill="#3178C6" />
+    <path fill="#FFF" d="M13.2 17.5c.4.6 1.1.9 1.9.9 1.1 0 1.7-.5 1.7-1.3 0-.8-.5-1.1-1.7-1.6l-.6-.2c-1.7-.7-2.5-1.6-2.5-3.1 0-2.3 1.8-3.7 4.5-3.7 1.8 0 3.1.6 3.9 1.9l-1.8 1.1c-.5-.8-1.2-1.2-2.1-1.2-1 0-1.6.5-1.6 1.1 0 .7.4 1 1.5 1.4l.6.2c1.9.8 2.7 1.6 2.7 3.3 0 2.5-1.9 3.8-4.8 3.8-2.2 0-3.8-.8-4.7-2.3l1.7-1.2zM5.5 10.3h2.6v9.4H11v-9.4h2.6V8.5H5.5v1.8z" />
+  </svg>
+);
+
+const TailwindLogo = ({ className }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" className={className} fill="#38BDF8" xmlns="http://www.w3.org/2000/svg">
+    <path d="M12.001 4.8c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624C13.666 10.618 15.027 12 18.001 12c3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C16.336 6.182 14.975 4.8 12.001 4.8zm-6 7.2c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624C7.666 17.818 9.027 19.2 12.001 19.2c3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C10.336 13.382 8.975 12 6.001 12z" />
+  </svg>
+);
+
+const RedisLogo = ({ className }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" className={className} fill="#DC382D" xmlns="http://www.w3.org/2000/svg">
+    <path d="M22.5 16.5l-9.5 5.5-9.5-5.5v-11l9.5-5.5 9.5 5.5v11zm-9.5-14.8l-7.7 4.4 7.7 4.5 7.7-4.5-7.7-4.4z" />
+    <circle cx="12" cy="12" r="1.5" fill="#FFF" />
+  </svg>
+);
+
+const blueprintTechs = [
+  { id: "01", name: "Vercel", icon: VercelLogo, role: "HOSTING" },
+  { id: "02", name: "React", icon: ReactLogo, role: "UI LIBRARY" },
+  { id: "03", name: "Next.js", icon: NextjsLogo, role: "FRAMEWORK" },
+  { id: "04", name: "Supabase", icon: SupabaseLogo, role: "BACKEND" },
+  { id: "05", name: "PostgreSQL", icon: PostgresLogo, role: "DATABASE" },
+  { id: "06", name: "Node.js", icon: NodejsLogo, role: "RUNTIME" },
+  { id: "07", name: "Docker", icon: DockerLogo, role: "CONTAINERS" },
+  { id: "08", name: "AWS", icon: AWSLogo, role: "CLOUD" },
+  { id: "09", name: "GitHub", icon: GithubLogo, role: "DEVOPS" },
+  { id: "10", name: "TypeScript", icon: TypeScriptLogo, role: "LANGUAGE" },
+  { id: "11", name: "Tailwind CSS", icon: TailwindLogo, role: "STYLING" },
+  { id: "12", name: "Redis", icon: RedisLogo, role: "CACHING" },
+];
+
+// ── Page 2 logos ───────────────────────────────────────────────────────────────
+const MongoDBLogo = ({ className }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M12 2C8.5 2 6 6.5 6 10c0 2.8 1.4 5.2 3.5 6.7V22h5v-5.3C16.6 15.2 18 12.8 18 10c0-3.5-2.5-8-6-8zm0 15.5c-1.1-.8-2-2.1-2-3.5 0-1 .5-3 2-3s2 2 2 3c0 1.4-.9 2.7-2 3.5z" fill="#47A248" />
+  </svg>
+);
+
+const GraphQLLogo = ({ className }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" className={className} xmlns="http://www.w3.org/2000/svg">
+    <path d="M12 2l9 5v10l-9 5-9-5V7l9-5z" fill="#E10098" opacity="0.15" />
+    <path d="M12 2l9 5v10l-9 5-9-5V7l9-5z" fill="none" stroke="#E10098" strokeWidth="1.5" />
+    <text x="12" y="16" textAnchor="middle" fill="#E10098" fontSize="8" fontWeight="bold" fontFamily="sans-serif">GQL</text>
+  </svg>
+);
+
+const ViteLogo = ({ className }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" className={className} xmlns="http://www.w3.org/2000/svg">
+    <path d="M12 2L3 7l1.5 10L12 22l7.5-5L21 7z" fill="#646CFF" opacity="0.15" />
+    <path d="M14 3L8 14h3l-1 7 7-10h-3l1-8z" fill="#646CFF" />
+    <path d="M14 3L8 14h3l-1 7 7-10h-3l1-8z" fill="#FFD62E" opacity="0.5" transform="translate(1, 0)" />
+  </svg>
+);
+
+const FigmaLogo2 = ({ className }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" className={className} xmlns="http://www.w3.org/2000/svg" fill="none">
+    <rect x="8" y="2" width="4" height="4" rx="2" fill="#FF7262" />
+    <rect x="12" y="2" width="4" height="4" rx="2" fill="#F24E1E" />
+    <rect x="8" y="6" width="4" height="4" rx="2" fill="#A259FF" />
+    <circle cx="14" cy="8" r="2" fill="#1ABCFE" />
+    <rect x="8" y="10" width="4" height="4" rx="2" fill="#0ACF83" />
+  </svg>
+);
+
+const StripeLogo = ({ className }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" className={className} xmlns="http://www.w3.org/2000/svg">
+    <rect width="24" height="24" rx="4" fill="#635BFF" />
+    <path fill="#FFF" d="M11.9 9.1c0-.8.7-1.1 1.8-1.1 1.6 0 3.6.5 5 1.3V5.4c-1.7-.7-3.3-1-5-1-4.1 0-6.8 2.1-6.8 5.7 0 5.5 7.6 4.6 7.6 7 0 .9-.8 1.2-2 1.2-1.7 0-3.9-.7-5.6-1.7v3.9c1.9.8 3.8 1.2 5.6 1.2 4.2 0 7.1-2.1 7.1-5.7-.1-6-7.7-4.9-7.7-7z" />
+  </svg>
+);
+
+const CloudflareLogo = ({ className }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" className={className} xmlns="http://www.w3.org/2000/svg">
+    <path d="M16.5 13.5c.2-.5.3-1 .3-1.5 0-2.8-2.2-5-5-5-2.1 0-3.9 1.3-4.7 3.2-.3-.1-.7-.2-1.1-.2C4.2 10 3 11.2 3 12.8c0 .2 0 .4.1.6" fill="none" stroke="#F6821F" strokeWidth="1.5" strokeLinecap="round" />
+    <path d="M16.5 13.5H4.5c-.8 0-1.5.7-1.5 1.5s.7 1.5 1.5 1.5h12c1.7 0 3-1.3 3-3s-1.3-3-3-3c-.2 0-.3 0-.5.1" fill="#F6821F" opacity="0.2" />
+    <rect x="3" y="13" width="15" height="3" rx="1.5" fill="#F6821F" />
+  </svg>
+);
+
+const PythonLogo = ({ className }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" className={className} xmlns="http://www.w3.org/2000/svg">
+    <path d="M12 2C8.5 2 8 4 8 6v2h4V9H6C4 9 2 10.5 2 13s2 4 4 4h1v-2H6c-1 0-2-.5-2-2s1-2 2-2h6c2.5 0 4-1.5 4-4V6c0-2.5-2-4-4-4zm-1 3c.6 0 1 .4 1 1s-.4 1-1 1-1-.4-1-1 .4-1 1-1z" fill="#3776AB" />
+    <path d="M12 22c3.5 0 4-2 4-4v-2h-4v-1h6c2 0 4-1.5 4-4s-2-4-4-4h-1v2h1c1 0 2 .5 2 2s-1 2-2 2h-6c-2.5 0-4 1.5-4 4v2c0 2.5 2 4 4 4zm1-3c-.6 0-1-.4-1-1s.4-1 1-1 1 .4 1 1-.4 1-1 1z" fill="#FFD43B" />
+  </svg>
+);
+
+const LinuxLogo = ({ className }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" className={className} fill="#333" xmlns="http://www.w3.org/2000/svg">
+    <path d="M12 2C9.8 2 8 4.5 8 7.5c0 1.5.4 2.8 1 3.8C7.4 12.5 6 14.5 6 17c0 2.5 1.5 4 3 4.5V22h6v-.5c1.5-.5 3-2 3-4.5 0-2.5-1.4-4.5-3-5.7.6-1 1-2.3 1-3.8C16 4.5 14.2 2 12 2zm-1.5 4c.4 0 .7.3.7.7s-.3.7-.7.7-.7-.3-.7-.7.3-.7.7-.7zm3 0c.4 0 .7.3.7.7s-.3.7-.7.7-.7-.3-.7-.7.3-.7.7-.7z" />
+  </svg>
+);
+
+const KubernetesLogo = ({ className }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" className={className} xmlns="http://www.w3.org/2000/svg">
+    <path d="M12 2l8.5 5v10L12 22l-8.5-5V7L12 2z" fill="#326CE5" opacity="0.15" />
+    <path d="M12 2l8.5 5v10L12 22l-8.5-5V7L12 2z" fill="none" stroke="#326CE5" strokeWidth="1.5" />
+    <circle cx="12" cy="12" r="2.5" fill="#326CE5" />
+    <line x1="12" y1="4" x2="12" y2="9.5" stroke="#326CE5" strokeWidth="1.2" />
+    <line x1="12" y1="14.5" x2="12" y2="20" stroke="#326CE5" strokeWidth="1.2" />
+    <line x1="19.4" y1="8.5" x2="14.1" y2="11" stroke="#326CE5" strokeWidth="1.2" />
+    <line x1="9.9" y1="13" x2="4.6" y2="15.5" stroke="#326CE5" strokeWidth="1.2" />
+    <line x1="4.6" y1="8.5" x2="9.9" y2="11" stroke="#326CE5" strokeWidth="1.2" />
+    <line x1="14.1" y1="13" x2="19.4" y2="15.5" stroke="#326CE5" strokeWidth="1.2" />
+  </svg>
+);
+
+const ZodLogo = ({ className }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" className={className} xmlns="http://www.w3.org/2000/svg">
+    <rect width="24" height="24" rx="4" fill="#3068B7" opacity="0.12" />
+    <path d="M7 7h10l-8 10h8" fill="none" stroke="#3068B7" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
+
+const page2Techs = [
+  { name: "Figma", icon: FigmaLogo2 },
+  { name: "Prisma", icon: PrismaLogo },
+  { name: "MongoDB", icon: MongoDBLogo },
+  { name: "GraphQL", icon: GraphQLLogo },
+  { name: "Stripe", icon: StripeLogo },
+  { name: "Cloudflare", icon: CloudflareLogo },
+  { name: "Python", icon: PythonLogo },
+  { name: "Vite", icon: ViteLogo },
+  { name: "Linux", icon: LinuxLogo },
+  { name: "Kubernetes", icon: KubernetesLogo },
+  { name: "Zod", icon: ZodLogo },
+  { name: "Node.js", icon: NodejsLogo },
+];
+
+const techPages = [blueprintTechs, page2Techs];
+
+
 const homeIconMap: Record<string, React.FC<{ className?: string }>> = {
   ReactJS: ({ className }) => <FontAwesomeIcon icon={faReact} className={className} />,
   "React Native": ({ className }) => <FontAwesomeIcon icon={faMobileScreenButton} className={className} />,
@@ -113,9 +279,142 @@ const homeIconMap: Record<string, React.FC<{ className?: string }>> = {
   "Luma API": ({ className }) => <FontAwesomeIcon icon={faVideo} className={className} />,
 };
 
+function AnimatedMetricNumber({ target, suffix = "" }: { target: number; suffix: string }) {
+  const [count, setCount] = useState(0);
+  const ref = useRef<HTMLElement>(null);
+  const [hasAnimated, setHasAnimated] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && !hasAnimated) {
+          setHasAnimated(true);
+
+          let start = 0;
+          const duration = 1600;
+          const stepTime = 25;
+          const steps = duration / stepTime;
+          const increment = target / steps;
+
+          const timer = setInterval(() => {
+            start += increment;
+            if (start >= target) {
+              setCount(target);
+              clearInterval(timer);
+            } else {
+              setCount(Math.floor(start));
+            }
+          }, stepTime);
+        }
+      },
+      { threshold: 0.15 }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [target, hasAnimated]);
+
+  return (
+    <strong ref={ref} className="text-2xl sm:text-3xl font-extrabold tracking-tight text-stone-900 leading-none">
+      {count}{suffix}
+    </strong>
+  );
+}
+
 function Eyebrow({ children, light = false }: { children: React.ReactNode; light?: boolean }) {
   return <p className={`font-mono text-[10px] uppercase tracking-[.085em] ${light ? "text-stone-400" : "text-stone-500"}`}>{children}</p>;
 }
+
+// All available techs for random flipping
+const allTechs = [...blueprintTechs, ...page2Techs];
+
+// FlipCard — renders the tech with 3D flip + particle blast animation on flip
+function FlipCard({ tech, isActive = false }: { tech: typeof allTechs[0]; isActive?: boolean }) {
+  const Icon = tech.icon;
+  return (
+    <PixelCard
+      active={isActive}
+      colors="#fa6739,#fda382,#c5bfb3"
+      gap={5}
+      speed={35}
+      className="border-0 rounded-none border-r border-b border-stone-300/90 min-h-[125px] overflow-hidden"
+    >
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={tech.name}
+          initial={{ rotateX: 90, opacity: 0, y: 6 }}
+          animate={{ rotateX: 0, opacity: 1, y: 0 }}
+          exit={{ rotateX: -90, opacity: 0, y: -6 }}
+          transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+          style={{ transformPerspective: 1000, transformOrigin: "center center" }}
+          className="flex items-center justify-center gap-3 w-full h-full p-5 sm:p-6"
+        >
+          <Icon className="h-7 w-7 shrink-0" />
+          <span className="text-base sm:text-lg font-bold text-stone-900 tracking-tight">
+            {tech.name}
+          </span>
+        </motion.div>
+      </AnimatePresence>
+    </PixelCard>
+  );
+}
+
+// TechGrid — tracks active flipping card slot and holds pixel particle animation for a few seconds
+function TechGrid() {
+  const [positions, setPositions] = useState<typeof allTechs>(
+    () => blueprintTechs.slice(0, 10)
+  );
+  const [activeFlippingIdx, setActiveFlippingIdx] = useState<number | null>(null);
+
+  useEffect(() => {
+    let timer: ReturnType<typeof setTimeout>;
+    let clearTimer: ReturnType<typeof setTimeout>;
+
+    const scheduleSwap = () => {
+      const delay = 3500 + Math.random() * 2000; // Holds each flipped card for 3.5s – 5.5s
+      timer = setTimeout(() => {
+        setPositions((prev) => {
+          const currentNames = new Set(prev.map((t) => t.name));
+          const available = allTechs.filter((t) => !currentNames.has(t.name));
+          if (available.length === 0) return prev;
+
+          // Pick a random card position to swap
+          const posIdx = Math.floor(Math.random() * prev.length);
+          const next = available[Math.floor(Math.random() * available.length)];
+
+          // Trigger active pixel particle animation and hold for 2.8 seconds
+          setActiveFlippingIdx(posIdx);
+          clearTimer = setTimeout(() => {
+            setActiveFlippingIdx(null);
+          }, 2800);
+
+          const updated = [...prev];
+          updated[posIdx] = next;
+          return updated;
+        });
+        scheduleSwap();
+      }, delay);
+    };
+
+    scheduleSwap();
+    return () => {
+      clearTimeout(timer);
+      clearTimeout(clearTimer);
+    };
+  }, []);
+
+  return (
+    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 border-t border-l border-stone-300/90 bg-transparent">
+      {positions.map((tech, idx) => (
+        <FlipCard key={idx} tech={tech} isActive={idx === activeFlippingIdx} />
+      ))}
+    </div>
+  );
+}
+
 
 export default function Home() {
   const [modalOpen, setModalOpen] = useState(false);
@@ -123,7 +422,6 @@ export default function Home() {
   const [quoteIdx, setQuoteIdx] = useState(0);
   const [isQuotePaused, setIsQuotePaused] = useState(false);
 
-  // Auto-switch contributor profile quotes every 5 seconds (pauses on hover)
   useEffect(() => {
     if (isQuotePaused) return;
     const timer = setInterval(() => {
@@ -132,7 +430,6 @@ export default function Home() {
     return () => clearInterval(timer);
   }, [isQuotePaused]);
 
-  // Scroll target ref for Tech Stack Carousel
   const stackRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: stackRef,
@@ -309,24 +606,77 @@ export default function Home() {
       </div>
     </section>
 
-    <section id="community" className="py-20 md:py-32">
-      <div className="mx-auto grid w-[min(1170px,calc(100%-38px))] gap-12 md:grid-cols-[1.08fr_.92fr] md:gap-[12%]">
+    <section id="community" className="py-20 md:py-32 bg-[var(--paper)]">
+      <div className="mx-auto w-[min(1170px,calc(100%-38px))] flex flex-col gap-10">
+        {/* TIER 1: Title Top */}
         <div>
           <Eyebrow>Why TamilDev</Eyebrow>
-          <h2 className="mt-3 max-w-[630px] text-[clamp(38px,4.25vw,64px)] font-bold leading-[1.05] tracking-[-.07em]">Engineering gets better when we build <em>together.</em></h2>
+          <h2 className="mt-3 text-[clamp(34px,4.2vw,56px)] font-extrabold leading-[1.06] tracking-[-.065em] text-[var(--ink)] max-w-[850px]">
+            The future belongs to developers who build with <span className="text-[var(--orange)]">AI</span>—<em>not against it.</em>
+          </h2>
         </div>
-        <div>
-          <p className="max-w-[410px] text-sm leading-relaxed text-stone-600">
-            We built a high-bandwidth community where code reviews, design syncs, and database optimizations happen in real time. Learn fast, ship faster.
-          </p>
-          <div className="mt-10 grid grid-cols-2 border-t border-[var(--line)]">
-            {stats.map(([number, label], index) => (
-              <div className={`min-h-28 border-b border-[var(--line)] py-5 ${index % 2 === 0 ? "border-r pr-4" : "pl-5"}`} key={label}>
-                <strong className="block text-[32px] leading-none tracking-[-.07em]">{number}</strong>
-                <small className="mt-2 block max-w-24 text-[9px] leading-snug text-stone-500">{label}</small>
-              </div>
+
+        {/* TIER 2: GitHub Activity Heatmap Grid Container (Full Width & Taller Tiles) */}
+        <div className="w-full overflow-hidden">
+          {/* Month Labels Bar */}
+          <div className="mb-3 flex items-center justify-between font-mono text-[9px] sm:text-[10px] uppercase tracking-wider text-stone-400 px-1 overflow-x-auto no-scrollbar">
+            {["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"].map((m) => (
+              <span key={m}>{m}</span>
             ))}
           </div>
+
+          {/* 7-Row Contribution Grid (Zero Scroll, Fits 100% Container Width) */}
+          <div className="w-full overflow-hidden">
+            <div className="grid grid-flow-col grid-rows-7 gap-[2px] sm:gap-[3.5px] md:gap-[4.5px] w-full justify-between">
+              {Array.from({ length: 364 }).map((_, idx) => {
+                // Generate realistic contribution activity pattern
+                const seed = (idx * 17 + (idx % 7) * 31) % 100;
+                let levelClass = "bg-stone-200/60";
+                if (seed > 82) levelClass = "bg-[#fa6739]";
+                else if (seed > 65) levelClass = "bg-[#fa6739]/85";
+                else if (seed > 45) levelClass = "bg-[#fa6739]/55";
+                else if (seed > 25) levelClass = "bg-[#fa6739]/30";
+
+                return (
+                  <div
+                    key={idx}
+                    className={`h-2.5 sm:h-3.5 md:h-4 w-full aspect-square rounded-[1.5px] sm:rounded-[2.5px] transition-transform hover:scale-125 ${levelClass}`}
+                    title={`Contribution activity day ${idx + 1}`}
+                  />
+                );
+              })}
+            </div>
+          </div>
+        </div>
+
+        {/* TIER 3: Architectural Line-Divided Grid (With complete outer edge lines) */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 border border-stone-300/90">
+          {/* Cell 1: Description Card */}
+          <div className="col-span-1 sm:col-span-2 lg:col-span-2 p-6 sm:p-7 border-b lg:border-b-0 lg:border-r border-stone-300/90 flex flex-col justify-center">
+            <p className="text-sm sm:text-base leading-relaxed text-stone-700 font-normal">
+              Master modern development by combining engineering fundamentals with AI workflows. Build faster, write better code, and launch products that matter.
+            </p>
+          </div>
+
+          {/* Cells 2-5: 4 Metric Cards with dynamic count-up animations */}
+          {[
+            { value: 18, suffix: "K+", label: "Contributions" },
+            { value: 250, suffix: "+", label: "Open Source Projects" },
+            { value: 500, suffix: "+", label: "AI Agents Built" },
+            { value: 10, suffix: "K+", label: "Community Members" },
+          ].map((item, index) => (
+            <div
+              key={item.label}
+              className={`col-span-1 p-6 sm:p-7 flex flex-col justify-between ${
+                index < 3 ? "border-r border-stone-300/90" : ""
+              } ${index % 2 === 0 ? "border-b lg:border-b-0 border-stone-300/90" : ""}`}
+            >
+              <AnimatedMetricNumber target={item.value} suffix={item.suffix} />
+              <span className="mt-5 text-[10px] sm:text-[11px] font-semibold leading-snug text-stone-500 uppercase tracking-wider">
+                {item.label}
+              </span>
+            </div>
+          ))}
         </div>
       </div>
     </section>
@@ -346,10 +696,14 @@ export default function Home() {
           </p>
         </div>
       </div>
-
-      <div className="relative flex w-full overflow-hidden py-4 animate-carousel-container">
-        {/* Animated Horizontal Belt */}
-        <motion.div style={{ x: carouselX }} className="flex gap-6 whitespace-nowrap min-w-max px-4">
+      <div className="py-8">
+        <div className="mx-auto w-[min(1170px,calc(100%-38px))]">
+          <TechGrid />
+        </div>
+      </div>
+      {/* <div className="relative flex w-full overflow-hidden py-4 animate-carousel-container"> */}
+      {/* Animated Horizontal Belt */}
+      {/* <motion.div style={{ x: carouselX }} className="flex gap-6 whitespace-nowrap min-w-max px-4">
           {doubleTechnologies.map((tech, idx) => {
             const IconComponent = homeIconMap[tech.name];
             return (
@@ -381,22 +735,13 @@ export default function Home() {
               </PixelCard>
             );
           })}
-        </motion.div>
-      </div>
+        </motion.div> */}
+      {/* </div> */}
     </section>
 
-    <section className="border-y border-[var(--line)] py-9">
-      <div className="mx-auto w-[min(1170px,calc(100%-38px))]">
-        <Eyebrow>Engaging with the modern dev ecosystem</Eyebrow>
-        <div className="mt-6 flex flex-wrap items-center justify-center gap-x-8 gap-y-4 text-xl font-extrabold tracking-[-.06em] text-stone-500 md:justify-between">
-          {brands.map((brand) => (
-            <span key={brand} className={brand === "prisma" ? "font-mono text-base" : brand === "GitHub" ? "text-base" : ""}>{brand}</span>
-          ))}
-        </div>
-      </div>
-    </section>
 
-    <section id="programs" className="py-20 md:py-32">
+
+    <section id="programs" className="">
       <div className="mx-auto w-[min(1170px,calc(100%-38px))]">
         <div className="mb-10 flex items-end justify-between gap-8">
           <div>
