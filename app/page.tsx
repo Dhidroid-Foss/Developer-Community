@@ -3,9 +3,6 @@
 import { FormEvent, useState, useRef, useEffect } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "motion/react";
 import { ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faReact, faFigma, faNodeJs } from "@fortawesome/free-brands-svg-icons";
-import { faDatabase, faLaptopCode, faMobileScreenButton, faRobot, faServer, faVideo } from "@fortawesome/free-solid-svg-icons";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -18,104 +15,212 @@ import Shuffle from "@/components/Shuffle";
 import { developers, homeTechnologies, programs, stories, liveEvents, stats, featuredResources, brands, quotes } from "@/lib/data";
 import { getAvatarUrl } from "@/lib/utils";
 
-// Inline Brand Icons (SVG)
-const ReactLogo = ({ className }: { className?: string }) => (
-  <svg viewBox="-11.5 -10.23174 23 20.46348" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="0" cy="0" r="2.05" fill="#61DAFB" />
-    <g stroke="#61DAFB" strokeWidth="1" fill="none">
-      <ellipse rx="11" ry="4.2" />
-      <ellipse rx="11" ry="4.2" transform="rotate(60)" />
-      <ellipse rx="11" ry="4.2" transform="rotate(120)" />
-    </g>
-  </svg>
-);
+// ── Devicon helper ──────────────────────────────────────────────────────────────
+// Renders an icon from the devicon icon font (devicon npm pkg, CSS already
+// imported in globals.css). `iconClass` is the full devicon class string, e.g.
+// "devicon-react-original colored".
+function DeviconIcon({ iconClass, className }: { iconClass: string; className?: string }) {
+  return (
+    <i
+      className={`${iconClass}${className ? ` ${className}` : ""}`}
+      aria-hidden="true"
+    />
+  );
+}
 
-const ReactNativeLogo = ({ className }: { className?: string }) => (
-  <svg viewBox="0 0 24 24" className={className} fill="none" stroke="#00D8FF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" xmlns="http://www.w3.org/2000/svg">
-    <rect x="5" y="2" width="14" height="20" rx="2" ry="2" stroke="#888" strokeWidth="1" />
-    <circle cx="12" cy="12" r="1.5" fill="#00D8FF" />
-    <ellipse rx="6" ry="2.2" transform="translate(12, 12) rotate(30)" />
-    <ellipse rx="6" ry="2.2" transform="translate(12, 12) rotate(90)" />
-    <ellipse rx="6" ry="2.2" transform="translate(12, 12) rotate(150)" />
-  </svg>
-);
+// Factory that returns a React FC wrapping DeviconIcon with a fixed iconClass.
+// This keeps the same component-as-value interface used by blueprintTechs /
+// page2Techs so FlipCard / TechGrid need zero changes.
+function makeIcon(iconClass: string): React.FC<{ className?: string }> {
+  return function DevIcon({ className }) {
+    return <DeviconIcon iconClass={iconClass} className={className} />;
+  };
+}
 
-const FigmaLogo = ({ className }: { className?: string }) => (
-  <svg viewBox="0 0 38 57" className={className} xmlns="http://www.w3.org/2000/svg">
-    <path d="M10.5 17C10.5 12.3 14.3 8.5 19 8.5C23.7 8.5 27.5 12.3 27.5 17V25.5H19C14.3 25.5 10.5 21.7 10.5 17Z" fill="#F24E1E" />
-    <path d="M10.5 40.8C10.5 36.1 14.3 32.3 19 32.3H27.5V40.8C27.5 45.5 23.7 49.3 19 49.3C14.3 49.3 10.5 45.5 10.5 40.8Z" fill="#0ACF83" />
-    <path d="M19 32.3C23.7 32.3 27.5 28.5 27.5 23.8V17H19V32.3Z" fill="#A259FF" />
-    <path d="M10.5 23.8C10.5 19.1 14.3 15.3 19 15.3V32.3C14.3 32.3 10.5 28.5 10.5 23.8Z" fill="#1ABCFE" />
-    <path d="M19 49.3C23.7 49.3 27.5 45.5 27.5 40.8V32.3H19V49.3Z" fill="#FF7262" />
-  </svg>
-);
+// ── Page 1 tech grid ────────────────────────────────────────────────────────────
+const blueprintTechs = [
+  { id: "01", name: "Vercel",       icon: makeIcon("devicon-vercel-original colored"),       role: "HOSTING" },
+  { id: "02", name: "React",        icon: makeIcon("devicon-react-original colored"),        role: "UI LIBRARY" },
+  { id: "03", name: "Next.js",      icon: makeIcon("devicon-nextjs-plain colored"),          role: "FRAMEWORK" },
+  { id: "04", name: "Supabase",     icon: makeIcon("devicon-supabase-plain colored"),        role: "BACKEND" },
+  { id: "05", name: "PostgreSQL",   icon: makeIcon("devicon-postgresql-plain colored"),      role: "DATABASE" },
+  { id: "06", name: "Node.js",      icon: makeIcon("devicon-nodejs-plain colored"),          role: "RUNTIME" },
+  { id: "07", name: "Docker",       icon: makeIcon("devicon-docker-plain colored"),          role: "CONTAINERS" },
+  { id: "08", name: "AWS",          icon: makeIcon("devicon-amazonwebservices-plain colored"), role: "CLOUD" },
+  { id: "09", name: "GitHub",       icon: makeIcon("devicon-github-original colored"),       role: "DEVOPS" },
+  { id: "10", name: "TypeScript",   icon: makeIcon("devicon-typescript-plain colored"),      role: "LANGUAGE" },
+  { id: "11", name: "Tailwind CSS", icon: makeIcon("devicon-tailwindcss-plain colored"),     role: "STYLING" },
+  { id: "12", name: "Redis",        icon: makeIcon("devicon-redis-plain colored"),           role: "CACHING" },
+];
 
-const NextjsLogo = ({ className }: { className?: string }) => (
-  <svg viewBox="0 0 180 180" className={className} fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-    <path d="M180 90C180 139.706 139.706 180 90 180C40.2944 180 0 139.706 0 90C0 40.2944 40.2944 0 90 0C139.706 0 180 40.2944 180 90ZM122.956 50.8412C122.253 50.8412 121.684 51.41 121.684 52.1132V109.914L63.5041 51.5441C62.9056 50.9456 61.9056 50.9456 61.3071 51.5441C61.0118 51.8394 60.8462 52.2394 60.8462 52.6565V127.143C60.8462 127.847 61.4151 128.415 62.1182 128.415C62.8214 128.415 63.3902 127.847 63.3902 127.143V69.3424L121.57 127.712C122.169 128.311 123.169 128.311 123.767 127.712C124.062 127.417 124.228 127.017 124.228 126.6V52.1132C124.228 51.41 123.659 50.8412 122.956 50.8412Z" />
-  </svg>
-);
+// ── Page 2 tech grid ────────────────────────────────────────────────────────────
+const page2Techs = [
+  { name: "Figma",       icon: makeIcon("devicon-figma-plain colored") },
+  { name: "Prisma",      icon: makeIcon("devicon-prisma-original colored") },
+  { name: "MongoDB",     icon: makeIcon("devicon-mongodb-plain colored") },
+  { name: "GraphQL",     icon: makeIcon("devicon-graphql-plain colored") },
+  { name: "Stripe",      icon: makeIcon("devicon-stripe-plain colored") },
+  { name: "Cloudflare",  icon: makeIcon("devicon-cloudflare-plain colored") },
+  { name: "Python",      icon: makeIcon("devicon-python-plain colored") },
+  { name: "Vite",        icon: makeIcon("devicon-vitejs-plain colored") },
+  { name: "Linux",       icon: makeIcon("devicon-linux-plain colored") },
+  { name: "Kubernetes",  icon: makeIcon("devicon-kubernetes-plain colored") },
+  { name: "Zod",         icon: makeIcon("devicon-typescript-plain colored") },
+  { name: "Node.js",     icon: makeIcon("devicon-nodejs-plain colored") },
+];
 
-const NodejsLogo = ({ className }: { className?: string }) => (
-  <svg viewBox="0 0 256 295" className={className} fill="#339933" xmlns="http://www.w3.org/2000/svg">
-    <path d="M142.9 2.5c-9.1-5.3-20.7-5.3-29.8 0L20 56.1C9.9 62 3.7 72.8 3.7 84.5v125.7c0 11.7 6.2 22.5 16.3 28.4l93.1 53.7c9.1 5.3 20.7 5.3 29.8 0l93.1-53.7c10.1-5.9 16.3-16.7 16.3-28.4V84.5c0-11.7-6.2-22.5-16.3-28.4L142.9 2.5zM128 259.9V35.1c3.1 0 6.2.8 8.8 2.3l93.1 53.7c5.1 3 8.2 8.4 8.2 14.3v107.5c0 5.9-3.1 11.3-8.2 14.3l-93.1 53.7c-2.6 1.5-5.7 2.3-8.8 2.3z" />
-  </svg>
-);
+const techPages = [blueprintTechs, page2Techs];
 
-const PostgresLogo = ({ className }: { className?: string }) => (
-  <svg viewBox="0 0 64 64" className={className} fill="#336791" xmlns="http://www.w3.org/2000/svg">
-    <path d="M51.9 29.1c.1-.8.2-1.7.2-2.5 0-11.4-8.8-19.1-18.7-19.1-11.2 0-20.3 9.4-20.3 20.9 0 2 .3 4 .9 5.8-2.6.8-4.5 3.3-4.5 6.2 0 3.7 3 6.6 6.7 6.6h.4v2.7c0 4.1 3.3 7.5 7.5 7.5h16.2c4.1 0 7.5-3.3 7.5-7.5v-2.7h.5c3.7 0 6.7-3 6.7-6.6.1-4-2.8-7.3-6.5-7.9zM33.4 12c7.9 0 14.2 6 14.2 14.6 0 .8-.1 1.7-.2 2.5H19.5c-.1-.8-.2-1.7-.2-2.5 0-8.6 6.2-14.6 14.1-14.6z" />
-  </svg>
-);
-
-const PrismaLogo = ({ className }: { className?: string }) => (
-  <svg viewBox="0 0 45 52" className={className} fill="#2D3748" xmlns="http://www.w3.org/2000/svg">
-    <path d="M22.023.238L.484 38.643a1.144 1.144 0 0 0 .991 1.701h12.56L22.023 26.65l7.989 13.693h12.56a1.144 1.144 0 0 0 .991-1.701L22.023.238z" fill="#0C344B" />
-    <path d="M22.023.238v26.412l7.989 13.693h12.56a1.144 1.144 0 0 0 .991-1.701L22.023.238z" fill="#16A394" />
-  </svg>
-);
-
-const ClaudeLogo = ({ className }: { className?: string }) => (
-  <svg viewBox="0 0 24 24" className={className} fill="#D97706" xmlns="http://www.w3.org/2000/svg">
-    <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM15.6 14.4L14.4 15.6L12 13.2L9.6 15.6L8.4 14.4L10.8 12L8.4 9.6L9.6 8.4L12 10.8L14.4 8.4L15.6 9.6L13.2 12L15.6 14.4Z" />
-  </svg>
-);
-
-const OllamaLogo = ({ className }: { className?: string }) => (
-  <svg viewBox="0 0 24 24" className={className} fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" xmlns="http://www.w3.org/2000/svg">
-    <path d="M16 18a4 4 0 0 0-8 0" />
-    <path d="M12 2v4" />
-    <path d="M9 3v2" />
-    <path d="M15 3v2" />
-    <rect x="4" y="6" width="16" height="10" rx="2" />
-  </svg>
-);
-
-const LumaLogo = ({ className }: { className?: string }) => (
-  <svg viewBox="0 0 24 24" className={className} fill="none" stroke="#EC4899" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="12" cy="12" r="10" />
-    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10" />
-    <path d="M12 2a15.3 15.3 0 0 0-4 10 15.3 15.3 0 0 0 4 10" />
-    <path d="M2 12h20" />
-  </svg>
-);
 
 const homeIconMap: Record<string, React.FC<{ className?: string }>> = {
-  ReactJS: ({ className }) => <FontAwesomeIcon icon={faReact} className={className} />,
-  "React Native": ({ className }) => <FontAwesomeIcon icon={faMobileScreenButton} className={className} />,
-  Figma: ({ className }) => <FontAwesomeIcon icon={faFigma} className={className} />,
-  "Next.js": ({ className }) => <FontAwesomeIcon icon={faLaptopCode} className={className} />,
-  "Node.js": ({ className }) => <FontAwesomeIcon icon={faNodeJs} className={className} />,
-  PostgreSQL: ({ className }) => <FontAwesomeIcon icon={faDatabase} className={className} />,
-  Prisma: ({ className }) => <FontAwesomeIcon icon={faServer} className={className} />,
-  Claude: ({ className }) => <FontAwesomeIcon icon={faRobot} className={className} />,
-  Ollama: ({ className }) => <FontAwesomeIcon icon={faRobot} className={className} />,
-  "Luma API": ({ className }) => <FontAwesomeIcon icon={faVideo} className={className} />,
+  ReactJS:        makeIcon("devicon-react-original colored"),
+  "React Native": makeIcon("devicon-react-original colored"),
+  Figma:          makeIcon("devicon-figma-plain colored"),
+  "Next.js":      makeIcon("devicon-nextjs-plain colored"),
+  "Node.js":      makeIcon("devicon-nodejs-plain colored"),
+  PostgreSQL:     makeIcon("devicon-postgresql-plain colored"),
+  Prisma:         makeIcon("devicon-prisma-original colored"),
+  Claude:         makeIcon("devicon-anthropic-plain colored"),
+  Ollama:         makeIcon("devicon-ollama-plain colored"),
+  "Luma API":     makeIcon("devicon-python-plain colored"),
 };
+
+function AnimatedMetricNumber({ target, suffix = "" }: { target: number; suffix: string }) {
+  const [count, setCount] = useState(0);
+  const ref = useRef<HTMLElement>(null);
+  const [hasAnimated, setHasAnimated] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && !hasAnimated) {
+          setHasAnimated(true);
+
+          let start = 0;
+          const duration = 1600;
+          const stepTime = 25;
+          const steps = duration / stepTime;
+          const increment = target / steps;
+
+          const timer = setInterval(() => {
+            start += increment;
+            if (start >= target) {
+              setCount(target);
+              clearInterval(timer);
+            } else {
+              setCount(Math.floor(start));
+            }
+          }, stepTime);
+        }
+      },
+      { threshold: 0.15 }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [target, hasAnimated]);
+
+  return (
+    <strong ref={ref} className="text-2xl sm:text-3xl font-extrabold tracking-tight text-stone-900 leading-none">
+      {count}{suffix}
+    </strong>
+  );
+}
 
 function Eyebrow({ children, light = false }: { children: React.ReactNode; light?: boolean }) {
   return <p className={`font-mono text-[10px] uppercase tracking-[.085em] ${light ? "text-stone-400" : "text-stone-500"}`}>{children}</p>;
 }
+
+// All available techs for random flipping
+const allTechs = [...blueprintTechs, ...page2Techs];
+
+// FlipCard — renders the tech with 3D flip + particle blast animation on flip
+function FlipCard({ tech, isActive = false }: { tech: typeof allTechs[0]; isActive?: boolean }) {
+  const Icon = tech.icon;
+  return (
+    <PixelCard
+      active={isActive}
+      colors="#fa6739,#fda382,#c5bfb3"
+      gap={5}
+      speed={35}
+      className="border-0 rounded-none border-r border-b border-stone-300/90 min-h-[125px] overflow-hidden"
+    >
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={tech.name}
+          initial={{ rotateX: 90, opacity: 0, y: 6 }}
+          animate={{ rotateX: 0, opacity: 1, y: 0 }}
+          exit={{ rotateX: -90, opacity: 0, y: -6 }}
+          transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+          style={{ transformPerspective: 1000, transformOrigin: "center center" }}
+          className="flex items-center justify-center gap-3 w-full h-full p-5 sm:p-6"
+        >
+          <Icon className="text-2xl shrink-0" />
+          <span className="text-base sm:text-lg font-bold text-stone-900 tracking-tight">
+            {tech.name}
+          </span>
+        </motion.div>
+      </AnimatePresence>
+    </PixelCard>
+  );
+}
+
+// TechGrid — tracks active flipping card slot and holds pixel particle animation for a few seconds
+function TechGrid() {
+  const [positions, setPositions] = useState<typeof allTechs>(
+    () => blueprintTechs.slice(0, 10)
+  );
+  const [activeFlippingIdx, setActiveFlippingIdx] = useState<number | null>(null);
+
+  useEffect(() => {
+    let timer: ReturnType<typeof setTimeout>;
+    let clearTimer: ReturnType<typeof setTimeout>;
+
+    const scheduleSwap = () => {
+      const delay = 3500 + Math.random() * 2000; // Holds each flipped card for 3.5s – 5.5s
+      timer = setTimeout(() => {
+        setPositions((prev) => {
+          const currentNames = new Set(prev.map((t) => t.name));
+          const available = allTechs.filter((t) => !currentNames.has(t.name));
+          if (available.length === 0) return prev;
+
+          // Pick a random card position to swap
+          const posIdx = Math.floor(Math.random() * prev.length);
+          const next = available[Math.floor(Math.random() * available.length)];
+
+          // Trigger active pixel particle animation and hold for 2.8 seconds
+          setActiveFlippingIdx(posIdx);
+          clearTimer = setTimeout(() => {
+            setActiveFlippingIdx(null);
+          }, 2800);
+
+          const updated = [...prev];
+          updated[posIdx] = next;
+          return updated;
+        });
+        scheduleSwap();
+      }, delay);
+    };
+
+    scheduleSwap();
+    return () => {
+      clearTimeout(timer);
+      clearTimeout(clearTimer);
+    };
+  }, []);
+
+  return (
+    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 border-t border-l border-stone-300/90 bg-transparent">
+      {positions.map((tech, idx) => (
+        <FlipCard key={idx} tech={tech} isActive={idx === activeFlippingIdx} />
+      ))}
+    </div>
+  );
+}
+
 
 export default function Home() {
   const [modalOpen, setModalOpen] = useState(false);
@@ -123,7 +228,6 @@ export default function Home() {
   const [quoteIdx, setQuoteIdx] = useState(0);
   const [isQuotePaused, setIsQuotePaused] = useState(false);
 
-  // Auto-switch contributor profile quotes every 5 seconds (pauses on hover)
   useEffect(() => {
     if (isQuotePaused) return;
     const timer = setInterval(() => {
@@ -132,7 +236,6 @@ export default function Home() {
     return () => clearInterval(timer);
   }, [isQuotePaused]);
 
-  // Scroll target ref for Tech Stack Carousel
   const stackRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: stackRef,
@@ -309,24 +412,77 @@ export default function Home() {
       </div>
     </section>
 
-    <section id="community" className="py-20 md:py-32">
-      <div className="mx-auto grid w-[min(1170px,calc(100%-38px))] gap-12 md:grid-cols-[1.08fr_.92fr] md:gap-[12%]">
+    <section id="community" className="py-20 md:py-32 bg-[var(--paper)]">
+      <div className="mx-auto w-[min(1170px,calc(100%-38px))] flex flex-col gap-10">
+        {/* TIER 1: Title Top */}
         <div>
           <Eyebrow>Why TamilDev</Eyebrow>
-          <h2 className="mt-3 max-w-[630px] text-[clamp(38px,4.25vw,64px)] font-bold leading-[1.05] tracking-[-.07em]">Engineering gets better when we build <em>together.</em></h2>
+          <h2 className="mt-3 text-[clamp(34px,4.2vw,56px)] font-extrabold leading-[1.06] tracking-[-.065em] text-[var(--ink)] max-w-[850px]">
+            The future belongs to developers who build with <span className="text-[var(--orange)]">AI</span>—<em>not against it.</em>
+          </h2>
         </div>
-        <div>
-          <p className="max-w-[410px] text-sm leading-relaxed text-stone-600">
-            We built a high-bandwidth community where code reviews, design syncs, and database optimizations happen in real time. Learn fast, ship faster.
-          </p>
-          <div className="mt-10 grid grid-cols-2 border-t border-[var(--line)]">
-            {stats.map(([number, label], index) => (
-              <div className={`min-h-28 border-b border-[var(--line)] py-5 ${index % 2 === 0 ? "border-r pr-4" : "pl-5"}`} key={label}>
-                <strong className="block text-[32px] leading-none tracking-[-.07em]">{number}</strong>
-                <small className="mt-2 block max-w-24 text-[9px] leading-snug text-stone-500">{label}</small>
-              </div>
+
+        {/* TIER 2: GitHub Activity Heatmap Grid Container (Full Width & Taller Tiles) */}
+        <div className="w-full overflow-hidden">
+          {/* Month Labels Bar */}
+          <div className="mb-3 flex items-center justify-between font-mono text-[9px] sm:text-[10px] uppercase tracking-wider text-stone-400 px-1 overflow-x-auto no-scrollbar">
+            {["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"].map((m) => (
+              <span key={m}>{m}</span>
             ))}
           </div>
+
+          {/* 7-Row Contribution Grid (Zero Scroll, Fits 100% Container Width) */}
+          <div className="w-full overflow-hidden">
+            <div className="grid grid-flow-col grid-rows-7 gap-[2px] sm:gap-[3.5px] md:gap-[4.5px] w-full justify-between">
+              {Array.from({ length: 364 }).map((_, idx) => {
+                // Generate realistic contribution activity pattern
+                const seed = (idx * 17 + (idx % 7) * 31) % 100;
+                let levelClass = "bg-stone-200/60";
+                if (seed > 82) levelClass = "bg-[#fa6739]";
+                else if (seed > 65) levelClass = "bg-[#fa6739]/85";
+                else if (seed > 45) levelClass = "bg-[#fa6739]/55";
+                else if (seed > 25) levelClass = "bg-[#fa6739]/30";
+
+                return (
+                  <div
+                    key={idx}
+                    className={`h-2.5 sm:h-3.5 md:h-4 w-full aspect-square rounded-[1.5px] sm:rounded-[2.5px] transition-transform hover:scale-125 ${levelClass}`}
+                    title={`Contribution activity day ${idx + 1}`}
+                  />
+                );
+              })}
+            </div>
+          </div>
+        </div>
+
+        {/* TIER 3: Architectural Line-Divided Grid (With complete outer edge lines) */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 border border-stone-300/90">
+          {/* Cell 1: Description Card */}
+          <div className="col-span-1 sm:col-span-2 lg:col-span-2 p-6 sm:p-7 border-b lg:border-b-0 lg:border-r border-stone-300/90 flex flex-col justify-center">
+            <p className="text-sm sm:text-base leading-relaxed text-stone-700 font-normal">
+              Master modern development by combining engineering fundamentals with AI workflows. Build faster, write better code, and launch products that matter.
+            </p>
+          </div>
+
+          {/* Cells 2-5: 4 Metric Cards with dynamic count-up animations */}
+          {[
+            { value: 18, suffix: "K+", label: "Contributions" },
+            { value: 250, suffix: "+", label: "Open Source Projects" },
+            { value: 500, suffix: "+", label: "AI Agents Built" },
+            { value: 10, suffix: "K+", label: "Community Members" },
+          ].map((item, index) => (
+            <div
+              key={item.label}
+              className={`col-span-1 p-6 sm:p-7 flex flex-col justify-between ${
+                index < 3 ? "border-r border-stone-300/90" : ""
+              } ${index % 2 === 0 ? "border-b lg:border-b-0 border-stone-300/90" : ""}`}
+            >
+              <AnimatedMetricNumber target={item.value} suffix={item.suffix} />
+              <span className="mt-5 text-[10px] sm:text-[11px] font-semibold leading-snug text-stone-500 uppercase tracking-wider">
+                {item.label}
+              </span>
+            </div>
+          ))}
         </div>
       </div>
     </section>
@@ -346,10 +502,14 @@ export default function Home() {
           </p>
         </div>
       </div>
-
-      <div className="relative flex w-full overflow-hidden py-4 animate-carousel-container">
-        {/* Animated Horizontal Belt */}
-        <motion.div style={{ x: carouselX }} className="flex gap-6 whitespace-nowrap min-w-max px-4">
+      <div className="py-8">
+        <div className="mx-auto w-[min(1170px,calc(100%-38px))]">
+          <TechGrid />
+        </div>
+      </div>
+      {/* <div className="relative flex w-full overflow-hidden py-4 animate-carousel-container"> */}
+      {/* Animated Horizontal Belt */}
+      {/* <motion.div style={{ x: carouselX }} className="flex gap-6 whitespace-nowrap min-w-max px-4">
           {doubleTechnologies.map((tech, idx) => {
             const IconComponent = homeIconMap[tech.name];
             return (
@@ -364,7 +524,7 @@ export default function Home() {
                       <span className="font-mono text-[9px] uppercase tracking-wider text-stone-500 bg-stone-200/60 px-2 py-0.5 rounded">
                         {tech.type}
                       </span>
-                      <IconComponent className="h-6 w-6 transition-transform duration-300 group-hover:scale-110 text-stone-700" />
+                      <IconComponent className="text-xl transition-transform duration-300 group-hover:scale-110" />
                     </div>
                     <h3 className="mt-4 text-xl font-bold tracking-tight text-zinc-950 whitespace-normal">
                       {tech.name}
@@ -381,22 +541,13 @@ export default function Home() {
               </PixelCard>
             );
           })}
-        </motion.div>
-      </div>
+        </motion.div> */}
+      {/* </div> */}
     </section>
 
-    <section className="border-y border-[var(--line)] py-9">
-      <div className="mx-auto w-[min(1170px,calc(100%-38px))]">
-        <Eyebrow>Engaging with the modern dev ecosystem</Eyebrow>
-        <div className="mt-6 flex flex-wrap items-center justify-center gap-x-8 gap-y-4 text-xl font-extrabold tracking-[-.06em] text-stone-500 md:justify-between">
-          {brands.map((brand) => (
-            <span key={brand} className={brand === "prisma" ? "font-mono text-base" : brand === "GitHub" ? "text-base" : ""}>{brand}</span>
-          ))}
-        </div>
-      </div>
-    </section>
 
-    <section id="programs" className="py-20 md:py-32">
+
+    <section id="programs" className="">
       <div className="mx-auto w-[min(1170px,calc(100%-38px))]">
         <div className="mb-10 flex items-end justify-between gap-8">
           <div>

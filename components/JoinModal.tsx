@@ -7,11 +7,13 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
 interface JoinModalProps {
-  isOpen: boolean;
+  isOpen?: boolean;
+  open?: boolean;
   onClose: () => void;
 }
 
-export default function JoinModal({ isOpen, onClose }: JoinModalProps) {
+export default function JoinModal({ isOpen, open, onClose }: JoinModalProps) {
+  const activeOpen = isOpen ?? open ?? false;
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [experience, setExperience] = useState("mid");
@@ -58,7 +60,7 @@ export default function JoinModal({ isOpen, onClose }: JoinModalProps) {
 
   return (
     <AnimatePresence>
-      {isOpen && (
+      {activeOpen && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
           {/* Backdrop */}
           <motion.div 
