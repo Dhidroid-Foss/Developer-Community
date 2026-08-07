@@ -1,12 +1,26 @@
 import type { Metadata } from "next";
-import { DM_Mono, Manrope, Playfair_Display } from "next/font/google";
+import { DM_Sans, Anybody, Space_Mono } from "next/font/google";
 import LoadingWrapper from "@/components/LoadingWrapper";
 import FloatingWidgets from "@/components/FloatingWidgets";
 import "./globals.css";
 
-const manrope = Manrope({ variable: "--font-manrope", subsets: ["latin"] });
-const mono = DM_Mono({ variable: "--font-mono", subsets: ["latin"], weight: ["400", "500"] });
-const playfair = Playfair_Display({ variable: "--font-serif", subsets: ["latin"], weight: ["600", "700"] });
+const dmSans = DM_Sans({
+  variable: "--font-body",
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
+});
+
+const anybody = Anybody({
+  variable: "--font-heading",
+  subsets: ["latin"],
+  weight: ["600", "700", "800"],
+});
+
+const spaceMono = Space_Mono({
+  variable: "--font-mono",
+  subsets: ["latin"],
+  weight: ["400", "700"],
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://devcom.dhidroid.workers.dev"),
@@ -100,14 +114,14 @@ const jsonLd = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className={`${manrope.variable} ${mono.variable} ${playfair.variable}`}>
+      <body className={`${dmSans.variable} ${anybody.variable} ${spaceMono.variable}`} suppressHydrationWarning>
         <LoadingWrapper>
           {children}
           <FloatingWidgets />
