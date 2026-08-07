@@ -70,7 +70,6 @@ export default function NotFound() {
         {/* Top Eyebrow & Typography Header */}
         <div ref={containerRef} style={{ position: "relative" }} className="border-b border-[#cfcac0] pb-10 mb-12">
           <div className="flex items-center gap-2 mb-3 font-mono text-[10px] uppercase tracking-[.085em] text-[#fa6739]">
-            <span className="inline-block h-2 w-2 rounded-full bg-[#fa6739] animate-ping" />
             <span>ERR_404 // ROUTE_NOT_FOUND</span>
           </div>
 
@@ -184,7 +183,6 @@ export default function NotFound() {
             </div>
 
             <div className="mt-6 pt-4 border-t border-zinc-800 flex items-center gap-2">
-              <span className="h-2 w-2 rounded-full bg-emerald-500 animate-ping" />
               <span className="font-mono text-[9px] uppercase tracking-widest text-stone-400">
                 System operational · Navigate back safely
               </span>

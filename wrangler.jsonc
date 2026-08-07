@@ -9,6 +9,7 @@
         "nodejs_compat"
     ],
     "assets": {
-        "directory": "./out"
+        "directory": "./out",
+        "not_found_handling": "single-page-application"
     }
 }
