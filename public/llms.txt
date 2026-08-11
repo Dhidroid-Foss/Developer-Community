@@ -1,0 +1,30 @@
+# TamilDev
+
+> TamilDev is a free, realtime developer community for Tamil-speaking engineers. Frontend, backend, mobile and AI developers learn together, get live code reviews in architecture clinics, join skill cohorts, and ship production-grade open-source projects.
+
+## About
+
+TamilDev (தமிழ்Dev) is a developer community founded in 2021. Members master and deploy a curated stack of modern web, mobile, database and artificial intelligence tools. Key activities include:
+
+- Architecture Clinic — live code reviews of repos, schemas and design specs
+- Skill Cohorts — hands-on sprints that ship real applications
+- Dev Partnerships — matchmaking between startups and contract engineers
+- Engineering Circle — peer discussions on architecture, deployments and local AI workflows
+
+## Tech stack
+
+React, React Native, Next.js, Node.js, TypeScript, PostgreSQL, Prisma, MongoDB, Tailwind CSS, Docker, Kubernetes, Claude AI, Ollama, Luma API.
+
+## Key pages
+
+- [Home](https://tamildevs.dhidroid.workers.dev/)
+- [Tech Stack](https://tamildevs.dhidroid.workers.dev/stack)
+- [Developers](https://tamildevs.dhidroid.workers.dev/developers)
+- [Cohorts](https://tamildevs.dhidroid.workers.dev/cohorts)
+- [Resources](https://tamildevs.dhidroid.workers.dev/resources)
+- [Tech Briefs](https://tamildevs.dhidroid.workers.dev/tech-briefs)
+
+## Contact
+
+- GitHub: https://github.com/dhidroid
+- LinkedIn: https://linkedin.com/in/dhidroid-rndev

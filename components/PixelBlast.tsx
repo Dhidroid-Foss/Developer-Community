@@ -567,30 +567,9 @@ const PixelBlast: React.FC<PixelBlastProps> = ({
           h: renderer.domElement.height
         };
       };
-      const onPointerDown = (e: PointerEvent) => {
-        const { fx, fy } = mapToPixels(e);
-        const ix = threeRef.current?.clickIx ?? 0;
-        uniforms.uClickPos.value[ix].set(fx, fy);
-        uniforms.uClickTimes.value[ix] = uniforms.uTime.value;
-        if (threeRef.current) threeRef.current.clickIx = (ix + 1) % MAX_CLICKS;
-      };
-      const onPointerMove = (e: PointerEvent) => {
-        if (!touch) return;
-        const { fx, fy, w, h } = mapToPixels(e);
-        touch.addTouch({ x: fx / w, y: fy / h });
-      };
-      renderer.domElement.addEventListener("pointerdown", onPointerDown, {
-        passive: true
-      });
-      renderer.domElement.addEventListener("pointermove", onPointerMove, {
-        passive: true
-      });
       let raf = 0;
-      const animate = () => {
-        if (autoPauseOffscreen && !visibilityRef.current.visible) {
-          raf = requestAnimationFrame(animate);
-          return;
-        }
+      let idleTimer = 0;
+      const drawOnce = () => {
         const elapsedTime = (performance.now() - startTime) / 1000;
         uniforms.uTime.value = timeOffset + elapsedTime * speedRef.current;
         if (liquidEffect) {
@@ -611,9 +590,57 @@ const PixelBlast: React.FC<PixelBlastProps> = ({
           });
           composer.render();
         } else renderer.render(scene, camera);
-        raf = requestAnimationFrame(animate);
       };
-      raf = requestAnimationFrame(animate);
+      const animate = () => {
+        if (autoPauseOffscreen && !visibilityRef.current.visible) {
+          raf = requestAnimationFrame(animate);
+          if (threeRef.current) threeRef.current.raf = raf;
+          return;
+        }
+        drawOnce();
+        raf = requestAnimationFrame(animate);
+        if (threeRef.current) threeRef.current.raf = raf;
+      };
+      const stopLoop = () => {
+        clearTimeout(idleTimer);
+        if (raf) {
+          cancelAnimationFrame(raf);
+          raf = 0;
+          if (threeRef.current) threeRef.current.raf = 0;
+        }
+      };
+      // The render loop only runs while the user interacts, so the background
+      // never saturates the main thread (which previously caused huge TBT).
+      const startLoop = () => {
+        clearTimeout(idleTimer);
+        if (!raf) {
+          raf = requestAnimationFrame(animate);
+          if (threeRef.current) threeRef.current.raf = raf;
+        }
+        idleTimer = window.setTimeout(stopLoop, 2000);
+      };
+      // Draw one static frame; further animation is driven by interaction.
+      drawOnce();
+      const onPointerDown = (e: PointerEvent) => {
+        startLoop();
+        const { fx, fy } = mapToPixels(e);
+        const ix = threeRef.current?.clickIx ?? 0;
+        uniforms.uClickPos.value[ix].set(fx, fy);
+        uniforms.uClickTimes.value[ix] = uniforms.uTime.value;
+        if (threeRef.current) threeRef.current.clickIx = (ix + 1) % MAX_CLICKS;
+      };
+      const onPointerMove = (e: PointerEvent) => {
+        startLoop();
+        if (!touch) return;
+        const { fx, fy, w, h } = mapToPixels(e);
+        touch.addTouch({ x: fx / w, y: fy / h });
+      };
+      renderer.domElement.addEventListener("pointerdown", onPointerDown, {
+        passive: true
+      });
+      renderer.domElement.addEventListener("pointermove", onPointerMove, {
+        passive: true
+      });
       threeRef.current = {
         renderer,
         scene,

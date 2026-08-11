@@ -1,7 +1,16 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { DM_Sans, Anybody, Space_Mono } from "next/font/google";
 import LoadingWrapper from "@/components/LoadingWrapper";
 import FloatingWidgets from "@/components/FloatingWidgets";
+import {
+  SITE_URL,
+  SITE_NAME,
+  SITE_TAGLINE,
+  SITE_DESCRIPTION,
+  SITE_KEYWORDS,
+  SOCIALS,
+  BRAND,
+} from "@/lib/site";
 import "./globals.css";
 
 const dmSans = DM_Sans({
@@ -23,33 +32,21 @@ const spaceMono = Space_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://devcom.dhidroid.workers.dev"),
-  title: "TamilDev — Realtime Developer Community",
-  description: "A high-bandwidth developer community to learn, collaborate, and ship ReactJS, React Native, Next.js, Node.js, databases, and AI models in realtime.",
-  keywords: [
-    "TamilDev",
-    "Tamil Developer Community",
-    "Developer Community",
-    "Realtime Coding",
-    "ReactJS",
-    "React Native",
-    "Figma",
-    "Next.js",
-    "Node.js",
-    "PostgreSQL",
-    "Prisma",
-    "Claude AI",
-    "Ollama",
-    "Luma API",
-    "Fullstack Development",
-    "AI Integration"
-  ],
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: `${SITE_NAME} — Realtime Developer Community`,
+    template: `%s · ${SITE_NAME}`,
+  },
+  description: SITE_DESCRIPTION,
+  applicationName: SITE_NAME,
+  keywords: SITE_KEYWORDS,
   alternates: {
     canonical: "/",
   },
-  authors: [{ name: "TamilDev Team", url: "https://devcom.dhidroid.workers.dev" }],
+  authors: [{ name: "TamilDev Community", url: SITE_URL }],
   creator: "TamilDev Community",
-  publisher: "TamilDev",
+  publisher: SITE_NAME,
+  category: "technology",
   robots: {
     index: true,
     follow: true,
@@ -63,26 +60,33 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "website",
-    locale: "en_US",
-    url: "https://devcom.dhidroid.workers.dev",
-    title: "TamilDev — Realtime Developer Community",
-    description: "Build in realtime. Ship with the best. Collaborative hub for modern developers mastering web, mobile, database, and generative AI stacks.",
-    siteName: "TamilDev",
+    locale: "en_IN",
+    alternateLocale: "ta_IN",
+    url: SITE_URL,
+    siteName: SITE_NAME,
+    title: `${SITE_NAME} — Realtime Developer Community`,
+    description: SITE_TAGLINE,
     images: [
       {
-        url: "https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1200&h=630&q=80",
+        url: "/opengraph-image",
         width: 1200,
         height: 630,
-        alt: "TamilDev Community Header",
+        alt: `${SITE_NAME} — the realtime developer community for web, mobile and AI engineers`,
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "TamilDev — Realtime Developer Community",
-    description: "Collaborative hub for modern developers mastering web, mobile, database, and generative AI stacks.",
-    images: ["https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1200&h=630&q=80"],
+    title: `${SITE_NAME} — Realtime Developer Community`,
+    description: SITE_TAGLINE,
+    images: ["/opengraph-image"],
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: BRAND.ink,
+  width: "device-width",
+  initialScale: 1,
 };
 
 const jsonLd = {
@@ -90,26 +94,35 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "WebSite",
-      "@id": "https://devcom.dhidroid.workers.dev/#website",
-      "url": "https://devcom.dhidroid.workers.dev",
-      "name": "TamilDev",
-      "description": "Realtime Developer Community for Web, Mobile, Systems & AI Engineers",
-      "publisher": {
-        "@id": "https://devcom.dhidroid.workers.dev/#organization"
-      }
+      "@id": `${SITE_URL}/#website`,
+      url: SITE_URL,
+      name: SITE_NAME,
+      alternateName: "தமிழ்Dev",
+      inLanguage: ["en", "ta"],
+      description: SITE_DESCRIPTION,
+      publisher: { "@id": `${SITE_URL}/#organization` },
     },
     {
       "@type": "Organization",
-      "@id": "https://devcom.dhidroid.workers.dev/#organization",
-      "name": "TamilDev",
-      "url": "https://devcom.dhidroid.workers.dev",
-      "logo": "https://devcom.dhidroid.workers.dev/avatars/dhidroid.jpg",
-      "sameAs": [
-        "https://github.com/dhidroid",
-        "https://linkedin.com/in/dhidroid-rndev"
-      ]
-    }
-  ]
+      "@id": `${SITE_URL}/#organization`,
+      name: SITE_NAME,
+      alternateName: "தமிழ்Dev",
+      url: SITE_URL,
+      logo: `${SITE_URL}/opengraph-image`,
+      foundingDate: "2021",
+      areaServed: "IN",
+      sameAs: [SOCIALS.github, SOCIALS.linkedin],
+    },
+    {
+      "@type": "WebPage",
+      "@id": `${SITE_URL}/#webpage`,
+      url: SITE_URL,
+      name: `${SITE_NAME} — Realtime Developer Community`,
+      description: SITE_DESCRIPTION,
+      isPartOf: { "@id": `${SITE_URL}/#website` },
+      about: { "@id": `${SITE_URL}/#organization` },
+    },
+  ],
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

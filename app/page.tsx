@@ -1,6 +1,8 @@
 "use client";
 
-import { FormEvent, useState, useRef, useEffect } from "react";
+import { FormEvent, useState, useRef, useEffect, Suspense } from "react";
+import dynamic from "next/dynamic";
+import type { ShuffleProps } from "@/components/Shuffle";
 import { motion, useScroll, useTransform, AnimatePresence } from "motion/react";
 import { ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -9,11 +11,22 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import JoinModal from "@/components/JoinModal";
-import PixelBlast from "@/components/PixelBlast";
 import PixelCard from "@/components/PixelCard";
-import Shuffle from "@/components/Shuffle";
 import { developers, homeTechnologies, programs, stories, liveEvents, stats, featuredResources, brands, quotes } from "@/lib/data";
 import { getAvatarUrl } from "@/lib/utils";
+
+// WebGL hero background (three.js + postprocessing) is decorative — load it
+// off the critical path so the initial JS bundle stays small and TBT low.
+const PixelBlast = dynamic(() => import("@/components/PixelBlast"), {
+  ssr: false,
+  loading: () => null,
+});
+
+// GSAP-powered headline shuffle is loaded lazily; the h1 text renders via the
+// Suspense fallback so LCP is not blocked by the extra ~130 KiB chunk.
+const Shuffle = dynamic<ShuffleProps>(() => import("@/components/Shuffle"), {
+  ssr: false,
+});
 
 // ── Devicon helper ──────────────────────────────────────────────────────────────
 // Renders an icon from the devicon icon font (devicon npm pkg, CSS already
@@ -294,46 +307,50 @@ export default function Home() {
           transition={{ duration: .65 }}
           className="pointer-events-none"
         >
-          <Eyebrow light>The Realtime Developer Community</Eyebrow>
+          <Eyebrow light>TamilDev · The Realtime Developer Community for Tamil Engineers</Eyebrow>
           <h1 className="mt-4 max-w-[680px] text-[clamp(45px,5.2vw,75px)] font-bold leading-[.98] tracking-[-.078em]">
-            <Shuffle
-              text="Build in realtime."
-              shuffleDirection="up"
-              duration={0.45}
-              animationMode="evenodd"
-              shuffleTimes={2}
-              ease="power3.out"
-              stagger={0.02}
-              threshold={0.1}
-              triggerOnce={true}
-              triggerOnHover={true}
-              tag="span"
-              className="block"
-              colorFrom="#fa6739"
-              colorTo="#ffffff"
-            />
-            <span className="block mt-1">
-              Ship with the{" "}
+            <Suspense fallback={<span className="block">Build in realtime.</span>}>
               <Shuffle
-                text="best."
+                text="Build in realtime."
                 shuffleDirection="up"
                 duration={0.45}
                 animationMode="evenodd"
                 shuffleTimes={2}
                 ease="power3.out"
-                stagger={0.04}
+                stagger={0.02}
                 threshold={0.1}
                 triggerOnce={true}
                 triggerOnHover={true}
                 tag="span"
-                className="inline-block text-[#fa6739] italic font-serif"
-                colorFrom="#ffffff"
-                colorTo="#fa6739"
+                className="block"
+                colorFrom="#fa6739"
+                colorTo="#ffffff"
               />
+            </Suspense>
+            <span className="block mt-1">
+              Ship with the{" "}
+              <Suspense fallback={<span className="inline-block italic font-serif text-[#fa6739]">best.</span>}>
+                <Shuffle
+                  text="best."
+                  shuffleDirection="up"
+                  duration={0.45}
+                  animationMode="evenodd"
+                  shuffleTimes={2}
+                  ease="power3.out"
+                  stagger={0.04}
+                  threshold={0.1}
+                  triggerOnce={true}
+                  triggerOnHover={true}
+                  tag="span"
+                  className="inline-block text-[#fa6739] italic font-serif"
+                  colorFrom="#ffffff"
+                  colorTo="#fa6739"
+                />
+              </Suspense>
             </span>
           </h1>
           <p className="mt-7 max-w-[470px] text-sm leading-relaxed text-stone-300">
-            TamilDev is where frontend, backend, mobile, and AI developers build side-by-side, collaborate in realtime, and ship production-grade products.
+            TamilDev is a free developer community for Tamil-speaking engineers. Frontend, backend, mobile, and AI developers learn React, Next.js, Node.js, PostgreSQL, and AI tooling together, get live code reviews in architecture clinics, and ship open-source projects in realtime.
           </p>
 
           {/* Interactive buttons */}
@@ -794,6 +811,60 @@ export default function Home() {
           </p>
         </div>
       </div>
+    </section>
+
+    <section id="faq" className="py-20 md:py-28 bg-[var(--paper)]">
+      <div className="mx-auto grid w-[min(1170px,calc(100%-38px))] gap-10 md:grid-cols-[.8fr_1.2fr] md:gap-[11%]">
+        <div>
+          <Eyebrow>FAQ · Frequently asked questions</Eyebrow>
+          <h2 className="mt-3 text-[clamp(34px,4vw,52px)] font-bold leading-[.98] tracking-[-.073em] text-[var(--ink)]">
+            Everything you need to <em>know.</em>
+          </h2>
+          <p className="mt-5 max-w-85 text-xs leading-relaxed text-stone-600">
+            Straight answers about joining TamilDev, our live sessions, and how the community works. Still curious? Ask us in the next live stream.
+          </p>
+        </div>
+        <div className="border-t border-[var(--line)]">
+          {[
+            ["What is TamilDev?", "TamilDev (தமிழ்Dev) is a free, realtime developer community for Tamil-speaking engineers. Frontend, backend, mobile, and AI developers learn together, review each other's code, and ship open-source projects — from React, Next.js and React Native to Node.js, PostgreSQL, and AI tooling."],
+            ["Is TamilDev free to join?", "Yes. Joining TamilDev is free. Live architecture clinics, skill cohorts, engineering circles, and our open-source resources are open to all members."],
+            ["Which technologies does the community cover?", "We focus on a production-ready stack: React, React Native, Next.js, Node.js, TypeScript, PostgreSQL, Prisma, MongoDB, Docker, Kubernetes, Tailwind CSS, and AI workflows with Claude, Ollama, and the Luma API."],
+            ["How do architecture clinics work?", "Bring a repository, database schema, or design spec. Senior engineers give live, high-bandwidth reviews so you can ship better, faster — this is real code review, not a lecture."],
+            ["How do I join a cohort or live session?", "Pick a cohort on the Cohorts page and join its live stream, or open any session card and hit the join button. Weekly sessions are published with dates and times on the homepage."],
+            ["Can I contribute to open-source projects through TamilDev?", "Yes. Members maintain 800+ repositories and share production-grade boilerplates, templates, and guides in the Resources section. Submit your own project to be featured."],
+            ["Is TamilDev only for Tamil-speaking developers?", "The community is built around Tamil-speaking engineers, but anyone who loves building in realtime is welcome. Sessions and resources are available in English."],
+          ].map(([q, a]) => (
+            <details key={q as string} className="group border-b border-[var(--line)] py-5">
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-6 text-sm font-bold tracking-[-.02em] text-[var(--ink)]">
+                {q as string}
+                <span className="shrink-0 font-mono text-[var(--orange)] transition-transform duration-200 group-open:rotate-45" aria-hidden="true">+</span>
+              </summary>
+              <p className="mt-3 max-w-160 text-xs leading-relaxed text-stone-600">{a as string}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: [
+              ["What is TamilDev?", "TamilDev (தமிழ்Dev) is a free, realtime developer community for Tamil-speaking engineers. Frontend, backend, mobile, and AI developers learn together, review each other's code, and ship open-source projects from React, Next.js and React Native to Node.js, PostgreSQL and AI tooling."],
+              ["Is TamilDev free to join?", "Yes. Joining TamilDev is free. Live architecture clinics, skill cohorts, engineering circles, and open-source resources are open to all members."],
+              ["Which technologies does the community cover?", "We focus on a production-ready stack: React, React Native, Next.js, Node.js, TypeScript, PostgreSQL, Prisma, MongoDB, Docker, Kubernetes, Tailwind CSS, and AI workflows with Claude, Ollama, and the Luma API."],
+              ["How do architecture clinics work?", "Bring a repository, database schema, or design spec. Senior engineers give live, high-bandwidth reviews so you can ship better, faster."],
+              ["How do I join a cohort or live session?", "Pick a cohort on the Cohorts page and join its live stream, or open any session card and hit the join button."],
+              ["Can I contribute to open-source projects through TamilDev?", "Yes. Members maintain 800+ repositories and share production-grade boilerplates, templates, and guides in the Resources section."],
+            ].map(([q, a]) => ({
+              "@type": "Question",
+              name: q,
+              acceptedAnswer: { "@type": "Answer", text: a },
+            })),
+          }),
+        }}
+      />
     </section>
 
     <section className="bg-zinc-950 py-24 text-center text-white md:py-32">

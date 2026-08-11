@@ -1,0 +1,14 @@
+# Bun configuration
+# Test runner + coverage system (no Node required).
+
+[test]
+# Fail fast: stop on the first failing suite.
+bail = true
+
+# Coverage is on by default via `bun test --coverage` (or `bun run test:coverage`).
+coverage = true
+coverageThreshold = 80
+coverageReporter = ["text", "lcov"]
+coverageDir = "coverage"
+coverageInclude = ["lib/**/*.ts"]
+coverageExclude = ["lib/**/*.test.ts"]

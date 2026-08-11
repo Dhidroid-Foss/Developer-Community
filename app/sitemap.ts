@@ -1,30 +1,34 @@
 import { MetadataRoute } from "next";
 import { developers } from "@/lib/data";
+import { SITE_URL } from "@/lib/site";
 
 export const dynamic = "force-static";
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://devcom.dhidroid.workers.dev";
+const now = new Date();
 
+export default function sitemap(): MetadataRoute.Sitemap {
   const developerUrls = developers.map((dev) => ({
-    url: `${baseUrl}/developers/${dev.id}`,
-    lastModified: new Date(),
+    url: `${SITE_URL}/developers/${dev.id}`,
+    lastModified: now,
     changeFrequency: "weekly" as const,
     priority: 0.8,
   }));
 
   const routes = [
-    "",
-    "/stack",
-    "/developers",
-    "/cohorts",
-    "/resources",
-  ].map((route) => ({
-    url: `${baseUrl}${route}`,
-    lastModified: new Date(),
-    changeFrequency: "daily" as const,
-    priority: route === "" ? 1.0 : 0.9,
+    { path: "", changeFrequency: "daily" as const, priority: 1.0 },
+    { path: "/stack", changeFrequency: "weekly" as const, priority: 0.9 },
+    { path: "/developers", changeFrequency: "weekly" as const, priority: 0.9 },
+    { path: "/cohorts", changeFrequency: "weekly" as const, priority: 0.8 },
+    { path: "/resources", changeFrequency: "weekly" as const, priority: 0.8 },
+    { path: "/tech-briefs", changeFrequency: "weekly" as const, priority: 0.7 },
+  ];
+
+  const routeUrls = routes.map((route) => ({
+    url: `${SITE_URL}${route.path}`,
+    lastModified: now,
+    changeFrequency: route.changeFrequency,
+    priority: route.priority,
   }));
 
-  return [...routes, ...developerUrls];
+  return [...routeUrls, ...developerUrls];
 }

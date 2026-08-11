@@ -8,12 +8,14 @@ export default function LoadingWrapper({ children }: { children: React.ReactNode
   const [shouldRender, setShouldRender] = useState(false);
 
   useEffect(() => {
-    // Delay rendering of actual content slightly to ensure smooth mount transition
+    // Brief loading presentation; keeps the first paint on-brand while the
+    // browser finishes parsing the initial JS bundle. Heavy runtime effects
+    // (WebGL hero, etc.) are gated independently so they never fight the
+    // parser when content mounts.
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 3500); // 3.5 seconds loading presentation
+    }, 3500);
 
-    // Enable rendering children immediately once loaded
     return () => {
       clearTimeout(timer);
     };
@@ -28,7 +30,7 @@ export default function LoadingWrapper({ children }: { children: React.ReactNode
   return (
     <>
       {isLoading && <Loading />}
-      <div 
+      <div
         className={`transition-opacity duration-700 ${
           shouldRender && !isLoading ? "opacity-100" : "opacity-0 h-0 overflow-hidden"
         }`}

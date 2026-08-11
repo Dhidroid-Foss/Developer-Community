@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+# Runs before every commit: type-check and unit tests.
+set -e
+
+bun run typecheck
+bun test
