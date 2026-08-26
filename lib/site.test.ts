@@ -12,17 +12,17 @@ import {
 
 describe("site config", () => {
   it("uses the real deployed domain for every canonical reference", () => {
-    expect(SITE_URL).toBe("https://tamildevs.dhidroid.workers.dev");
+    expect(SITE_URL).toBe("https://niraldevelopers.dhidroid.workers.dev");
     expect(SITE_URL).not.toContain("devcom.");
   });
 
   it("exposes the brand identity", () => {
-    expect(SITE_NAME).toBe("TamilDev");
+    expect(SITE_NAME).toBe("Niral Developer");
     expect(SITE_TAGLINE).toContain("developer community");
     expect(openGraphImage).toBe(`${SITE_URL}/opengraph-image`);
   });
 
-  it("describes what TamilDev does with relevant keywords", () => {
+  it("describes what Niral Developer does with relevant keywords", () => {
     expect(SITE_DESCRIPTION).toMatch(/developer community/i);
     for (const kw of ["React", "Next.js", "Node.js", "PostgreSQL"]) {
       expect(SITE_DESCRIPTION).toContain(kw);

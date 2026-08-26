@@ -29,7 +29,7 @@ export const cohorts: Cohort[] = [
     title: "Startups meet elite engineers.",
     desc: "We bridge the gap between premium startups and elite developers who understand both code and product strategy.",
     sessions: [
-      { name: "Contract Matchmaking", desc: "Introductions to startups hiring fullstack and mobile teams.", host: "TamilDev Partnerships Team", date: "Aug 02, 16:00" },
+      { name: "Contract Matchmaking", desc: "Introductions to startups hiring fullstack and mobile teams.", host: "Niral Developer Partnerships Team", date: "Aug 02, 16:00" },
       { name: "Figma Handovers Workshop", desc: "Optimizing the workflow between product designers and devs.", host: "Vijay LS, UI/UX Lead", date: "Aug 06, 15:00" }
     ],
     bg: "bg-stone-100/50"
@@ -40,8 +40,8 @@ export const cohorts: Cohort[] = [
     title: "Peer groups for senior engineers.",
     desc: "A private forum for senior devs. Share scaling issues, launch stress-tests, talk through infrastructure costs, and build next-gen tools.",
     sessions: [
-      { name: "Node & Postgres Scaling", desc: "Load balancing write-heavy databases.", host: "TamilDev Devops Team", date: "Jul 20, 18:00" },
-      { name: "The Future of Frameworks", desc: "Discussion on Bun runtime, Next.js updates, and agent workflows.", host: "TamilDev Maintainers", date: "Jul 31, 19:00" }
+      { name: "Node & Postgres Scaling", desc: "Load balancing write-heavy databases.", host: "Niral Developer Devops Team", date: "Jul 20, 18:00" },
+      { name: "The Future of Frameworks", desc: "Discussion on Bun runtime, Next.js updates, and agent workflows.", host: "Niral Developer Maintainers", date: "Jul 31, 19:00" }
     ],
     bg: "bg-white/40"
   }

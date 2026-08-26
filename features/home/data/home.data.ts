@@ -25,7 +25,7 @@ export const programs: Record<string, Program> = {
     title: "The right rooms make room for scale.",
     text: "We bridge the gap between premium startups and elite developers who understand both code and product strategy.",
     sessions: [
-      { meta: "Client Meet · Aug 02", title: "Matchmaking session with startups hiring React and Node contract teams", host: "Hosted by The TamilDev Team", image: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=500&q=80" },
+      { meta: "Client Meet · Aug 02", title: "Matchmaking session with startups hiring React and Node contract teams", host: "Hosted by The Niral Developer Team", image: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=500&q=80" },
       { meta: "Figma Handover · Aug 06", title: "Bridging design and code: smooth developer-designer handovers", host: "Hosted by Vijay LS, UI/UX Lead", image: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=500&q=80" }
     ]
   },
@@ -34,8 +34,8 @@ export const programs: Record<string, Program> = {
     title: "Your engineering career needs a node.",
     text: "A peer group for conversations that go deep: architecture decisions, deployment headaches, and local AI workflows.",
     sessions: [
-      { meta: "Architecture Sync · Jul 20", title: "The real cost of cloud vs bare-metal with Postgres & Node", host: "Hosted by TamilDev DevOps", image: "https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=500&q=80" },
-      { meta: "Open Code Critique · Jul 31", title: "Show your worst legacy code and let's refactor it live", host: "Hosted by TamilDev Members", image: "https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=500&q=80" }
+      { meta: "Architecture Sync · Jul 20", title: "The real cost of cloud vs bare-metal with Postgres & Node", host: "Hosted by Niral Developer DevOps", image: "https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=500&q=80" },
+      { meta: "Open Code Critique · Jul 31", title: "Show your worst legacy code and let's refactor it live", host: "Hosted by Niral Developer Members", image: "https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=500&q=80" }
     ]
   }
 };
@@ -48,7 +48,7 @@ export const stories: Story[] = [
 
 export const quotes: Quote[] = [
   {
-    text: "Instead of debugging in isolation, TamilDev gave me a live room of senior developers to pair program and solve scaling issues with.",
+    text: "Instead of debugging in isolation, Niral Developer gave me a live room of senior developers to pair program and solve scaling issues with.",
     author: "DhineshKumar Thirupathi (dhidroid)",
     role: "Full Stack & React Native Developer | AI/ML Integration Enthusiast",
     image: "/avatars/dhidroid.jpg",

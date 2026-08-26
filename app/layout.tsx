@@ -43,8 +43,8 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/",
   },
-  authors: [{ name: "TamilDev Community", url: SITE_URL }],
-  creator: "TamilDev Community",
+  authors: [{ name: "Niral Developer Community", url: SITE_URL }],
+  creator: "Niral Developer Community",
   publisher: SITE_NAME,
   category: "technology",
   robots: {

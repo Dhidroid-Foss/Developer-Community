@@ -25,7 +25,7 @@ export default function ResourcesPage() {
         <div ref={containerRef} style={{ position: "relative" }} className="border-b border-[#cfcac0] pb-10 mb-12 flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
           <div>
             <p className="font-mono text-[10px] uppercase tracking-[.085em] text-stone-500">
-              TamilDev Resources
+              Niral Developer Resources
             </p>
             <h1 className="mt-3 text-4xl md:text-6xl font-extrabold tracking-tight text-[#151515]">
               <VariableProximity

@@ -24,14 +24,7 @@ import {
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import JoinModal from "@/components/JoinModal";
-
-function Eyebrow({ children, light = false }: { children: React.ReactNode; light?: boolean }) {
-  return (
-    <p className={`font-mono text-[10px] uppercase tracking-[.085em] ${light ? "text-stone-400" : "text-stone-500"}`}>
-      {children}
-    </p>
-  );
-}
+import { Eyebrow } from "@/components/common";
 
 // Sample Engineering Briefs Data
 const BRIEF_CATEGORIES = ["All Specs", "Architecture", "Database & Storage", "Infrastructure", "AI & ML", "Security"];
@@ -307,7 +300,7 @@ export default function TechBriefsPage() {
               </h1>
 
               <p className="mt-5 max-w-xl text-sm md:text-base text-stone-400 leading-relaxed">
-                In-depth specifications, database blueprints, shader pipelines, and infrastructure benchmarks written directly by senior engineers at TamilDev.
+                In-depth specifications, database blueprints, shader pipelines, and infrastructure benchmarks written directly by senior engineers at Niral Developer.
               </p>
             </div>
 
@@ -530,7 +523,7 @@ export default function TechBriefsPage() {
               Want to author a Technical Brief with our engineering team?
             </h2>
             <p className="mt-2 text-xs text-stone-400 max-w-xl">
-              TamilDev members regularly present production case studies, system benchmarks, and database post-mortems to the community.
+              Niral Developer members regularly present production case studies, system benchmarks, and database post-mortems to the community.
             </p>
           </div>
           <button

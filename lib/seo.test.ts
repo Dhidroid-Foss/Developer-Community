@@ -3,7 +3,7 @@ import { pageMetadata } from "./seo";
 
 const base = {
   title: "Tech Stack",
-  description: "Explore the production-ready stack TamilDev masters.",
+  description: "Explore the production-ready stack Niral Developer masters.",
   path: "/stack",
 };
 
@@ -27,7 +27,7 @@ describe("pageMetadata()", () => {
 
   it("builds absolute Open Graph and Twitter URLs on the live domain", () => {
     const meta = pageMetadata(base);
-    expect(meta.openGraph?.url).toBe("https://tamildevs.dhidroid.workers.dev/stack");
+    expect(meta.openGraph?.url).toBe("https://niraldevelopers.dhidroid.workers.dev/stack");
     expect(meta.openGraph?.title).toContain("Tech Stack");
     const images = meta.openGraph?.images as Array<{ width?: number }> | undefined;
     expect(Array.isArray(images) && images[0]?.width).toBe(1200);
