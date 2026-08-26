@@ -1,8 +1,14 @@
 import { ImageResponse } from "next/og";
-import logo from "@/app/assets/my_community_logo.svg";
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
+
+const logo = `data:image/svg+xml;base64,${readFileSync(
+  join(process.cwd(), "app/assets/my_community_logo.svg")
+).toString("base64")}`;
+
 export const dynamic = "force-static";
 export const size = { width: 32, height: 32 };
-export const contentType = "image/svg+xml";
+export const contentType = "image/png";
 
 export default function Icon() {
   return new ImageResponse(
