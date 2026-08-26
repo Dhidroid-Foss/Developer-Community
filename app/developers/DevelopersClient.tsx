@@ -21,7 +21,7 @@ export default function DevelopersListPage() {
       <div className="mx-auto w-[min(1170px,calc(100%-38px))] pb-20">
         <div ref={containerRef} style={{ position: "relative" }} className="border-b border-[#cfcac0] pb-10 mb-12">
           <p className="font-mono text-[10px] uppercase tracking-[.085em] text-stone-500">
-            TamilDev Contributors
+            Niral Developer Contributors
           </p>
           <h1 className="mt-3 text-4xl md:text-6xl font-extrabold tracking-tight text-[#151515]">
             <VariableProximity

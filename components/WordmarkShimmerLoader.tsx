@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import Image from "next/image";
+import logo from "@/app/assets/my_community_logo.svg";
 
 interface WordmarkShimmerLoaderProps {
   color?: string;
@@ -16,7 +18,6 @@ export default function WordmarkShimmerLoader({
   useEffect(() => {
     let currentProgress = 0;
     const interval = setInterval(() => {
-      // Smooth incremental progress steps
       const increment = Math.floor(Math.random() * 7) + 3;
       currentProgress += increment;
 
@@ -32,13 +33,19 @@ export default function WordmarkShimmerLoader({
 
   return (
     <div className={`relative flex flex-col items-center justify-center p-6 select-none ${className}`}>
-      {/* Main Crisp Wordmark Logo (Compact Size, Solid Colors) */}
-      <div className="relative z-10 flex items-center gap-1 text-xl sm:text-2xl md:text-3xl font-extrabold tracking-[-.05em] py-0.5 px-1 overflow-visible">
-        <span className="font-heading text-[#fa6739] inline-block leading-snug" lang="ta">
-          தமிழ்
-        </span>
-        <span className="font-heading text-[#151515] inline-block leading-snug">
-          Dev
+      {/* Wordmark with logo */}
+      <div className="relative z-10 flex items-center gap-2 py-0.5 px-1">
+        <Image
+          src={logo}
+          alt="Niral Developer"
+          width={36}
+          height={36}
+          className="h-9 w-9 object-contain"
+          priority
+        />
+        <span className="text-xl sm:text-2xl md:text-3xl font-extrabold tracking-[-.05em] leading-snug">
+          <span className="text-[#fa6739]">Niral</span>
+          <span className="text-[#151515]"> Developer</span>
         </span>
       </div>
 

@@ -1,10 +1,10 @@
-# TamilDev
+# Niral Developer
 
-> TamilDev is a free, realtime developer community for Tamil-speaking engineers. Frontend, backend, mobile and AI developers learn together, get live code reviews in architecture clinics, join skill cohorts, and ship production-grade open-source projects.
+> Niral Developer is a free, realtime developer community for Tamil-speaking engineers. Frontend, backend, mobile and AI developers learn together, get live code reviews in architecture clinics, join skill cohorts, and ship production-grade open-source projects.
 
 ## About
 
-TamilDev (தமிழ்Dev) is a developer community founded in 2021. Members master and deploy a curated stack of modern web, mobile, database and artificial intelligence tools. Key activities include:
+Niral Developer (தமிழ்Dev) is a developer community founded in 2021. Members master and deploy a curated stack of modern web, mobile, database and artificial intelligence tools. Key activities include:
 
 - Architecture Clinic — live code reviews of repos, schemas and design specs
 - Skill Cohorts — hands-on sprints that ship real applications
@@ -17,12 +17,12 @@ React, React Native, Next.js, Node.js, TypeScript, PostgreSQL, Prisma, MongoDB, 
 
 ## Key pages
 
-- [Home](https://tamildevs.dhidroid.workers.dev/)
-- [Tech Stack](https://tamildevs.dhidroid.workers.dev/stack)
-- [Developers](https://tamildevs.dhidroid.workers.dev/developers)
-- [Cohorts](https://tamildevs.dhidroid.workers.dev/cohorts)
-- [Resources](https://tamildevs.dhidroid.workers.dev/resources)
-- [Tech Briefs](https://tamildevs.dhidroid.workers.dev/tech-briefs)
+- [Home](https://niraldevelopers.dhidroid.workers.dev/)
+- [Tech Stack](https://niraldevelopers.dhidroid.workers.dev/stack)
+- [Developers](https://niraldevelopers.dhidroid.workers.dev/developers)
+- [Cohorts](https://niraldevelopers.dhidroid.workers.dev/cohorts)
+- [Resources](https://niraldevelopers.dhidroid.workers.dev/resources)
+- [Tech Briefs](https://niraldevelopers.dhidroid.workers.dev/tech-briefs)
 
 ## Contact
 

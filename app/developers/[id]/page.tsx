@@ -25,9 +25,9 @@ export async function generateMetadata({
     title: `${dev.name} — ${dev.role}`,
     description: dev.bio
       ? dev.bio.slice(0, 155)
-      : `Meet ${dev.name}, ${dev.role} at TamilDev. Learn about their projects, skills, and open-source contributions.`,
+      : `Meet ${dev.name}, ${dev.role} at Niral Developer. Learn about their projects, skills, and open-source contributions.`,
     path: `/developers/${dev.id}`,
-    keywords: [...dev.skills, dev.role, "TamilDev developer"],
+    keywords: [...dev.skills, dev.role, "Niral Developer developer"],
   });
 }
 

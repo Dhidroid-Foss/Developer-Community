@@ -5,10 +5,10 @@ import { pageMetadata } from "@/lib/seo";
 export const metadata: Metadata = pageMetadata({
   title: "Tech Stack — React, Next.js, Node.js, PostgreSQL & AI",
   description:
-    "Explore the production-ready tech stack TamilDev masters and deploys: React, React Native, Next.js, Node.js, TypeScript, PostgreSQL, Prisma, MongoDB, Tailwind CSS, Docker, and AI tooling with Claude, Ollama, and the Luma API.",
+    "Explore the production-ready tech stack Niral Developer masters and deploys: React, React Native, Next.js, Node.js, TypeScript, PostgreSQL, Prisma, MongoDB, Tailwind CSS, Docker, and AI tooling with Claude, Ollama, and the Luma API.",
   path: "/stack",
   keywords: [
-    "TamilDev tech stack",
+    "Niral Developer tech stack",
     "React stack",
     "Next.js stack",
     "Node.js",

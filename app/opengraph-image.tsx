@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 import { BRAND } from "@/lib/site";
 
-export const alt = "TamilDev — the realtime developer community for web, mobile and AI engineers";
+export const alt = "Niral Developer — the realtime developer community for web, mobile and AI engineers";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 

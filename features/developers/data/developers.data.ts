@@ -32,7 +32,7 @@ export const developers: Developer[] = [
     skills: ["ReactJS", "Next.js", "Node.js", "Express", "TypeScript"],
     projects: [
       { title: "SaaS Starter Kit", desc: "Next.js + Prisma + Postgres boilerplate optimized for server-less and edge hosting." },
-      { title: "TamilDev Forum", desc: "A high-bandwidth collaborative platform for developer reviews." }
+      { title: "Niral Developer Forum", desc: "A high-bandwidth collaborative platform for developer reviews." }
     ],
     github: "https://github.com/vignesh",
     linkedin: "https://linkedin.com/in/vignesh",
