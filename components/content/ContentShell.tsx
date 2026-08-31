@@ -10,7 +10,7 @@ export function ContentShell({ children }: { children: ReactNode }) {
 
   return (
     <main className="min-h-screen bg-[#eeeae2] text-[#151515] pt-28">
-      <Header onJoinClick={() => setModalOpen(true)} />
+      <Header onJoinClick={() => setModalOpen(true)} theme="light" />
       <div className="mx-auto w-[min(1170px,calc(100%-38px))] pb-20">{children}</div>
       <Footer />
       <JoinModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />

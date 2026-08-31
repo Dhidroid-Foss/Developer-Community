@@ -91,6 +91,7 @@ export type Author = {
 };
 
 export type Work = {
+  _id?: string;
   title?: string | null;
   slug?: SanitySlug;
   tagline?: string | null;

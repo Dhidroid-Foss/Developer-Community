@@ -4,8 +4,8 @@ import { useState } from "react";
 import { AnimatePresence } from "motion/react";
 import { MessageSquare, Calendar } from "lucide-react";
 import { SyncBotChat } from "@/components/widgets/SyncBotChat";
-import { MeetingBooker } from "@/components/widgets/MeetingBooker";
-
+import { getCalApi } from "@calcom/embed-react";
+import { useEffect } from "react";
 /**
  * FloatingWidgets — thin FAB shell that composes SyncBotChat + MeetingBooker.
  *
@@ -17,16 +17,24 @@ export default function FloatingWidgets() {
   const [meetOpen, setMeetOpen] = useState(false);
 
   const openChat = () => { setChatOpen(true);  setMeetOpen(false); };
-  const openMeet = () => { setMeetOpen(true);  setChatOpen(false); };
-
+  
+  useEffect(() => {
+    (async function () {
+      const cal = await getCalApi({"namespace":"30min"});
+      cal("ui", {"hideEventTypeDetails":false,"layout":"month_view"});
+    })();
+  }, []);
   return (
     <>
       {/* Floating Action Buttons */}
-      <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-3 items-end pointer-events-auto">
+      <div className="fixed bottom-20 right-6 z-50 flex flex-col gap-3 items-end pointer-events-auto">
 
         {/* Meeting Booker FAB */}
         <button
-          onClick={() => (meetOpen ? setMeetOpen(false) : openMeet())}
+          data-cal-namespace="30min"
+          data-cal-link="dhidroid/30min"
+          data-cal-config='{"layout":"month_view"}'
+          onClick={() => (meetOpen ? setMeetOpen(false) : null)}
           className={`group flex items-center justify-start h-12 w-12 hover:w-40 rounded-none shadow-lg transition-all duration-300 overflow-hidden px-3.5 border cursor-pointer ${
             meetOpen
               ? "bg-zinc-950 text-white border-zinc-800 w-40"
@@ -78,7 +86,6 @@ export default function FloatingWidgets() {
       {/* Floating Panels */}
       <AnimatePresence>
         {chatOpen && <SyncBotChat key="syncbot" isOpen={chatOpen} onClose={() => setChatOpen(false)} />}
-        {meetOpen && <MeetingBooker key="meeting" isOpen={meetOpen} onClose={() => setMeetOpen(false)} />}
       </AnimatePresence>
     </>
   );

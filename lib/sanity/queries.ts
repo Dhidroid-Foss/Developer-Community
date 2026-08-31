@@ -71,11 +71,13 @@ export const AUTHOR_BY_SLUG_QUERY = `*[_type == "author" && slug.current == $slu
 }`;
 
 export const PROJECTS_QUERY = `*[_type == "project"] | order(year desc) {
+  _id,
   title,
   tagline,
   year,
   role,
   description,
+  results,
   link,
   github,
   image { asset->{_id, url} },
