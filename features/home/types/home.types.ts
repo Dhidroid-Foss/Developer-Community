@@ -3,6 +3,7 @@ export interface ProgramSession {
   title: string;
   host: string;
   image: string;
+  slug?: string;
 }
 
 export interface Program {
@@ -16,6 +17,8 @@ export interface Story {
   tag: string;
   title: string;
   image: string;
+  stat?: string | null;
+  slug?: string;
 }
 
 export interface Quote {
