@@ -207,7 +207,7 @@ export default function JoinModal({ isOpen, open, onClose }: JoinModalProps) {
                       Opening Discord...
                     </>
                   ) : (
-                    "Join on Discord ↗"
+                    "Join on Discord "
                   )}
                 </Button>
                 <p className="mt-3 text-center font-mono text-[9px] text-stone-400">

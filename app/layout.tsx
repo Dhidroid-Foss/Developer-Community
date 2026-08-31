@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { DM_Sans, Anybody, Space_Mono } from "next/font/google";
 import LoadingWrapper from "@/components/LoadingWrapper";
 import FloatingWidgets from "@/components/FloatingWidgets";
+import { CalEmbed } from "@/components/widgets/CalEmbed";
 import {
   SITE_URL,
   SITE_NAME,
@@ -138,6 +139,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <LoadingWrapper>
           {children}
           <FloatingWidgets />
+          {/* <CalEmbed /> */}
         </LoadingWrapper>
       </body>
     </html>

@@ -47,6 +47,9 @@ export default function Footer() {
           [
             "Explore",
             [
+              ["Blog", "/blog"],
+              ["Works", "/works"],
+              ["Authors", "/authors"],
               ["Stack", "/stack"],
               ["Developers", "/developers"],
               ["Cohorts", "/cohorts"],
