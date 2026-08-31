@@ -14,7 +14,17 @@ import {
 import type { Author, BlogPost, RelatedPost, Work } from "./types";
 
 async function fetchQuery<T>(query: string, params: Record<string, unknown> = {}): Promise<T | null> {
-  if (!isSanityConfigured) return null;
+  if (!isSanityConfigured) {
+    console.error(
+      "❌ Sanity not configured. Please set the following environment variables:\n" +
+      "   - projectId (or SANITY_PROJECT_ID)\n" +
+      "   - dataset (or SANITY_DATASET, defaults to 'production')\n" +
+      "   - apiVersion (or SANITY_API_VERSION, defaults to '2024-01-01')\n" +
+      "   - token (or SANITY_TOKEN, required for authenticated requests)\n" +
+      "See .env.example for more details."
+    );
+    return null;
+  }
   try {
     return await client.fetch<T>(query, params);
   } catch (error) {
