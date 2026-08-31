@@ -93,10 +93,10 @@ export const liveEvents = [
 ] as const;
 
 export const stats = [
-  ["15k+", "Active developers"],
-  ["800+", "Repos sparked here"],
-  ["5 Contributors", "Core maintainers"],
-  ["99.9%", "Platform uptime"]
+  ["2+", "Active developers"],
+  ["10+", "Repos sparked here"],
+  ["10+", "Contributors"],
+  ["10+", "Platform uptime"]
 ] as const;
 
 /** 3-item summary shown in the homepage open-source section. */

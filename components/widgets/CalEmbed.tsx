@@ -2,11 +2,6 @@
 
 import { useEffect } from "react";
 
-declare global {
-  interface Window {
-    Cal?: any;
-  }
-}
 
 export function CalEmbed() {
   useEffect(() => {
@@ -61,7 +56,7 @@ export function CalEmbed() {
       });
 
       Cal.ns["30min"]("ui", {
-        cssVarsPerTheme: { light: { "cal-brand": "#292929" } },
+        cssVarsPerTheme: { light: { "cal-brand": "#292929" }, dark: { "cal-brand": "#292929" } },
         hideEventTypeDetails: true,
         layout: "month_view",
       });

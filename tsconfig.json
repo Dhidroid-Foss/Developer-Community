@@ -33,7 +33,15 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    ".next/dev/types/**/*.ts"
+    ".next/dev/types/**/*.ts",
+    "app/assets/**/*.heif",
+    "app/images/**/*.png",
+    "app/images/**/*.jpg",
+    "app/images/**/*.jpeg",
+    "app/images/**/*.gif",
+    "app/images/**/*.svg",
+    "app/images/**/*.webp",
+    "app/images/**/*.ico",
   ],
   "exclude": [
     "node_modules"
