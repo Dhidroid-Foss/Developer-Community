@@ -485,7 +485,7 @@ export default function TechBriefsPage() {
                       ) : (
                         <>
                           <Download size={12} />
-                          <span>PDF BRIEF ↗</span>
+                          <span>PDF BRIEF </span>
                         </>
                       )}
                     </button>
@@ -530,7 +530,7 @@ export default function TechBriefsPage() {
             onClick={() => setModalOpen(true)}
             className="rounded-full bg-[var(--orange)] px-6 py-3.5 text-xs text-zinc-950 font-bold hover:bg-[#e05629] transition-colors shrink-0 cursor-pointer"
           >
-            Submit a Spec Proposal ↗
+            Submit a Spec Proposal 
           </button>
         </div>
       </section>

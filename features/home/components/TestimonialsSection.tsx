@@ -64,7 +64,7 @@ export function TestimonialsSection() {
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-1.5 border-b border-zinc-950/30 text-[10px] font-mono font-bold hover:border-zinc-950 transition-colors"
                       >
-                        GitHub ↗
+                        GitHub  
                       </a>
                     )}
                     {quotes[quoteIdx].linkedin && (
@@ -74,7 +74,7 @@ export function TestimonialsSection() {
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-1.5 border-b border-zinc-950/30 text-[10px] font-mono font-bold hover:border-zinc-950 transition-colors"
                       >
-                        LinkedIn ↗
+                        LinkedIn  
                       </a>
                     )}
                     {quotes[quoteIdx].website && (
@@ -84,7 +84,7 @@ export function TestimonialsSection() {
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-1.5 border-b border-zinc-950/30 text-[10px] font-mono font-bold hover:border-zinc-950 transition-colors"
                       >
-                        Portfolio ↗
+                        Portfolio  
                       </a>
                     )}
                   </div>

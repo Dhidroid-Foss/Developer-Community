@@ -2,13 +2,49 @@
 
 import { ArrowUpRight } from "lucide-react";
 import { Eyebrow } from "@/components/common";
-import { stories, featuredResources } from "@/features/home/data/home.data";
+import { stories as fallbackStories, featuredResources } from "@/features/home/data/home.data";
+import { getSanityImageUrl } from "@/lib/sanity/image";
+import type { Work } from "@/lib/sanity/types";
+
+/** Normalise Sanity slug to a plain string. */
+function slugStr(slug: Work["slug"]): string {
+  if (!slug) return "";
+  return typeof slug === "string" ? slug : slug.current ?? "";
+}
+
+/** Map a Sanity project to the shape the stories grid expects. */
+function projectToStory(project: Work) {
+  const imageUrl = getSanityImageUrl(project.image, {
+    width: 1200,
+    quality: 85,
+  });
+  return {
+    tag: [
+      project.role,
+      project.categories?.map((c) => c.title).join(" & "),
+    ]
+      .filter(Boolean)
+      .join(" · ") || "Project",
+    title: project.tagline || project.title || "Untitled project",
+    image: imageUrl ?? "",
+    stat: project.results ?? null,
+    slug: slugStr(project.slug),
+  };
+}
 
 interface ResourcesSectionProps {
   onJoinClick: () => void;
+  projects?: Work[];
 }
 
-export function ResourcesSection({ onJoinClick }: ResourcesSectionProps) {
+export function ResourcesSection({ onJoinClick, projects }: ResourcesSectionProps) {
+  // Use real Sanity projects when available (take the 3 most recent),
+  // otherwise fall back to static placeholder data.
+  const hasProjects = projects && projects.length > 0;
+  const displayStories = hasProjects
+    ? projects.slice(0, 3).map(projectToStory)
+    : fallbackStories.map((s) => ({ ...s, stat: null, slug: "" }));
+
   return (
     <>
       {/* Member Accomplishments — Stories Grid */}
@@ -34,31 +70,39 @@ export function ResourcesSection({ onJoinClick }: ResourcesSectionProps) {
           </div>
 
           <div className="grid gap-3 md:grid-cols-[1.1fr_.9fr]">
-            {stories.map((story, index) => (
+            {displayStories.map((story, index) => (
               <article
                 className={`group relative min-h-[350px] overflow-hidden bg-zinc-800 ${
                   index === 0 ? "md:row-span-2 md:min-h-[690px]" : ""
                 }`}
                 key={story.title}
               >
-                <img
-                  className="absolute inset-0 h-full w-full object-cover grayscale transition duration-700 group-hover:scale-[1.04]"
-                  src={story.image}
-                  alt=""
-                />
+                {story.image && (
+                  <img
+                    className="absolute inset-0 h-full w-full object-cover grayscale transition duration-700 group-hover:scale-[1.04]"
+                    src={story.image}
+                    alt={story.title}
+                  />
+                )}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
                 <div className="absolute bottom-0 p-6">
                   <Eyebrow light>{story.tag}</Eyebrow>
                   <h3 className="mt-3 max-w-125 text-[clamp(20px,2vw,31px)] font-bold leading-[1.08] tracking-[-.06em]">
                     {story.title}
                   </h3>
-                  {index === 0 ? (
+                  {index === 0 && story.stat ? (
                     <div className="mt-5 flex items-baseline gap-2">
                       <strong className="text-[35px] tracking-[-.07em] text-[var(--orange)]">
-                        10M+
+                        {story.stat}
+                      </strong>
+                    </div>
+                  ) : index === 0 ? (
+                    <div className="mt-5 flex items-baseline gap-2">
+                      <strong className="text-[35px] tracking-[-.07em] text-[var(--orange)]">
+                        ✦
                       </strong>
                       <span className="text-[10px] text-stone-200">
-                        daily database requests optimized
+                        Featured project
                       </span>
                     </div>
                   ) : (
@@ -66,7 +110,7 @@ export function ResourcesSection({ onJoinClick }: ResourcesSectionProps) {
                       onClick={onJoinClick}
                       className="mt-5 inline-block border-b border-white/70 text-[11px] font-bold"
                     >
-                      Read build story ↗
+                      {story.slug ? "View project" : "Read build story"} 
                     </button>
                   )}
                 </div>
@@ -114,7 +158,7 @@ export function ResourcesSection({ onJoinClick }: ResourcesSectionProps) {
                   onClick={onJoinClick}
                   className="mt-auto pt-6 text-[11px] font-bold text-left hover:text-[#fa6739] transition-colors"
                 >
-                  {action} <span className="ml-1 text-base">↗</span>
+                  {action} <span className="ml-1 text-base"> </span>
                 </button>
               </article>
             ))}

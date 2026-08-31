@@ -91,7 +91,7 @@ export default function StackPage() {
                     onClick={() => setModalOpen(true)}
                     className="mt-6 inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-wider font-bold text-[#fa6739] hover:text-[#e05629]"
                   >
-                    Join Cohort for {tech.name} ↗
+                    Join Cohort for {tech.name} 
                   </button>
                 </div>
 

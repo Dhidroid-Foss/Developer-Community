@@ -6,6 +6,18 @@ interface PageSeoInput {
   description: string;
   path: string;
   keywords?: string[];
+  /** Absolute URL or site-relative path. Falls back to the branded OG image. */
+  image?: string;
+  imageAlt?: string;
+  type?: "website" | "article";
+  publishedTime?: string;
+  authors?: string[];
+}
+
+function absoluteUrl(value?: string): string {
+  if (!value) return `${SITE_URL}/opengraph-image`;
+  if (/^https?:\/\//.test(value)) return value;
+  return `${SITE_URL}${value.startsWith("/") ? value : `/${value}`}`;
 }
 
 /**
@@ -13,26 +25,38 @@ interface PageSeoInput {
  * unique title + description, self-referencing canonical URL,
  * Open Graph + Twitter cards pointing at the branded generated image.
  */
-export function pageMetadata({ title, description, path, keywords }: PageSeoInput): Metadata {
+export function pageMetadata({
+  title,
+  description,
+  path,
+  keywords,
+  image,
+  imageAlt,
+  type = "website",
+  publishedTime,
+  authors,
+}: PageSeoInput): Metadata {
   const url = `${SITE_URL}${path}`;
-  const image = "/opengraph-image";
+  const ogImage = image ? absoluteUrl(image) : "/opengraph-image";
 
   return {
     title,
     description,
     alternates: { canonical: path },
     openGraph: {
-      type: "website",
+      type,
       url,
       siteName: SITE_NAME,
       title: `${title} · ${SITE_NAME}`,
       description,
+      ...(publishedTime ? { publishedTime } : {}),
+      ...(authors?.length ? { authors } : {}),
       images: [
         {
-          url: image,
+          url: ogImage,
           width: 1200,
           height: 630,
-          alt: SITE_TAGLINE,
+          alt: imageAlt ?? SITE_TAGLINE,
         },
       ],
     },
@@ -40,7 +64,7 @@ export function pageMetadata({ title, description, path, keywords }: PageSeoInpu
       card: "summary_large_image",
       title: `${title} · ${SITE_NAME}`,
       description,
-      images: [image],
+      images: [ogImage],
     },
     keywords,
     robots: {

@@ -1,52 +1,25 @@
-"use client";
+import { Suspense } from "react";
+import HomeClient from "./HomeClient";
+import { fetchProjects } from "@/lib/sanity/fetch";
+import { fetchPosts } from "@/lib/sanity/fetch";
 
-import { useState } from "react";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import JoinModal from "@/components/JoinModal";
-
-// Home feature section components — each owns its own data, state and markup
-import {
-  HeroSection,
-  ShowcaseSection,
-  CommunitySection,
-  ProgramsSection,
-  TestimonialsSection,
-  ResourcesSection,
-  NewsletterSection,
-  FaqSection,
-  CtaSection,
-} from "@/features/home";
+export const dynamic = "force-static";
 
 /**
- * Home page — thin composition shell.
+ * Home page — server component wrapper.
  *
- * All section content, data imports, animations and sub-components live in
- * features/home/components/*. This file only:
- *   1. Owns the global modal open/close state
- *   2. Passes onJoinClick down to sections that need it
- *   3. Renders Header, sections in order, Footer, and JoinModal
+ * Fetches real-time Sanity data (projects + posts) at build/request time,
+ * then hands it to the client-side HomeClient shell.
  */
-export default function Home() {
-  const [modalOpen, setModalOpen] = useState(false);
-  const openModal = () => setModalOpen(true);
+export default async function Home() {
+  const [projects, posts] = await Promise.all([
+    fetchProjects(),
+    fetchPosts(),
+  ]);
 
   return (
-    <main className="overflow-hidden bg-[var(--paper)] text-[var(--ink)]">
-      <Header onJoinClick={openModal} />
-
-      <HeroSection         onJoinClick={openModal} />
-      <ShowcaseSection     onJoinClick={openModal} />
-      <CommunitySection />
-      <ProgramsSection     onJoinClick={openModal} />
-      <TestimonialsSection />
-      <ResourcesSection    onJoinClick={openModal} />
-      <NewsletterSection   onJoinClick={openModal} />
-      <FaqSection />
-      <CtaSection          onJoinClick={openModal} />
-
-      <Footer />
-      <JoinModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
-    </main>
+    <Suspense fallback={null}>
+      <HomeClient projects={projects} posts={posts} />
+    </Suspense>
   );
 }

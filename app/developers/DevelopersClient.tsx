@@ -90,7 +90,6 @@ export default function DevelopersListPage() {
 
                   <div className="mt-6 flex items-center justify-between font-mono text-[9px] text-[#fa6739] font-bold group-hover:translate-x-1 transition-transform">
                     <span>VIEW PROFILE DETAILS</span>
-                    <span>↗</span>
                   </div>
                 </div>
               </PixelCard>

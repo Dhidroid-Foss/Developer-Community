@@ -77,8 +77,8 @@ export default function FloatingWidgets() {
 
       {/* Floating Panels */}
       <AnimatePresence>
-        <SyncBotChat  isOpen={chatOpen} onClose={() => setChatOpen(false)} />
-        <MeetingBooker isOpen={meetOpen} onClose={() => setMeetOpen(false)} />
+        {chatOpen && <SyncBotChat key="syncbot" isOpen={chatOpen} onClose={() => setChatOpen(false)} />}
+        {meetOpen && <MeetingBooker key="meeting" isOpen={meetOpen} onClose={() => setMeetOpen(false)} />}
       </AnimatePresence>
     </>
   );

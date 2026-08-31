@@ -103,7 +103,7 @@ export default function ResourcesPage() {
                     onClick={() => setModalOpen(true)}
                     className="font-mono text-[10px] uppercase tracking-wider font-bold text-zinc-950 hover:text-[#fa6739] flex items-center gap-1 cursor-pointer"
                   >
-                    {res.action} <span className="text-xs">↗</span>
+                    {res.action} 
                   </button>
                 </div>
               </div>

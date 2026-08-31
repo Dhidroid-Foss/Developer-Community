@@ -176,7 +176,7 @@ export function HeroSection({ onJoinClick }: HeroSectionProps) {
                 className="grid h-8 w-8 place-items-center rounded-full border border-stone-400 text-base hover:bg-zinc-950 hover:text-white transition-colors"
                 aria-label={`Join ${event[2]}`}
               >
-                ↗
+                 
               </button>
             </article>
           ))}

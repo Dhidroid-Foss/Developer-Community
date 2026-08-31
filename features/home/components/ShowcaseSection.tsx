@@ -54,7 +54,7 @@ export function ShowcaseSection({ onJoinClick }: ShowcaseSectionProps) {
                   </h3>
                   <p className="mt-0.5 text-[10px] text-stone-400">{member.role}</p>
                   <span className="inline-block mt-2 font-mono text-[8px] uppercase tracking-wider text-stone-500 group-hover:text-stone-300 transition-colors">
-                    View Profile ↗
+                    View Profile  
                   </span>
                 </article>
               </PixelCard>

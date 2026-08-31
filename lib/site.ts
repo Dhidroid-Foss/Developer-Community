@@ -2,11 +2,11 @@
  * lib/site.ts — Single source of truth for Niral Developer site identity & SEO.
  *
  * The site is deployed on Cloudflare Workers and served from
- * https://niraldeveloper.dhidroid.workers.dev — every canonical URL, sitemap
+ * https://niraldevelopers.dhidroid.workers.dev — every canonical URL, sitemap
  * entry, robots.txt reference and Open Graph tag must point here.
  */
 
-export const SITE_URL = "https://niraldeveloper.dhidroid.workers.dev";
+export const SITE_URL = "https://niraldevelopers.dhidroid.workers.dev";
 
 export const SITE_NAME = "Niral Developer";
 

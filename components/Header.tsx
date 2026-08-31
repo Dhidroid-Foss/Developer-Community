@@ -44,11 +44,13 @@ export default function Header({ onJoinClick: _ }: HeaderProps) {
 
         {/* ── Desktop nav ─────────────────────────────────────────────── */}
         <div className="hidden items-center gap-7 text-xs font-semibold md:flex">
+          <Link href="/blog"        className="hover:text-[var(--orange)] transition-colors">Blog</Link>
+          <Link href="/works"       className="hover:text-[var(--orange)] transition-colors">Works</Link>
           <Link href="/stack"       className="hover:text-[var(--orange)] transition-colors">Stack</Link>
           <Link href="/developers"  className="hover:text-[var(--orange)] transition-colors">Developers</Link>
           <Link href="/cohorts"     className="hover:text-[var(--orange)] transition-colors">Cohorts</Link>
           <Link href="/resources"   className="hover:text-[var(--orange)] transition-colors">Resources</Link>
-          <Link href="/tech-briefs" className="hover:text-[var(--orange)] transition-colors">Tech Briefs</Link>
+          {/* <Link href="/tech-briefs" className="hover:text-[var(--orange)] transition-colors">Tech Briefs</Link> */}
 
           {/* Join now → Discord invite */}
           <a
@@ -57,7 +59,7 @@ export default function Header({ onJoinClick: _ }: HeaderProps) {
             rel="noopener noreferrer"
             className="rounded-full bg-[var(--orange)] px-4 py-2.5 text-[11px] text-zinc-950 font-bold hover:bg-[#e05629] transition-colors inline-flex items-center gap-1"
           >
-            Join now <span className="text-base">↗</span>
+            Join now
           </a>
         </div>
 
@@ -82,11 +84,14 @@ export default function Header({ onJoinClick: _ }: HeaderProps) {
             className="border-t border-white/15 bg-zinc-950 px-5 pb-5 md:hidden"
           >
             <div className="mx-auto flex w-[min(1170px,100%)] flex-col items-start gap-1 text-sm">
+              <Link className="py-3 w-full" onClick={() => setMenuOpen(false)} href="/blog">Blog</Link>
+              <Link className="py-3 w-full" onClick={() => setMenuOpen(false)} href="/works">Works</Link>
+              <Link className="py-3 w-full" onClick={() => setMenuOpen(false)} href="/authors">Authors</Link>
               <Link className="py-3 w-full" onClick={() => setMenuOpen(false)} href="/stack">Stack</Link>
               <Link className="py-3 w-full" onClick={() => setMenuOpen(false)} href="/developers">Developers</Link>
               <Link className="py-3 w-full" onClick={() => setMenuOpen(false)} href="/cohorts">Cohorts</Link>
               <Link className="py-3 w-full" onClick={() => setMenuOpen(false)} href="/resources">Resources</Link>
-              <Link className="py-3 w-full" onClick={() => setMenuOpen(false)} href="/tech-briefs">Tech Briefs</Link>
+              {/* <Link className="py-3 w-full" onClick={() => setMenuOpen(false)} href="/tech-briefs">Tech Briefs</Link> */}
 
               {/* Join now → Discord */}
               <a
@@ -96,7 +101,7 @@ export default function Header({ onJoinClick: _ }: HeaderProps) {
                 onClick={() => setMenuOpen(false)}
                 className="mt-2 w-full text-center rounded-full bg-[var(--orange)] px-4 py-2.5 text-xs font-bold text-zinc-950 block"
               >
-                Join now ↗
+                Join now 
               </a>
             </div>
           </motion.div>
