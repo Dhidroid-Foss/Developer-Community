@@ -73,6 +73,40 @@ export const developers: Developer[] = [
     email: "-",
     stack: ["Claude AI", "Ollama", "Luma API"]
   },
+  {
+    id: "DhanushThanigaivel",
+    name: "Dhanush Thanigaivel",
+    role: "Full-Stack Developer",
+    location: "Chennai, IN",
+    avatar: "https://private-user-images.githubusercontent.com/87540180/644222190-55188c76-1e38-45c5-88cf-34bfe6180814.jpeg?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3ODkzNzUwNDIsIm5iZiI6MTc4OTM3NDc0MiwicGF0aCI6Ii84NzU0MDE4MC82NDQyMjIxOTAtNTUxODhjNzYtMWUzOC00NWM1LTg4Y2YtMzRiZmU2MTgwODE0LmpwZWc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjYwOTE0JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI2MDkxNFQwODMyMjJaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT1hOWIyNTFkZGMyZjc5YjI0ZGYwZjFmNzNiNTZhNDZiMTIwMWNiZjVhODBiMmM3ODUxNDIxZTliZjYxNTlkYTg0JlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZyZXNwb25zZS1jb250ZW50LXR5cGU9aW1hZ2UlMkZqcGVnIn0.Dm784P4abbyd-wV6JpeBYqurE5oFxIuentSorpHwljY",
+    bio: "Dhanush is a full-stack developer with a passion for creating efficient and scalable web applications. He has experience with modern JavaScript frameworks and cloud technologies.",
+    skills: ["React", "Node.js", "Python", "AWS", "Docker"],
+    projects: [
+      { title: "E-commerce Platform", desc: "A full-featured online shopping experience with real-time inventory management." },
+      { title: "Task Management App", desc: "A collaborative tool for managing projects and tasks with team communication features." }
+    ],
+    github: "https://github.com/DhanushThanigaivel",
+    linkedin: "https://linkedin.com/in/DhanushThanigaivel",
+    email: "-",
+    stack: ["React", "Node.js", "Python"]
+  },
+  {
+    id: "SriNath",
+    name: "SriNath",
+    role: "Frontend Developer",
+    location: "Chennai, IN",
+    avatar: "https://avatars.githubusercontent.com/u/12345678?v=4",
+    bio: "Sathish is a frontend developer specializing in building responsive and user-friendly web applications. He has a keen eye for design and a passion for creating seamless user experiences.",
+    skills: ["HTML", "CSS", "JavaScript", "React", "Vue.js"],
+    projects: [
+      { title: "Portfolio Website", desc: "A personal portfolio showcasing web development projects and skills." },
+      { title: "Responsive Web App", desc: "A web application designed to work seamlessly across devices and screen sizes." }
+    ],
+    github: "",
+    linkedin: "",
+    email: "-",
+    stack: ["HTML", "CSS", "JavaScript", "React", "Vue.js"]
+  }
 ];
 
 /** Convenience lookup: id → Developer (used by the dynamic route). */
