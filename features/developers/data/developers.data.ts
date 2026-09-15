@@ -91,19 +91,19 @@ export const developers: Developer[] = [
     stack: ["React", "Node.js", "Python"]
   },
   {
-    id: "SriNath",
-    name: "SriNath",
-    role: "Frontend Developer",
+    id: "Divyasrinath-G",
+    name: "Divyasrinath G",
+    role: "Full-Stack Developer",
     location: "Chennai, IN",
-    avatar: "https://avatars.githubusercontent.com/u/12345678?v=4",
-    bio: "Sathish is a frontend developer specializing in building responsive and user-friendly web applications. He has a keen eye for design and a passion for creating seamless user experiences.",
+    avatar: "https://www.linkedin.com/in/divyasrinath-g/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base%3Byz6hj%2BQDRXGpQRn2kxMYpw%3D%3D",
+    bio: "Software Engineer and Full-Stack Developer building scalable enterprise applications and automated workflows with Django REST, .NET, and FastAPI. Srinath is passionate about robust backend architecture, bridging the gap between complex business logic and seamless system integrations. Currently deeply focused on integrating AI capabilities like Retrieval-Augmented Generation (RAG) to build smarter, context-aware search pipelines. He loves end-to-end automation, optimizing enterprise operations, and translating complex technical concepts into accessible, production-ready code.",
     skills: ["HTML", "CSS", "JavaScript", "React", "Vue.js"],
     projects: [
       { title: "Portfolio Website", desc: "A personal portfolio showcasing web development projects and skills." },
       { title: "Responsive Web App", desc: "A web application designed to work seamlessly across devices and screen sizes." }
     ],
-    github: "",
-    linkedin: "",
+    github: "https://github.com/Srinath-g13",
+    linkedin: "https://www.linkedin.com/in/divyasrinath-g?utm_source=share_via&utm_content=profile&utm_medium=member_android",
     email: "-",
     stack: ["HTML", "CSS", "JavaScript", "React", "Vue.js"]
   }
